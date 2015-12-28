@@ -1,5 +1,51 @@
+.mainContainer{
+	width:99%;
+	margin:5px;
+}
+.visualContainer{
+	float:left;
+	width:70%;
+	min-height: 1000px;
+	padding-bottom: 50px;
+	background: #ffffff;
+	background: url('../images/drophere.png')center no-repeat;
+}
+.toggleHeadingWrapper{
+	height:30px;
+	width:100%;
+	background-color:#b7b5b5;
+}
+.clickableHeading{
+	font-size:24px;
+	font-weight:bold;
+	color:black;
+	cursor:pointer;
+	line-height:30px;
+}
+.componentContainer{
+	display:block;
+	background-color:white;
+	padding-top:5px;
+}
+.elementContainer{
+	background:#c8c3c3;
+	width:100%;
+	height:30%;
+	overflow-y:scroll;
+	padding:5px;
+}
+.panelContainer{
+	width:30%;
+	position:fixed;
+	left:70%;
+	height:100%;
+	border:1px solid #000000;
+}
 .bootButton{
 	
+}
+.container{
+	min-height: 10px;
 }
 .settingOption{
 	padding-left: 45px;
@@ -7,7 +53,7 @@
 	position: absolute;
 	border-radius: 21px;
 	height: 38px;
-	z-index: 1;
+	z-index: 20;
 	color: #ec9633; 
 	line-height: 38px;
 	font-size: 14px;
@@ -22,14 +68,14 @@
 	position: absolute;
 	border-radius: 21px;
 	height: 38px;
-	z-index: 1;
-	color: #ffffff; 
+	z-index: 20;
+	color: #000000; 
 	line-height: 38px;
 	font-size: 14px;
 }
 .deleteOption:hover{
 	background: url('../images/delete-active.png')no-repeat;
-	color:#f1f1f1;
+	color:#111111;
 }
 .is-hidden { display: none; }
 
@@ -41,7 +87,7 @@
   top: 10px;
   right: 10px;
   cursor: pointer;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAowAAAKMB8MeazgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAB5SURBVDiNrZPRCcAwCEQfnUiySAZuF8kSWeH6Yz8KrQZMQAicJ+epAB0YwAmYJKIADLic0/GPPCbQAnLznCd/4NWUFfkgy1VjH8CryA95ApYltAiTRCZxpuoW+gz9WXE6NPeg+ra1UDIxGlWEObe4SGxY5fIxlc75Bkt9V4JS7KWJAAAAAElFTkSuQmCC59ef34356faa7edebc7ed5432ddb673d');
+  background-image: url('../images/close.png');
 }
 
 .overlay {

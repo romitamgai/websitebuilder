@@ -36,10 +36,10 @@ function ElementSection(){
 	this.writeHtml = function(text){
 		this.element.innerHTML = text;
 	}
-	this.getStyle = function(){
-		var style = window.getComputedStyle(that.element);
-		var initial = style.getPropertyValue('');
-		return initial;
+	this.getStyle = function(style){
+		var elementName = window.getComputedStyle(that.element);
+		var value = elementName.getPropertyValue(style);
+		return value;
 	}
 	this.getEleById = function(id){
 		return document.getElementById(id);
@@ -52,11 +52,6 @@ function ElementSection(){
 	}
 	this.getTargetIdName = function(targetElement){
 		return targetElement.id;
-	}
-	this.getStyle = function(style){
-		var elementName = window.getComputedStyle(that.element);
-		var value = elementName.getPropertyValue(style);
-		return value;
 	}
 	this.getTargetElementHeight = function(targetElement){
 		return targetElement.style.height;
@@ -215,8 +210,8 @@ function ElementSection(){
 		if(eventFunction == 'changeHeight'){
 			that.element.addEventListener(eventName,that.changeHeight);
 		}
-		if(eventFunction == 'toggleContents'){
-			that.element.addEventListener(eventName, that.toggleContents);
+		if(eventFunction == 'toggleDisplayContainer'){
+			that.element.addEventListener(eventName, that.toggleDisplayContainer);
 		}
 		if(eventFunction == 'changeWidth'){
 			that.element.addEventListener(eventName, that.changeWidth);
@@ -423,6 +418,7 @@ function ElementSection(){
 	this.resizeElement = function(){
 		that.createEvent('mousedown','initDrag');
 	}
+	//Events to resize div
 	this.initDrag = function(e){
 		startX = e.clientX;
 		startY = e.clientY;
@@ -439,6 +435,7 @@ function ElementSection(){
     	document.documentElement.removeEventListener('mousemove', that.doDrag, false);   
     	document.documentElement.removeEventListener('mouseup', that.stopDrag, false);
 	}
+	//Events for drag and drop
 	this.dragStart = function(ev){
 
 		ev.dataTransfer.effectAllowed='copy';
@@ -465,28 +462,30 @@ function ElementSection(){
 	this.dragDrop = function(ev) {
  		var data = ev.dataTransfer.getData('Text');
  		var mainElement = document.getElementById(data);
- 		if(mainElement != null){
+ 		if(mainElement != null && ev.target.className=='visualContainer'){
  			var elementValue = mainElement.getAttribute('value');
- 			mainLayoutInstance.elementContainer.makeNewElement(elementValue,ev.target);
+ 			ev.target.style.background = 'none';
+ 			mainLayoutInstance.elementContainer.createStaticComponents(elementValue,ev.target);
 	 		ev.stopPropagation();
 		}
 		return false;
 	}
-	// this.mouseEnter = function(ev){
-	// 	container = ev.target;
-	// 	container.style.outline = '3px dotted red';
-	// 	// var spanWidthClass = document.getElementsByClassName('widthSpanned')[0];
-	// 	// spanWidthClass.style.background = 'blue';
-	// }
+	this.mouseEnter = function(ev){
+		if(ev.target.parentElement.className != 'componentContainer')
+			ev.target.style.outline = '3px dotted #111111';
+	}
 	this.mouseLeave = function(ev){
-		ev.target.style.outline = 'none';
-		// var spanWidthClass = document.getElementsByClassName('widthSpanned')[0];
-		// spanWidthClass.style.background = 'white';
+		if(ev.target.parentElement.className != 'componentContainer')
+			ev.target.style.outline = 'none';
 	}
 	this.mouseOut = function(ev){
 		ev.target.style.outline ='none';
 	}
-	this.toggleContents = function(ev){
+	this.findAncestor = function(container,className){
+		while((container=container.parentElement) && !container.classList.contains('visualContainer'))
+			return container;
+	}
+	this.toggleDisplayContainer = function(ev){
 		var next = that.element.nextElementSibling;
 		if(next.style.display == 'none'){
 			next.style.display = 'block';
@@ -541,7 +540,6 @@ function ElementSection(){
 	    elementListStyleImage = that.filterText(elementListStyleImage);
 
 	    mainLayoutInstance.attributeContainer.classInput.element.value = elementClassName;
-	    mainLayoutInstance.attributeContainer.allClassesSelect.element.value = elementClassName;
 	    mainLayoutInstance.attributeContainer.idInput.element.value = elementIdName;
 	    mainLayoutInstance.attributeContainer.widthInput.element.value = elementWidth;
 	    mainLayoutInstance.attributeContainer.heightInput.element.value = elementHeight;
@@ -577,10 +575,10 @@ function ElementSection(){
 	    mainLayoutInstance.attributeContainer.wordSpacingInput.element.value = elementWordSpacing;
 		mainLayoutInstance.attributeContainer.innerHtmlInput.element.value = elementinnerHtml;
 		if(eventElement.className != ' imgClass'){
-			mainLayoutInstance.attributeContainer.clickWrapper.element.style.display = 'none';
+			mainLayoutInstance.attributeContainer.toggleableDiv.element.style.display = 'none';
 			mainLayoutInstance.attributeContainer.formContainer.element.style.display = 'none';
 		}else{
-			mainLayoutInstance.attributeContainer.clickWrapper.element.style.display = 'block';
+			mainLayoutInstance.attributeContainer.toggleableDiv.element.style.display = 'block';
 			mainLayoutInstance.attributeContainer.formContainer.element.style.display = 'block';
 			
 			mainLayoutInstance.attributeContainer.imageAlignSelect.element.value = elementImageAlign;
@@ -1204,7 +1202,7 @@ function ElementSection(){
 		option.createElementType('option');
 		option.addAttribute('value',elementClassName);
 		option.writeHtml(elementClassName);
-		option.appendTo(mainLayoutInstance.attributeContainer.allClassesSelect.element);
+		option.appendTo(mainLayoutInstance.attributeContainer.classInput.element);
 	}
 	this.createCompoundElements = function(elementType,elementClass){
 		that.createElementType(elementType);
@@ -1261,10 +1259,10 @@ function ElementSection(){
 	}
 	this.makeTextItalic = function(ev){
 		if(!that.selectionIsItalic()){
-			document.execCommand('italic', "", null);
+			document.execCommand('italic', '', null);
 			ev.target.classList.add('crnt');
 		}else{
-			document.execCommand('italic', "", null);
+			document.execCommand('italic', '', null);
 			ev.target.classList.remove('crnt');
 		}
 	}
@@ -1689,9 +1687,9 @@ function ElementSection(){
 			var lineHeights = ['12','14','18','24','32','48'];
 			var elementLineHeightSelect = new ElementSection();
 			elementLineHeightSelect.createElementType('select');
-			elementLineHeightSelect.addClass("lineHeightSelect");
+			elementLineHeightSelect.addClass('lineHeightSelect');
 			elementLineHeightSelect.addAttribute('data-for',parent);
-			elementLineHeightSelect.createEvent("change","changeTextLineHeight");
+			elementLineHeightSelect.createEvent('change','changeTextLineHeight');
 			for(var i = 0; i< lineHeights.length;i++){
 				var lineHeight = new ElementSection();
 				lineHeight.createElementType('option');
@@ -1873,7 +1871,7 @@ function ElementSection(){
 		var selectedElementById = document.getElementById(idName);
 		if(selectedElementById != null && (document.getElementsByClassName('textEditorBar')[0]==undefined)){
 			var parent = selectedElementById.parentElement;
-			if(parent.parentElement.className == 'bodyContainer container'){
+			if(parent.parentElement.className == 'visualContainer'){
 				parent.parentElement.removeChild(parent);
 			}
 			else if(parent.className != 'elementContainer'){

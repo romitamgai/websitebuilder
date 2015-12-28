@@ -9,40 +9,43 @@ var MainLayout = (function(){
 		var that = this;
 
 		this.init = function(){
-
-		    //Creating the required initial divisions
 		  	that.mainContainer = new ElementSection();
 		    that.mainContainer.createElementType('div');
 		    that.mainContainer.addClass('mainContainer');
-		    that.mainContainer.addStyle('width:99%;margin:5px;');
 
 		    that.visualPane = new ElementSection();
 		    that.visualPane.createElementType('div');
 		    that.visualPane.addClass('visualContainer');
-		    that.visualPane.addStyle('float:left;width:70%;');
+		    that.visualPane.createEvent('dragenter','dragEnter');
+			that.visualPane.createEvent('drop','dragDrop');
+			that.visualPane.createEvent('dragover','dragOver');
+			that.visualPane.createEvent('dragleave','dragLeave');
+			that.visualPane.createEvent('mouseenter','mouseEnter');
+			that.visualPane.createEvent('mouseleave','mouseLeave');
+			that.visualPane.createEvent('mouseout','mouseOut');
+			that.visualPane.createEvent('click','changeFormFields');
 
 		    that.panelPane = new ElementSection();
 		    that.panelPane.createElementType('div');
 		    that.panelPane.addClass('panelContainer');
-		    that.panelPane.addStyle('width:30%;position:fixed;left:70%;height:100%');
 
-		    //Adding header to the visual Pane
-		    var headerContainer = new HeaderContainer();
-		    headerContainer.init();
-		    var headerElement = headerContainer.getHeaderPortion();
-		    that.visualPane.appendChildren(headerElement);
+		    // //Adding header to the visual Pane
+		    // var headerContainer = new HeaderContainer();
+		    // headerContainer.init();
+		    // var headerElement = headerContainer.getHeaderPortion();
+		    // that.visualPane.appendChildren(headerElement);
 
-		    //Adding body to the visual pane
-		    var bodyContainer = new BodyContainer();
-		    bodyContainer.init();
-		    var bodyElement = bodyContainer.getBodyPortion();
-		    that.visualPane.appendChildren(bodyElement);
+		    // //Adding body to the visual pane
+		    // var bodyContainer = new BodyContainer();
+		    // bodyContainer.init();
+		    // var bodyElement = bodyContainer.getBodyPortion();
+		    // that.visualPane.appendChildren(bodyElement);
 
-		    //Adding footer to the visual pane
-		    var footerContainer = new FooterContainer();
-		    footerContainer.init();
-		    var footerElement = footerContainer.getFooterPortion();
-		    that.visualPane.appendChildren(footerElement);
+		    // //Adding footer to the visual pane
+		    // var footerContainer = new FooterContainer();
+		    // footerContainer.init();
+		    // var footerElement = footerContainer.getFooterPortion();
+		    // that.visualPane.appendChildren(footerElement);
 
 		    //Adding Element container to panel pane
 		    that.elementContainer = new ElementContainer();
@@ -82,3 +85,5 @@ var MainLayout = (function(){
 		}
 	}
 }());
+var layout = MainLayout.getInstance();
+layout.init();
