@@ -1,0 +1,273 @@
+.bootButton{
+	
+}
+.settingOption{
+	padding-left: 45px;
+	background: url('../images/settings.png')no-repeat;
+	position: absolute;
+	border-radius: 21px;
+	height: 38px;
+	z-index: 1;
+	color: #ec9633; 
+	line-height: 38px;
+	font-size: 14px;
+}
+.settingOption:hover{
+	background: url('../images/settings-active.png')no-repeat;
+	color:#fbb05a;
+}
+.deleteOption{
+	padding-left: 45px;
+	background: url('../images/delete.png')no-repeat;
+	position: absolute;
+	border-radius: 21px;
+	height: 38px;
+	z-index: 1;
+	color: #ffffff; 
+	line-height: 38px;
+	font-size: 14px;
+}
+.deleteOption:hover{
+	background: url('../images/delete-active.png')no-repeat;
+	color:#f1f1f1;
+}
+.is-hidden { display: none; }
+
+.button-close {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAowAAAKMB8MeazgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAB5SURBVDiNrZPRCcAwCEQfnUiySAZuF8kSWeH6Yz8KrQZMQAicJ+epAB0YwAmYJKIADLic0/GPPCbQAnLznCd/4NWUFfkgy1VjH8CryA95ApYltAiTRCZxpuoW+gz9WXE6NPeg+ra1UDIxGlWEObe4SGxY5fIxlc75Bkt9V4JS7KWJAAAAAElFTkSuQmCC59ef34356faa7edebc7ed5432ddb673d');
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  overflow-y:scroll; 
+}
+
+.modal-content {
+  padding: 20px 30px;
+  width: 600px;
+  position: relative;
+  min-height: 300px;
+  margin: 5% auto 0;
+  background: #fff;
+}
+.controls{
+	float: none;
+	position: relative;
+	box-sizing:content-box;
+}
+.colorControl{
+	margin: 20px auto;
+	width: 100%;
+}
+#chooseColorRadio{
+	float: left;
+	margin-right: 36px;
+}
+.radio{
+	min-height: 20px;
+	padding: 0px;
+}
+label,.lbl{
+	vertical-align: middle;
+}
+label{
+	display: block;
+	margin-bottom: 5px;
+}
+label,input,button,select,textarea{
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 20px;
+}
+#radioNone,#radioColor{
+	margin-left: 20px;
+}
+.imageUpload{
+	margin-top: 20px;
+	width:300px;
+}
+.btnUpload{
+	margin-top: 10px;
+}
+#btnApply{
+	margin-top: 50px;
+	margin-left: 480px;
+}
+.textEditorBar{
+    position: fixed;
+    height: 70px;
+    width: 502px;
+    background: #ec9633;
+    z-index: 15;
+}
+.btn-grp{
+float:left;
+padding: 2px 7px;
+width: 25%;
+height: 35px;
+position: relative;
+}
+.btn-grp.borderB{
+	border-bottom: 1px solid #ff8800;
+}
+.btn-grp.borderR{
+	border-right: 1px solid #ff8800; 
+}
+.btn-grp.borderL{
+	border-left: 1px solid #ff8855;
+}
+.btn-grp.borderT{
+	border-top: 1px solid #ff8855;
+}
+.textEditorBar [data-original-title]{
+	height: 22px;
+	width: 22px;
+	margin: 5px 4px 5px -1px;
+	padding: 0px 11px;
+	cursor: pointer;
+	background-position: 0 -1px;
+	position: relative; 
+	color: #ffffff;
+	font-size: 14px;
+	border: none;
+	font-family: sans-serif;
+}
+.textEditorBar [data-original-title = 'Bold']{
+	background-image: url('../images/bold.png');
+}
+.textEditorBar [data-original-title = 'Italic']{
+	background-image: url('../images/italic.png');
+}
+.textEditorBar [data-original-title = 'Strikethrough']{
+	background-image: url('../images/strike.png');
+}
+.textEditorBar [data-original-title = 'Underline']{
+	background-image: url('../images/underline.png');
+}
+.textEditorBar [data-original-title = 'Bullet list']{
+	background-image: url('../images/list.png');
+}
+.textEditorBar [data-original-title = 'Number list']{
+	background-image: url('../images/numlist.png');
+}
+.textEditorBar [data-original-title = 'Indent']{
+	background-image: url('../images/indent2.png');
+}
+.textEditorBar [data-original-title = 'Reduce indent']{
+	background-image: url('../images/outdent.png');
+}
+.textEditorBar [data-original-title = 'Align Left']{
+	background-image: url('../images/left.png');
+}
+.textEditorBar [data-original-title = 'Align Center']{
+	background-image: url('../images/center.png');
+}
+.textEditorBar [data-original-title = 'Align Right']{
+	background-image: url('../images/right.png');
+}
+.textEditorBar [data-original-title = 'Justify']{
+	background-image: url('../images/block.png');
+}
+.crnt{
+	background-position-y :-47px !important;
+}
+.btn-grp > p{
+	color: #ffffff;
+    border: none;
+    background-color: transparent;
+    line-height: 32px;
+    font-size: 14px;
+    padding: 0;
+    text-align: left;
+    border-radius: 0;
+    float: left;
+}
+.fontUp{
+	background: url('../images/iconup.png')center center no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	float: right;
+}
+.fontDown{
+	background: url('../images/icondown.png')center center no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	float: right;
+}
+.lineHeightSelect{
+	float: right;
+	vertical-align: center;
+	margin-top: 5px;
+}
+.btn-grp.btm{
+	width: 33.33%
+}
+.floating-label-form-group {
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: .5em;
+    border-bottom: 1px solid #eee;
+}
+
+.floating-label-form-group input,
+.floating-label-form-group textarea {
+    z-index: 1;
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+    border: 0;
+    border-radius: 0;
+    font-size: 1.5em;
+    background: 0 0;
+    box-shadow: none!important;
+    resize: none;
+}
+
+.floating-label-form-group label {
+    display: block;
+    z-index: 0;
+    position: relative;
+    top: 2em;
+    margin: 0;
+    font-size: .85em;
+    line-height: 1.764705882em;
+    vertical-align: middle;
+    vertical-align: baseline;
+    opacity: 0;
+    -webkit-transition: top .3s ease,opacity .3s ease;
+    -moz-transition: top .3s ease,opacity .3s ease;
+    -ms-transition: top .3s ease,opacity .3s ease;
+    transition: top .3s ease,opacity .3s ease;
+}
+
+.floating-label-form-group::not(:first-child) {
+    padding-left: 14px;
+    border-left: 1px solid #eee;
+}
+
+.floating-label-form-group-with-value label {
+    top: 0;
+    opacity: 1;
+}
+
+.floating-label-form-group-with-focus label {
+    color: #18bc9c;
+}
+
+form .row:first-child .floating-label-form-group {
+    border-top: 1px solid #eee;
+}
