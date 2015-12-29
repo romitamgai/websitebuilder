@@ -1,7 +1,6 @@
 function ElementSection(){
 	var mainLayoutInstance = MainLayout.getInstance();
 	var that = this;
-	var startX, startY, startWidth, startHeight;
 
 	this.createElementType = function(type){
 		that.element = document.createElement(type);
@@ -12,6 +11,9 @@ function ElementSection(){
 	this.removeChildren = function(parentElement){
 		parentElement.removeChild(that.element);
 	}
+	this.removeElementChild = function(element,parentElement){
+		parentElement.removeChild(element);
+	}
 	this.addAttribute = function(attributeName,value){
 		that.element.setAttribute(attributeName,value);
 	}
@@ -20,6 +22,15 @@ function ElementSection(){
 			that.element.className += ' ' +  className;
 		else 
 			that.element.className += className;
+	}
+	this.appendElementChild = function(element,child){
+		element.appendChild(child);
+	}
+	this.addElementClass = function(element,className){
+		element.classList.add(className);
+	}
+	this.removeElementClass = function(element,className){
+		element.classList.remove(className);
 	}
 	this.removeClass = function(className){
 		that.element.classList.remove(className);
@@ -30,16 +41,28 @@ function ElementSection(){
 	this.addStyle = function(style){
 		that.element.style.cssText = style;
 	}
+	this.setStyle = function(property,style){
+		that.element.style[property] = style;
+	}
+	this.setElementStyle = function(element,property,style){
+		element.style[property] = style;
+	}
 	this.appendChildren = function(childElement){
 		that.element.appendChild(childElement);
 	}
 	this.writeHtml = function(text){
 		this.element.innerHTML = text;
 	}
-	this.getStyle = function(style){
-		var elementName = window.getComputedStyle(that.element);
+	this.getStyle = function(style,element){
+		var elementName = window.getComputedStyle(element);
 		var value = elementName.getPropertyValue(style);
 		return value;
+	}
+	this.setElementAttribute = function(element,attributeName,value){
+		element.setAttribute(attributeName,value);
+	}
+	this.getElementAttribute = function(element,attributeName){
+		return element.getAttribute(attributeName);
 	}
 	this.getEleById = function(id){
 		return document.getElementById(id);
@@ -174,21 +197,6 @@ function ElementSection(){
 		mainLayoutInstance.attributeContainer.idInput.element.value = inputName;
 	}
 	this.createEvent = function(eventName,eventFunction){
-		if(eventFunction=='dragStart'){
-			that.element.addEventListener(eventName,that.dragStart);
-		}
-		if(eventFunction == 'dragEnter'){
-			that.element.addEventListener(eventName,that.dragEnter);
-		}
-		if(eventFunction == 'dragOver'){
-			that.element.addEventListener(eventName,that.dragOver);
-		}
-		if(eventFunction == 'dragLeave'){
-			that.element.addEventListener(eventName,that.dragLeave);
-		}
-		if(eventFunction == 'dragDrop'){
-			that.element.addEventListener(eventName,that.dragDrop);
-		}
 		if(eventFunction =='mouseEnter'){
 			that.element.addEventListener(eventName,that.mouseEnter);
 		}
@@ -339,33 +347,6 @@ function ElementSection(){
 		if(eventFunction == 'changeBackgroundImageBtn'){
 			that.element.addEventListener(eventName,that.changeBackgroundImageBtn);
 		}
-		if(eventFunction == 'addOptionButton'){
-			that.element.addEventListener(eventName,that.addOptionButton);
-		}
-		if(eventFunction == 'deleteOptionPanel'){
-			that.element.addEventListener(eventName,that.deleteOptionPanel);
-		}
-		if(eventFunction == 'settingsOptionPanel'){
-			that.element.addEventListener(eventName,that.settingsOptionPanel);
-		}
-		if(eventFunction == 'closeModal'){
-			that.element.addEventListener(eventName,that.closeModal);
-		}
-		if(eventFunction == 'displayBgColorSelect'){
-			that.element.addEventListener(eventName,that.displayBgColorSelect);
-		}
-		if(eventFunction == 'displayBgImageSelect'){
-			that.element.addEventListener(eventName,that.displayBgImageSelect);
-		}
-		if(eventFunction == 'bgSelectedNone'){
-			that.element.addEventListener(eventName,that.bgSelectedNone);
-		}
-		if(eventFunction == 'bgSelectedColor'){
-			that.element.addEventListener(eventName,that.bgSelectedColor);
-		}
-		if(eventFunction == 'uploadBgImage'){
-			that.element.addEventListener(eventName,that.uploadBgImage);
-		}
 		if(eventFunction == 'closeTextEditor'){
 			that.element.addEventListener(eventName,that.closeTextEditor);
 		}
@@ -415,61 +396,6 @@ function ElementSection(){
 			that.element.addEventListener(eventName,that.changeTextLineHeight);
 		}
 	}
-	this.resizeElement = function(){
-		that.createEvent('mousedown','initDrag');
-	}
-	//Events to resize div
-	this.initDrag = function(e){
-		startX = e.clientX;
-		startY = e.clientY;
-		startWidth = parseInt(document.defaultView.getComputedStyle(that.element).width, 10);
-   		startHeight = parseInt(document.defaultView.getComputedStyle(that.element).height, 10);
-   		document.documentElement.addEventListener('mousemove', that.doDrag, false);
-  		 document.documentElement.addEventListener('mouseup', that.stopDrag, false);
-	}
-	this.doDrag = function(e) {
-   			that.element.style.width = (startWidth + e.clientX - startX) + 'px';
-   			that.element.style.height = (startHeight + e.clientY - startY) + 'px';
-	}
- 	this.stopDrag = function(e) {
-    	document.documentElement.removeEventListener('mousemove', that.doDrag, false);   
-    	document.documentElement.removeEventListener('mouseup', that.stopDrag, false);
-	}
-	//Events for drag and drop
-	this.dragStart = function(ev){
-
-		ev.dataTransfer.effectAllowed='copy';
-  		ev.dataTransfer.setData('Text', ev.target.getAttribute('id'));
-   		ev.dataTransfer.setDragImage(ev.target,0,0);
-   		return true;
-	}
-  	this.dragEnter = function(ev){
-		event.preventDefault();
-	 	dragContainer = ev.target;
-	 	dragContainer.style.outline = 'none';
-		return true;
-	}
-	this.dragOver = function(ev){
- 		event.preventDefault();
- 		dragContainer = ev.target;
-	 	dragContainer.style.outline = '3px dotted black';
-	}
-	this.dragLeave = function(ev){
-		event.preventDefault();
-		dragContainer = ev.target;
-		dragContainer.style.outline = 'none';
-	}
-	this.dragDrop = function(ev) {
- 		var data = ev.dataTransfer.getData('Text');
- 		var mainElement = document.getElementById(data);
- 		if(mainElement != null && ev.target.className=='visualContainer'){
- 			var elementValue = mainElement.getAttribute('value');
- 			ev.target.style.background = 'none';
- 			mainLayoutInstance.elementContainer.createStaticComponents(elementValue,ev.target);
-	 		ev.stopPropagation();
-		}
-		return false;
-	}
 	this.mouseEnter = function(ev){
 		if(ev.target.parentElement.className != 'componentContainer')
 			ev.target.style.outline = '3px dotted #111111';
@@ -481,12 +407,9 @@ function ElementSection(){
 	this.mouseOut = function(ev){
 		ev.target.style.outline ='none';
 	}
-	this.findAncestor = function(container,className){
-		while((container=container.parentElement) && !container.classList.contains('visualContainer'))
-			return container;
-	}
+	//Listeners
 	this.toggleDisplayContainer = function(ev){
-		var next = that.element.nextElementSibling;
+		var next = ev.target.parentElement.nextElementSibling;
 		if(next.style.display == 'none'){
 			next.style.display = 'block';
 		}else{
@@ -731,8 +654,6 @@ function ElementSection(){
 	}
 	this.removeElement = function(ev){
 		ev.preventDefault();
-		var abc = that.getSelectedText();
-		console.log(abc);
 		var inputValue = that.element.value;
 		var className = that.getInputClassName();
 		var idName = that.getInputIdName();
@@ -750,11 +671,6 @@ function ElementSection(){
 				parent.removeChild(selectedElementByClassName);
 			}
 		}
-	}
-	this.changeBgColor = function(ev){
-		var styleElementIdName = ev.target.getAttribute('data-for');
-		var styleElement = document.getElementById(styleElementIdName);
-		styleElement.style.backgroundColor = ev.target.value;
 	}
 	this.changeBgAttachSelect = function(){
 		var inputValue = that.element.value;
@@ -804,7 +720,6 @@ function ElementSection(){
 		var selectedElementById = document.getElementById(idName);
 		var selectedElementByClassName = document.getElementsByClassName(className)[0];
 		if(selectedElementById != null){
-			console.log('ayo');
 			selectedElementById.style.backgroundColor = inputValue;
 			mainLayoutInstance.attributeContainer.backgrColorInput.element.value = inputValue;
 			if(inputValue.length == 7)
@@ -1164,39 +1079,6 @@ function ElementSection(){
 			selectedElementByClassName.setAttribute('width',inputValue);
 		}
 	}
-	this.displayBgColorSelect = function(ev){
-		var colorContainer = document.getElementsByClassName('controls colorControl')[0];
-		var imageButton;
-		if(document.getElementsByClassName('btn btnBgImage active')[0]!=undefined){
-			imageButton = document.getElementsByClassName('btn btnBgImage active')[0];
-		}
-		else{
-			imageButton = document.getElementsByClassName('btn btnBgImage')[0];
-		}
-		var imageContainer = document.getElementsByClassName('controls imageControl')[0];
-		imageButton.classList.remove('active');
-		colorContainer.style.display = 'block';
-		imageContainer.style.display = 'none';
-		ev.target.classList.add('active');
-	}
-
-	this.displayBgImageSelect = function(ev){
-		var colorContainer = document.getElementsByClassName('controls colorControl')[0];
-		var bgColorButton;
-		if(document.getElementsByClassName('btn btnBgColor active')[0]!=undefined){
-			bgColorButton = document.getElementsByClassName('btn btnBgColor active')[0];
-		}else{
-			bgColorButton = document.getElementsByClassName('btn btnBgColor')[0];
-		}
-		var imageContainer = document.getElementsByClassName('controls imageControl')[0];
-		var upload = document.getElementsByClassName('imageUpload')[0];
-		bgColorButton.classList.remove('active');
-		imageContainer.style.display = 'block';
-		console.log(imageContainer.style.display);
-		imageContainer.appendChild(upload);
-		colorContainer.style.display = 'none';
-		ev.target.classList.add('active');
-	}
 	this.addSelectClassComponents = function(elementClassName){
 		var option = new ElementSection();
 		option.createElementType('option');
@@ -1211,42 +1093,7 @@ function ElementSection(){
 		that.createEvent('mouseenter','mouseEnter');
 		that.createEvent('mouseleave','mouseLeave');
 		that.createEvent('mouseout','mouseOut');
-		that.createEvent('click','addOptionButton');
 		that.addSelectClassComponents(elementClass);
-	}
-	this.addOptionButton = function(ev){
-		if((document.getElementsByClassName('settingOption')[0]!=undefined) || (document.getElementsByClassName('delete')[0]!=undefined) ){
-			if((document.getElementsByClassName('settingOption')[0]!=undefined)){
-				var parent = document.getElementsByClassName('settingOption')[0].parentElement;
-				parent.removeChild(document.getElementsByClassName('settingOption')[0]);
-			}
-			if((document.getElementsByClassName('deleteOption')[0]!=undefined)){
-				var parent = document.getElementsByClassName('deleteOption')[0].parentElement;
-				parent.removeChild(document.getElementsByClassName('deleteOption')[0]);
-			}
-		}
-		if(ev.target.nodeName != 'B' && ev.target.nodeName != 'FONT' && ev.target.nodeName != 'STYLE' && ev.target.nodeName != 'U' && ev.target.nodeName != 'I' && ev.target.nodeName != 'STRIKE' && document.getElementsByClassName('textEditorBar')[0]==undefined){
-			var settingOption = new ElementSection();
-			settingOption.createElementType('div');
-			settingOption.addClass('settingOption');
-			settingOption.writeHtml('Settings');
-			var style = window.getComputedStyle(ev.target);
-			var initialHeight = parseInt(style.getPropertyValue('height'));
-			var initialWidth = parseInt(style.getPropertyValue('width'));
-			settingOption.element.style.top = initialHeight + 'px';
-			settingOption.element.style.left = initialWidth/2 + 'px';
-			settingOption.createEvent('click','settingsOptionPanel');
-			settingOption.appendTo(ev.target);
-		
-			var deleteOption = new ElementSection();
-			deleteOption.createElementType('div');
-			deleteOption.addClass('deleteOption');
-			deleteOption.writeHtml('Delete'); 
-			deleteOption.element.style.top = initialHeight + 'px';
-			deleteOption.element.style.left = initialWidth/2 + 100 + 'px';
-			deleteOption.createEvent('click','deleteOptionPanel');
-			deleteOption.appendTo(ev.target);
-		}
 	}
 	this.makeTextBold = function(ev){
 		if(!that.selectionIsBold()){
@@ -1400,31 +1247,6 @@ function ElementSection(){
 			fontSize++;
 		document.execCommand('fontSize',false,fontSize);
 	}
-	this.bgSelectedNone = function(ev){
-		var styleElementIdName = ev.target.getAttribute('data-for');
-		var styleElement = document.getElementById(styleElementIdName);
-		styleElement.style.background = 'none';
-		if((document.getElementsByClassName('bgColorPallet')[0]!=undefined)){
-			document.getElementsByClassName('bgColorPallet')[0].style.display = 'none';
-			}
-	}
-	this.bgSelectedColor = function(ev){
-		var styleElementIdName = ev.target.getAttribute('data-for');
-		var styleElement = document.getElementById(styleElementIdName);
-		var pallet = document.getElementsByClassName('bgColorPallet')[0];
-		pallet.setAttribute('data-for',styleElementIdName)
-		pallet.style.display = 'block';
-		ev.target.parentElement.appendChild(pallet);
-	}
-	this.uploadBgImage = function(ev){
-		var imageFile = document.getElementsByClassName('imageUpload')[0];
-		var cleanFileName = imageFile.value.substring(12,imageFile.length);
-		var imageName = 'images/' + cleanFileName;
-		var styleToId = ev.target.getAttribute('data-for');
-		var styleToElement = document.getElementById(styleToId);
-		console.log(styleToElement);
-		styleToElement.style.backgroundImage = 'url('+imageName+')';
-	}
 	this.getSelectedText = function(){
 		var selection = window.getSelection();
 		if(selection.getRangeAt){
@@ -1521,380 +1343,4 @@ function ElementSection(){
 		if(selectedElement == document.getElementById(ev.target.getAttribute('data-for')))
 			selectedElement.style.lineHeight=ev.target.value+'px'; 
 	}
-	this.settingsOptionPanel = function(ev){
-		var parent = ev.target.parentElement.id;
-		if(ev.target.parentElement.nodeName == 'P' || ev.target.parentElement.nodeName == 'A' || ev.target.parentElement.nodeName == 'H1' || ev.target.parentElement.nodeName == 'H2'){
-			var textEditor = new ElementSection();
-			textEditor.createElementType('div');
-			textEditor.addClass('textEditorBar');
-			var mainParent = document.getElementById(parent);
-			mainParent.setAttribute('contentEditable','true');
-			var style = window.getComputedStyle(ev.target.parentElement);
-			var initialHeight = parseInt(style.getPropertyValue('height'));
-			var initialWidth = parseInt(style.getPropertyValue('width'));
-			textEditor.element.style.top = initialHeight + 'px';
-			textEditor.element.style.left = '40%';
-
-			var elementsHolder = new ElementSection();
-			elementsHolder.createElementType('div');
-
-			var btnGrp = new ElementSection();
-			btnGrp.createElementType('div');
-			btnGrp.addClass('btn-grp borderR borderB');
-
-			var elementBold = new ElementSection();
-			elementBold.createElementType('a');
-			elementBold.addClass('btn');
-			elementBold.addAttribute('data-original-title','Bold');
-			elementBold.addId('boldBtn')
-			elementBold.createEvent('click','makeTextBold');
-			elementBold.appendTo(btnGrp.element);
-
-			var elementItalic = new ElementSection();
-			elementItalic.createElementType('a');
-			elementItalic.addClass('btn');
-			elementItalic.addAttribute('data-original-title','Italic');
-			elementItalic.addId('italicBtn')
-			elementItalic.createEvent('click','makeTextItalic');
-			elementItalic.appendTo(btnGrp.element);
-
-			var elementStrikeThrough = new ElementSection();
-			elementStrikeThrough.createElementType('a');
-			elementStrikeThrough.addClass('btn');
-			elementStrikeThrough.addAttribute('data-original-title','Strikethrough');
-			elementStrikeThrough.addId('strikethroughBtn')
-			elementStrikeThrough.createEvent('click','makeTextStrikethrough');
-			elementStrikeThrough.appendTo(btnGrp.element);
-
-			var elementUnderLine = new ElementSection();
-			elementUnderLine.createElementType('a');
-			elementUnderLine.addClass('btn');
-			elementUnderLine.addAttribute('data-original-title','Underline');
-			elementUnderLine.addId('underLineBtn')
-			elementUnderLine.createEvent('click','makeTextUnderline');
-			elementUnderLine.appendTo(btnGrp.element);
-
-			btnGrp.appendTo(elementsHolder.element);
-
-			var btnGrpIndentList = new ElementSection();
-			btnGrpIndentList.createElementType('div');
-			btnGrpIndentList.addClass('btn-grp borderR borderL borderB');
-
-			var elementUOlist = new ElementSection();
-			elementUOlist.createElementType('a');
-			elementUOlist.addClass('btn');
-			elementUOlist.addAttribute('data-original-title','Bullet list');
-			elementUOlist.addId('ulistBtn')
-			elementUOlist.createEvent('click','makeUnorderedList');
-			elementUOlist.appendTo(btnGrpIndentList.element);
-
-			var elementOlist = new ElementSection();
-			elementOlist.createElementType('a');
-			elementOlist.addClass('btn');
-			elementOlist.addAttribute('data-original-title','Number list');
-			elementOlist.addId('olistBtn')
-			elementOlist.createEvent('click','makeOrderedList');
-			elementOlist.appendTo(btnGrpIndentList.element);
-
-			var elementIndent = new ElementSection();
-			elementIndent.createElementType('a');
-			elementIndent.addClass('btn');
-			elementIndent.addAttribute('data-original-title','Indent');
-			elementIndent.addId('indentBtn')
-			elementIndent.createEvent('click','makeIndent');
-			elementIndent.appendTo(btnGrpIndentList.element);
-
-			var elementOutdent = new ElementSection();
-			elementOutdent.createElementType('a');
-			elementOutdent.addClass('btn');
-			elementOutdent.addAttribute('data-original-title','Reduce indent');
-			elementOutdent.addId('outdentBtn')
-			elementOutdent.createEvent('click','makeOutdent');
-			elementOutdent.appendTo(btnGrpIndentList.element);
-
-			btnGrpIndentList.appendTo(elementsHolder.element);
-
-			var btnGrpJustify = new ElementSection();
-			btnGrpJustify.createElementType('div');
-			btnGrpJustify.addClass('btn-grp borderR borderL borderB');
-
-			var elementJustifyLeft = new ElementSection();
-			elementJustifyLeft.createElementType('a');
-			elementJustifyLeft.addClass('btn');
-			elementJustifyLeft.addAttribute('data-original-title','Align Left');
-			elementJustifyLeft.addId('jLeftBtn')
-			elementJustifyLeft.createEvent('click','justifyLeft');
-			elementJustifyLeft.appendTo(btnGrpJustify.element);
-
-			var elementJustifyCenter = new ElementSection();
-			elementJustifyCenter.createElementType('a');
-			elementJustifyCenter.addClass('btn');
-			elementJustifyCenter.addAttribute('data-original-title','Align Center');
-			elementJustifyCenter.addId('jCenterBtn')
-			elementJustifyCenter.createEvent('click','justifyCenter');
-			elementJustifyCenter.appendTo(btnGrpJustify.element);
-
-			var elementJustifyRight = new ElementSection();
-			elementJustifyRight.createElementType('a');
-			elementJustifyRight.addClass('btn');
-			elementJustifyRight.addAttribute('data-original-title','Align Right');
-			elementJustifyRight.addId('jRightBtn')
-			elementJustifyRight.createEvent('click','justifyRight');
-			elementJustifyRight.appendTo(btnGrpJustify.element);
-
-			var elementJustifyFull = new ElementSection();
-			elementJustifyFull.createElementType('a');
-			elementJustifyFull.addClass('btn');
-			elementJustifyFull.addAttribute('data-original-title','Justify');
-			elementJustifyFull.addId('jFullBtn')
-			elementJustifyFull.createEvent('click','justifyFull');
-			elementJustifyFull.appendTo(btnGrpJustify.element);
-
-			btnGrpJustify.appendTo(elementsHolder.element);
-
-			var btnGrpFontSize = new ElementSection();
-			btnGrpFontSize.createElementType('div');
-			btnGrpFontSize.addClass('btn-grp btm borderR borderT');
-
-			var elementP = new ElementSection();
-			elementP.createElementType('p');
-			elementP.writeHtml('Font Size')
-			elementP.appendTo(btnGrpFontSize.element);
-
-			var elementButtonIncrease = new ElementSection();
-			elementButtonIncrease.createElementType('button');
-			elementButtonIncrease.addClass('fontUp')
-			elementButtonIncrease.createEvent('click','textFontIncrease');
-			elementButtonIncrease.appendTo(btnGrpFontSize.element);
-
-			var elementButtonDecrease = new ElementSection();
-			elementButtonDecrease.createElementType('button');
-			elementButtonDecrease.addClass('fontDown')
-			elementButtonDecrease.createEvent('click','textFontDecrease');
-			elementButtonDecrease.appendTo(btnGrpFontSize.element);
-
-			btnGrpFontSize.appendTo(elementsHolder.element);
-
-			var btnGrpLineHeight = new ElementSection();
-			btnGrpLineHeight.createElementType('div');
-			btnGrpLineHeight.addClass('btn-grp btm borderR borderL borderT');
-
-			var elementPLine= new ElementSection();
-			elementPLine.createElementType('p');
-			elementPLine.writeHtml('Line Height')
-			elementPLine.appendTo(btnGrpLineHeight.element);
-
-			var lineHeights = ['12','14','18','24','32','48'];
-			var elementLineHeightSelect = new ElementSection();
-			elementLineHeightSelect.createElementType('select');
-			elementLineHeightSelect.addClass('lineHeightSelect');
-			elementLineHeightSelect.addAttribute('data-for',parent);
-			elementLineHeightSelect.createEvent('change','changeTextLineHeight');
-			for(var i = 0; i< lineHeights.length;i++){
-				var lineHeight = new ElementSection();
-				lineHeight.createElementType('option');
-				lineHeight.addAttribute('value',lineHeights[i]);
-				lineHeight.writeHtml(lineHeights[i]);
-				lineHeight.appendTo(elementLineHeightSelect.element);
-			}
-			elementLineHeightSelect.appendTo(btnGrpLineHeight.element);
-
-			btnGrpLineHeight.appendTo(elementsHolder.element);
-
-			var btnGrpHyperlink = new ElementSection();
-			btnGrpHyperlink.createElementType('div');
-			btnGrpHyperlink.addClass('btn-grp btm borderL borderT');
-
-			var elementARemove = new ElementSection();
-			elementARemove.createElementType('a');
-			elementARemove.addClass('btn-grp btn');
-			elementARemove.appendTo(btnGrpHyperlink.element);
-
-			btnGrpHyperlink.appendTo(elementsHolder.element);
-
-			var closeSpan = new ElementSection();
-			closeSpan.createElementType('span');
-			closeSpan.addClass('button-close');
-			closeSpan.addAttribute('data-for',parent)
-			closeSpan.createEvent('click','closeTextEditor');
-			closeSpan.appendTo(elementsHolder.element);
-
-			elementsHolder.appendTo(textEditor.element);
-			mainParent.addEventListener('mouseup',that.checkCondition);
-			textEditor.appendTo(document.body);
-		}
-		if(ev.target.parentElement.nodeName == 'DIV' ||ev.target.parentElement.nodeName == 'NAV' || ev.target.parentElement.nodeName == 'section'){
-			var overlay = new ElementSection();
-			overlay.createElementType('div');
-			overlay.addClass('overlay');
-			
-			var modalContent = new ElementSection();
-			modalContent.createElementType('div');
-			modalContent.addClass('modal-content');
-			
-			var closeSpan = new ElementSection();
-			closeSpan.createElementType('span');
-			closeSpan.addClass('button-close');
-			closeSpan.createEvent('click','closeModal');
-			closeSpan.appendTo(modalContent.element);
-
-			var h3Element = new ElementSection();
-			h3Element.createElementType('h3');
-			h3Element.writeHtml('Style Editor');
-			h3Element.element.style.textAlign = 'center';
-			h3Element.appendTo(modalContent.element)
-
-			var pElement = new ElementSection();
-			pElement.createElementType('p');
-			pElement.writeHtml('Background');
-			pElement.appendTo(modalContent.element);
-
-			var divBgControl = new ElementSection();
-			divBgControl.createElementType('div');
-			divBgControl.addClass('control-group');
-			divBgControl.addStyle('margin-top:6px');
-
-			var divButtonGrp = new ElementSection();
-			divButtonGrp.createElementType('div');
-			divButtonGrp.addClass('btn-group');
-
-			var bgColorButton = new ElementSection();
-			bgColorButton.createElementType('button');
-			bgColorButton.addClass('btn btnBgColor active');
-			bgColorButton.writeHtml('Background Color');
-			bgColorButton.createEvent('click','displayBgColorSelect')
-			bgColorButton.appendTo(divButtonGrp.element);
-
-			var bgImageButton = new ElementSection();
-			bgImageButton.createElementType('button');
-			bgImageButton.addClass('btn btnBgImage');
-			bgImageButton.writeHtml('Background Image');
-			bgImageButton.createEvent('click','displayBgImageSelect');
-			bgImageButton.appendTo(divButtonGrp.element);
-
-			divButtonGrp.appendTo(divBgControl.element);
-
-			var divColorControl = new ElementSection();
-			divColorControl.createElementType('div');
-			divColorControl.addClass('controls colorControl');
-
-			var divChooseColor = new ElementSection();
-			divChooseColor.createElementType('div');
-			divChooseColor.addId('chooseColorRadio');
-
-			var labelNone = new ElementSection();
-			labelNone.createElementType('label');
-			labelNone.addClass('radio');
-			
-			var inputRadioNone = new ElementSection();
-			inputRadioNone.createElementType('input');
-			inputRadioNone.addAttribute('id','radioNone');
-			inputRadioNone.addAttribute('name','bgColor');
-			inputRadioNone.addAttribute('type','radio');
-			inputRadioNone.addAttribute('data-for',parent)
-			inputRadioNone.createEvent('click','bgSelectedNone');
-			labelNone.writeHtml('None');
-			inputRadioNone.appendTo(labelNone.element);
-
-			labelNone.appendTo(divChooseColor.element);
-
-			var labelColor = new ElementSection();
-			labelColor.createElementType('label');
-			labelColor.addClass('radio');
-			
-			var inputRadioColor = new ElementSection();
-			inputRadioColor.createElementType('input');
-			inputRadioColor.addAttribute('id','radioColor');
-			inputRadioColor.addAttribute('name','bgColor');
-			inputRadioColor.addAttribute('data-for',parent);
-			inputRadioColor.createEvent('click','bgSelectedColor')
-			inputRadioColor.addAttribute('type','radio');
-			labelColor.writeHtml('Color');
-			inputRadioColor.appendTo(labelColor.element);
-
-			var backgrColorPallet = new ElementSection(this);
-			backgrColorPallet.createElementType('input');
-			backgrColorPallet.addClass('bgColorPallet');
-			backgrColorPallet.addAttribute('type','color');
-			backgrColorPallet.element.style.display = 'none';
-			backgrColorPallet.createEvent('input','changeBgColor');
-			backgrColorPallet.appendTo(labelColor.element);
-
-			labelNone.appendTo(divChooseColor.element);
-			labelColor.appendTo(divChooseColor.element);
-
-			divChooseColor.appendTo(divColorControl.element);
-			divColorControl.appendTo(divBgControl.element);
-
-			//For selecting the background Image
-			var divImageControl = new ElementSection();
-			divImageControl.createElementType('div');
-			divImageControl.addClass('controls imageControl');
-			divImageControl.element.style.display = 'none';
-
-			var backgrImageFile = new ElementSection();
-			backgrImageFile.createElementType('input');
-			backgrImageFile.addClass('imageUpload');
-			backgrImageFile.addAttribute('type','file');
-			backgrImageFile.addId('bgImageFile');
-			backgrImageFile.createEvent('click','changeBackgroundImage');
-			backgrImageFile.appendTo(divImageControl.element);
-
-			var backgrImageUpload = new ElementSection();
-			backgrImageUpload.createElementType('button');
-			backgrImageUpload.addClass('btn-sm btn-primary btnUpload');
-			backgrImageUpload.writeHtml('Upload');
-			backgrImageUpload.addAttribute('data-for',parent);
-			backgrImageUpload.createEvent('click','uploadBgImage');
-			backgrImageUpload.appendTo(divImageControl.element);
-
-			divImageControl.appendTo(divBgControl.element);
-
-			var applyButton = new ElementSection();
-			applyButton.createElementType('button');
-			applyButton.addClass('btn-md btn-success')
-			applyButton.addId('btnApply');
-			applyButton.writeHtml('Apply');
-			applyButton.createEvent('click','closeModal');
-
-			divBgControl.appendTo(modalContent.element);
-			applyButton.appendTo(modalContent.element);		
-			modalContent.appendTo(overlay.element);
-			overlay.appendTo(document.body);
-		}
-	}
-	this.deleteOptionPanel = function(ev){
-		var idName = ev.target.parentElement.id;
-		if(idName == ''){
-			idName = ev.target.parentElement.parentElement.id;
-		}
-		var selectedElementById = document.getElementById(idName);
-		if(selectedElementById != null && (document.getElementsByClassName('textEditorBar')[0]==undefined)){
-			var parent = selectedElementById.parentElement;
-			if(parent.parentElement.className == 'visualContainer'){
-				parent.parentElement.removeChild(parent);
-			}
-			else if(parent.className != 'elementContainer'){
-				parent.removeChild(selectedElementById);
-			}
-		}
-	}
-	this.closeModal = function(ev){
-		var parentModal = ev.target.parentElement;
-		var parentOverlay = parentModal.parentElement;
-		document.body.removeChild(parentOverlay);
-	}
-	this.closeTextEditor = function(ev){
-		var parent = document.getElementById(ev.target.getAttribute('data-for'));
-		parent.setAttribute('contentEditable','false');
-		var parentDiv = ev.target.parentElement;
-		var parentTextEditor = parentDiv.parentElement;
-		var parentMainElement = parentTextEditor.parentElement;
-		parentMainElement.removeChild(parentTextEditor);
-	}
-	// this.changeBackgroundImageBtn = function(ev){
-	// 	var imageFIle = document.getElementById('backgrImageFile').files[0];
-	// 	var url = window.URl || window.webkitURL;
-	// 	var src = url.createObjectURL(imageFIle);
-	// }
 }

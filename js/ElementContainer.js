@@ -6,6 +6,7 @@ function ElementContainer(){
 	var count=0;
 	var exchangeVariable=0;
 	var mainLayoutInstance = MainLayout.getInstance();
+	var startX, startY, startWidth, startHeight;
 	var that = this;
 
 	this.init = function(){
@@ -14,7 +15,7 @@ function ElementContainer(){
 		that.elementContainer.addClass('elementContainer');
 		that.titleDiv();
 		// that.toggleHeadingWrapper('HTML Components');
-		// that.componentsContainer();
+		// that.createComponentsContainer();
 		// that.makeDivisionButton();
 		// that.makeSpanButton();
 		// that.makeUnorderedListButton();
@@ -29,7 +30,7 @@ function ElementContainer(){
 		// that.makeBtnButton();
 		// that.makeInputButton();
 		that.toggleHeadingWrapper('BootStrap Components');
-		that.componentsContainer();
+		that.createComponentsContainer();
 		that.makeBootButton();
 		that.makeBootNavBar();
 		that.makeBootBrandImage();
@@ -59,7 +60,7 @@ function ElementContainer(){
 		clickHeading.writeHtml(headerName);
 		clickHeading.appendTo(that.clickWrapper.element);
 	}
-	this.componentsContainer = function(){
+	this.createComponentsContainer = function(){
 		that.componentsContainer = new ElementSection();
 		that.componentsContainer.createElementType('div');
 		that.componentsContainer.addClass('componentContainer');
@@ -73,7 +74,7 @@ function ElementContainer(){
 		component.addAttribute('id','box');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -87,7 +88,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxul');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -101,7 +102,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxli');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -115,7 +116,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxp');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -129,7 +130,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxa');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -143,7 +144,7 @@ function ElementContainer(){
 		component.addAttribute('id','boximg');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -157,7 +158,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxspan');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -171,7 +172,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxform');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -185,7 +186,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxTxtArea');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -199,7 +200,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxlabel');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -213,7 +214,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxSelect');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -227,7 +228,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxButton');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -241,7 +242,7 @@ function ElementContainer(){
 		component.addAttribute('id','boxInput');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		component.addAttribute('draggable','true');
-		component.createEvent('dragstart','dragStart');
+		component.element.addEventListener('dragstart',that.dragStart);
 		component.createEvent('mouseenter','mouseEnter');
 		component.createEvent('mouseleave','mouseLeave');
 		component.createEvent('mouseout','mouseOut');
@@ -255,7 +256,7 @@ function ElementContainer(){
 		bootStrapComponent.addAttribute('id','boxBoot');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
-		bootStrapComponent.createEvent('dragstart','dragStart');
+		bootStrapComponent.element.addEventListener('dragstart',that.dragStart);
 		bootStrapComponent.createEvent('mouseenter','mouseEnter');
 		bootStrapComponent.createEvent('mouseleave','mouseLeave');
 		bootStrapComponent.createEvent('mouseout','mouseOut');
@@ -269,7 +270,7 @@ function ElementContainer(){
 		bootStrapComponentNav.addAttribute('id','boxNav');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponentNav.addAttribute('draggable','true');
-		bootStrapComponentNav.createEvent('dragstart','dragStart');
+		bootStrapComponentNav.element.addEventListener('dragstart',that.dragStart);
 		bootStrapComponentNav.createEvent('mouseenter','mouseEnter');
 		bootStrapComponentNav.createEvent('mouseleave','mouseLeave');
 		bootStrapComponentNav.createEvent('mouseout','mouseOut');
@@ -283,7 +284,7 @@ function ElementContainer(){
 		bootStrapComponent.addAttribute('id','boxBrand');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
-		bootStrapComponent.createEvent('dragstart','dragStart');
+		bootStrapComponent.element.addEventListener('dragstart',that.dragStart);
 		bootStrapComponent.createEvent('mouseenter','mouseEnter');
 		bootStrapComponent.createEvent('mouseleave','mouseLeave');
 		bootStrapComponent.createEvent('mouseout','mouseOut');
@@ -297,7 +298,7 @@ function ElementContainer(){
 		bootStrapComponent.addAttribute('id','boxNavForm');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
-		bootStrapComponent.createEvent('dragstart','dragStart');
+		bootStrapComponent.element.addEventListener('dragstart',that.dragStart);
 		bootStrapComponent.createEvent('mouseenter','mouseEnter');
 		bootStrapComponent.createEvent('mouseleave','mouseLeave');
 		bootStrapComponent.createEvent('mouseout','mouseOut');
@@ -311,7 +312,7 @@ function ElementContainer(){
 		bootStrapComponent.addAttribute('id','boxContentAbout');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
-		bootStrapComponent.createEvent('dragstart','dragStart');
+		bootStrapComponent.element.addEventListener('dragstart',that.dragStart);
 		bootStrapComponent.createEvent('mouseenter','mouseEnter');
 		bootStrapComponent.createEvent('mouseleave','mouseLeave');
 		bootStrapComponent.createEvent('mouseout','mouseOut');
@@ -325,7 +326,7 @@ function ElementContainer(){
 		bootStrapComponent.addAttribute('id','boxContentContact');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
-		bootStrapComponent.createEvent('dragstart','dragStart');
+		bootStrapComponent.element.addEventListener('dragstart',that.dragStart);
 		bootStrapComponent.createEvent('mouseenter','mouseEnter');
 		bootStrapComponent.createEvent('mouseleave','mouseLeave');
 		bootStrapComponent.createEvent('mouseout','mouseOut');
@@ -343,7 +344,7 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.createEvent('click','resizeElement');
+			that.divisionElement.element.addEventListener('dblclick',that.resizeElement);
 			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
@@ -457,131 +458,6 @@ function ElementContainer(){
 
 			that.btStrpElementNav.appendTo(elementDestination);
 		}
-		// else if(elementType == 'bootNavBar'){
-		// 	that.initiateBootSrapComponents();
-		// 	that.initiateNormalComponents();
-
-		// 	that.btStrpElementDivNav = new ElementSection();
-		// 	that.btStrpElementBtnNavTogCol = new ElementSection();
-		// 	that.btStrpElementSpanSr = new ElementSection();
-		// 	that.btStrpElementSpanIco = new ElementSection();
-		// 	that.btStrpElementANav = new ElementSection();
-		// 	that.btStrpElementDivColNavCol = new ElementSection();
-		// 	that.btStrpElementUlNavNavbarNav = new ElementSection();
-		// 	that.btStrpElementLiActive = new ElementSection();
-		// 	that.normalElementA = new ElementSection();
-		// 	that.normalElementLi = new ElementSection();
-		// 	that.btStrpElementLiDrop = new ElementSection();
-		// 	that.btStrpElementADropTogg = new ElementSection();
-		// 	that.btStrpElementSpanCaret = new ElementSection();
-		// 	that.btStrpElementUlDropMenu = new ElementSection();
-
-		// 	that.btStrpElementNav.addClass('navbar-fixed-top');
-		// 	that.btStrpElementDivCont.appendTo(that.btStrpElementNav.element);
-
-		// 	that.btStrpElementDivNav.createCompoundElements('div','nav-header');
-		// 	that.btStrpElementDivNav.addClass('page-scroll');
-		// 	that.btStrpElementDivNav.appendTo(that.btStrpElementDivCont.element);
-
-		// 	that.btStrpElementBtnNavTogCol.createCompoundElements('button','navbar-toggle Collapsed');
-		// 	that.btStrpElementBtnNavTogCol.appendTo(that.btStrpElementDivNav.element);
-
-		// 	that.btStrpElementSpanSr.createCompoundElements('span','sr-only');
-		// 	that.btStrpElementSpanSr.writeHtml('Toggle navigation')
-		// 	that.btStrpElementSpanSr.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-		// 	that.btStrpElementSpanIco.createCompoundElements('span','icon-bar');
-		// 	that.btStrpElementSpanIco.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-		// 	that.btStrpElementSpanIco.createCompoundElements('span','icon-bar');
-		// 	that.btStrpElementSpanIco.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-		// 	that.btStrpElementSpanIco.createCompoundElements('span','icon-bar');
-		// 	that.btStrpElementSpanIco.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-		// 	that.btStrpElementANav.createCompoundElements('a','navbar-brand');
-		// 	that.btStrpElementANav.writeHtml('Brand');
-		// 	that.btStrpElementANav.addAttribute('href','#');
-		// 	that.btStrpElementANav.appendTo(that.btStrpElementDivNav.element);
-
-		// 	that.btStrpElementDivColNavCol.createCompoundElements('div','collapse navbar-collapse');
-		// 	that.btStrpElementDivColNavCol.appendTo(that.btStrpElementDivCont.element);
-
-		// 	that.btStrpElementUlNavNavbarNav.createCompoundElements('ul','nav navbar-nav');
-		// 	that.btStrpElementUlNavNavbarNav.addClass('navbar-right');
-		// 	that.btStrpElementUlNavNavbarNav.appendTo(that.btStrpElementDivColNavCol.element);
-
-		// 	that.btStrpElementLiActive.createCompoundElements('li','hidden');
-		// 	that.btStrpElementLiActive.appendTo(that.btStrpElementUlNavNavbarNav.element);
-
-		// 	that.normalElementA.createCompoundElements('a','');
-		// 	that.normalElementA.addId('page-top');
-		// 	that.normalElementA.addAttribute('href','#');
-		// 	that.normalElementA.writeHtml('Link');
-		// 	that.normalElementA.appendTo(that.btStrpElementLiActive.element);	
-
-		// 	// that.btStrpElementSpanSr.createCompoundElements('span','sr-only');
-		// 	// that.btStrpElementSpanSr.writeHtml('')
-		// 	// that.btStrpElementSpanSr.appendTo(that.normalElementA.element);
-
-		// 	that.normalElementLi.createCompoundElements('li','page-scroll');
-		// 	that.normalElementLi.appendTo(that.btStrpElementUlNavNavbarNav.element);
-
-		// 	that.normalElementA.createCompoundElements('a','');
-		// 	that.normalElementA.addId('portfolio');
-		// 	that.normalElementA.addAttribute('href','#');
-		// 	that.normalElementA.writeHtml('Link');
-		// 	that.normalElementA.appendTo(that.normalElementLi.element);	
-
-		// 	that.normalElementLi.createCompoundElements('li','page-scroll');
-		// 	that.normalElementLi.appendTo(that.btStrpElementUlNavNavbarNav.element);
-
-		// 	that.normalElementA.createCompoundElements('a','');
-		// 	that.normalElementA.addId('portfolio');
-		// 	that.normalElementA.addAttribute('href','#');
-		// 	that.normalElementA.writeHtml('Link');
-		// 	that.normalElementA.appendTo(that.normalElementLi.element);	
-
-		// 	// that.btStrpElementLiDrop.createCompoundElements('li','dropdown');
-		// 	// that.btStrpElementLiDrop.appendTo(that.btStrpElementUlNavNavbarNav.element);
-
-		// 	// that.btStrpElementADropTogg.createCompoundElements('a','dropdown-toggle');
-		// 	// that.btStrpElementADropTogg.addAttribute('href','#');
-		// 	// that.btStrpElementADropTogg.addAttribute('data-toggle','dropdown');
-		// 	// that.btStrpElementADropTogg.writeHtml('DropDown');
-		// 	// that.btStrpElementADropTogg.appendTo(that.btStrpElementLiDrop.element);	
-
-		// 	// that.btStrpElementSpanCaret.createCompoundElements('span','caret');
-		// 	// that.btStrpElementSpanCaret.appendTo(that.btStrpElementADropTogg.element);
-
-		// 	// that.btStrpElementUlDropMenu.createCompoundElements('ul','dropdown-menu');
-		// 	// that.btStrpElementUlDropMenu.appendTo(that.btStrpElementLiDrop.element);
-
-		// 	// that.normalElementLi.createCompoundElements('li','');
-		// 	// that.normalElementLi.appendTo(that.btStrpElementUlDropMenu.element);
-
-		// 	// that.normalElementA.createCompoundElements('a','');
-		// 	// that.normalElementA.addAttribute('href','#');
-		// 	// that.normalElementA.writeHtml('Link');
-		// 	// that.normalElementA.appendTo(that.normalElementLi.element);
-
-		// 	// that.normalElementLi.createCompoundElements('li','');
-		// 	// that.normalElementLi.appendTo(that.btStrpElementUlDropMenu.element);
-
-		// 	// that.normalElementA.createCompoundElements('a','');
-		// 	// that.normalElementA.addAttribute('href','#');
-		// 	// that.normalElementA.writeHtml('Link');
-		// 	// that.normalElementA.appendTo(that.normalElementLi.element);	
-
-			
-		// 	// that.btStrpElementFormNavBarForm.appendTo(that.btStrpElementDivColNavCol.element);
-		// 	// that.btStrpElementDivFormGrp.appendTo(that.btStrpElementFormNavBarForm.element);
-		// 	// that.btStrpElementInpForm.appendTo(that.btStrpElementDivFormGrp.element);	
-		// 	// that.btStrpElementBtnBtnBtnDef.writeHtml('Submit');
-		// 	// that.btStrpElementBtnBtnBtnDef.appendTo(that.btStrpElementFormNavBarForm.element);		
-
-		// 	that.btStrpElementNav.appendTo(elementDestination);
-		// }
 		else if(elementType == 'bootAbout'){
 			that.initiateBootSrapComponents();
 			that.initiateNormalComponents();
@@ -1001,6 +877,32 @@ function ElementContainer(){
 		that.normalElementBr = new ElementSection();
 		that.normalElementBr.createCompoundElements('br','');
 
+	}//Events to resize div
+	this.resizeElement = function(ev){
+		ev.target.addEventListener('mousedown',that.initDrag);
+	}
+	this.initDrag = function(e){
+		startX = e.clientX;
+		startY = e.clientY;
+		startWidth = parseInt(document.defaultView.getComputedStyle(e.target).width, 10);
+   		startHeight = parseInt(document.defaultView.getComputedStyle(e.target).height, 10);
+   		document.documentElement.addEventListener('mousemove', that.doDrag, false);
+  		 document.documentElement.addEventListener('mouseup', that.stopDrag, false);
+	}
+	this.doDrag = function(e) {
+   			//e.target.style.width = (startWidth + e.clientX - startX) + 'px';
+   			e.target.style.height = (startHeight + e.clientY - startY) + 'px';
+	}
+ 	this.stopDrag = function(e) {
+    	document.documentElement.removeEventListener('mousemove', that.doDrag, false);   
+    	document.documentElement.removeEventListener('mouseup', that.stopDrag, false);
+	}
+	//Event for drag 
+	this.dragStart = function(ev){
+		ev.dataTransfer.effectAllowed='copy';
+  		ev.dataTransfer.setData('Text', ev.target.getAttribute('id'));
+   		ev.dataTransfer.setDragImage(ev.target,0,0);
+   		return true;
 	}
 	this.getElementContainerPortion = function(){
 		return that.elementContainer.element;
