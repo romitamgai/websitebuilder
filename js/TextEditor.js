@@ -6,8 +6,10 @@ function TextEditor(){
 		textEditor = new ElementSection();
 		textEditor.createElementType('div');
 		textEditor.addClass('textEditorBar');
+
 		var mainParent = textEditor.getEleById(parent);
 		textEditor.setElementAttribute(mainParent,'contentEditable','true');
+
 		var initialHeight = textEditor.getStyle('height',targetElement.parentElement);
 		textEditor.setStyle('top',initialHeight);
 		textEditor.setStyle('left','40%');
@@ -24,7 +26,7 @@ function TextEditor(){
 		elementBold.addClass('btn');
 		elementBold.addAttribute('data-original-title','Bold');
 		elementBold.addId('boldBtn')
-		elementBold.createEvent('click','makeTextBold');
+		elementBold.element.addEventListener('click',that.makeTextBold);
 		elementBold.appendTo(btnGrp.element);
 
 		var elementItalic = new ElementSection();
@@ -32,7 +34,7 @@ function TextEditor(){
 		elementItalic.addClass('btn');
 		elementItalic.addAttribute('data-original-title','Italic');
 		elementItalic.addId('italicBtn')
-		elementItalic.createEvent('click','makeTextItalic');
+		elementItalic.element.addEventListener('click',that.makeTextItalic);
 		elementItalic.appendTo(btnGrp.element);
 
 		var elementStrikeThrough = new ElementSection();
@@ -40,7 +42,7 @@ function TextEditor(){
 		elementStrikeThrough.addClass('btn');
 		elementStrikeThrough.addAttribute('data-original-title','Strikethrough');
 		elementStrikeThrough.addId('strikethroughBtn')
-		elementStrikeThrough.createEvent('click','makeTextStrikethrough');
+		elementStrikeThrough.element.addEventListener('click',that.makeTextStrikethrough);
 		elementStrikeThrough.appendTo(btnGrp.element);
 
 		var elementUnderLine = new ElementSection();
@@ -48,7 +50,7 @@ function TextEditor(){
 		elementUnderLine.addClass('btn');
 		elementUnderLine.addAttribute('data-original-title','Underline');
 		elementUnderLine.addId('underLineBtn')
-		elementUnderLine.createEvent('click','makeTextUnderline');
+		elementUnderLine.element.addEventListener('click',that.makeTextUnderline);
 		elementUnderLine.appendTo(btnGrp.element);
 
 		btnGrp.appendTo(elementsHolder.element);
@@ -62,7 +64,7 @@ function TextEditor(){
 		elementUOlist.addClass('btn');
 		elementUOlist.addAttribute('data-original-title','Bullet list');
 		elementUOlist.addId('ulistBtn')
-		elementUOlist.createEvent('click','makeUnorderedList');
+		elementUOlist.element.addEventListener('click',that.makeUnorderedList);
 		elementUOlist.appendTo(btnGrpIndentList.element);
 
 		var elementOlist = new ElementSection();
@@ -70,7 +72,7 @@ function TextEditor(){
 		elementOlist.addClass('btn');
 		elementOlist.addAttribute('data-original-title','Number list');
 		elementOlist.addId('olistBtn')
-		elementOlist.createEvent('click','makeOrderedList');
+		elementOlist.element.addEventListener('click',that.makeOrderedList);
 		elementOlist.appendTo(btnGrpIndentList.element);
 
 		var elementIndent = new ElementSection();
@@ -78,7 +80,7 @@ function TextEditor(){
 		elementIndent.addClass('btn');
 		elementIndent.addAttribute('data-original-title','Indent');
 		elementIndent.addId('indentBtn')
-		elementIndent.createEvent('click','makeIndent');
+		elementIndent.element.addEventListener('click',that.makeIndent);
 		elementIndent.appendTo(btnGrpIndentList.element);
 
 		var elementOutdent = new ElementSection();
@@ -86,7 +88,7 @@ function TextEditor(){
 		elementOutdent.addClass('btn');
 		elementOutdent.addAttribute('data-original-title','Reduce indent');
 		elementOutdent.addId('outdentBtn')
-		elementOutdent.createEvent('click','makeOutdent');
+		elementOutdent.element.addEventListener('click',that.makeOutdent);
 		elementOutdent.appendTo(btnGrpIndentList.element);
 
 		btnGrpIndentList.appendTo(elementsHolder.element);
@@ -100,7 +102,7 @@ function TextEditor(){
 		elementJustifyLeft.addClass('btn');
 		elementJustifyLeft.addAttribute('data-original-title','Align Left');
 		elementJustifyLeft.addId('jLeftBtn')
-		elementJustifyLeft.createEvent('click','justifyLeft');
+		elementJustifyLeft.element.addEventListener('click',that.justifyLeft);
 		elementJustifyLeft.appendTo(btnGrpJustify.element);
 
 		var elementJustifyCenter = new ElementSection();
@@ -108,7 +110,7 @@ function TextEditor(){
 		elementJustifyCenter.addClass('btn');
 		elementJustifyCenter.addAttribute('data-original-title','Align Center');
 		elementJustifyCenter.addId('jCenterBtn')
-		elementJustifyCenter.createEvent('click','justifyCenter');
+		elementJustifyCenter.element.addEventListener('click',that.justifyCenter);
 		elementJustifyCenter.appendTo(btnGrpJustify.element);
 
 		var elementJustifyRight = new ElementSection();
@@ -116,7 +118,7 @@ function TextEditor(){
 		elementJustifyRight.addClass('btn');
 		elementJustifyRight.addAttribute('data-original-title','Align Right');
 		elementJustifyRight.addId('jRightBtn')
-		elementJustifyRight.createEvent('click','justifyRight');
+		elementJustifyRight.element.addEventListener('click',that.justifyRight);
 		elementJustifyRight.appendTo(btnGrpJustify.element);
 
 		var elementJustifyFull = new ElementSection();
@@ -124,7 +126,7 @@ function TextEditor(){
 		elementJustifyFull.addClass('btn');
 		elementJustifyFull.addAttribute('data-original-title','Justify');
 		elementJustifyFull.addId('jFullBtn')
-		elementJustifyFull.createEvent('click','justifyFull');
+		elementJustifyFull.element.addEventListener('click',that.justifyFull);
 		elementJustifyFull.appendTo(btnGrpJustify.element);
 
 		btnGrpJustify.appendTo(elementsHolder.element);
@@ -141,13 +143,13 @@ function TextEditor(){
 		var elementButtonIncrease = new ElementSection();
 		elementButtonIncrease.createElementType('button');
 		elementButtonIncrease.addClass('fontUp')
-		elementButtonIncrease.createEvent('click','textFontIncrease');
+		elementButtonIncrease.element.addEventListener('click',that.textFontIncrease);
 		elementButtonIncrease.appendTo(btnGrpFontSize.element);
 
 		var elementButtonDecrease = new ElementSection();
 		elementButtonDecrease.createElementType('button');
 		elementButtonDecrease.addClass('fontDown')
-		elementButtonDecrease.createEvent('click','textFontDecrease');
+		elementButtonDecrease.element.addEventListener('click',that.textFontDecrease);
 		elementButtonDecrease.appendTo(btnGrpFontSize.element);
 
 		btnGrpFontSize.appendTo(elementsHolder.element);
@@ -166,7 +168,7 @@ function TextEditor(){
 		elementLineHeightSelect.createElementType('select');
 		elementLineHeightSelect.addClass('lineHeightSelect');
 		elementLineHeightSelect.addAttribute('data-for',parent);
-		elementLineHeightSelect.createEvent('change','changeTextLineHeight');
+		elementLineHeightSelect.element.addEventListener('change',that.changeTextLineHeight);
 		for(var i = 0; i< lineHeights.length;i++){
 			var lineHeight = new ElementSection();
 			lineHeight.createElementType('option');
@@ -199,6 +201,250 @@ function TextEditor(){
 		elementsHolder.appendTo(textEditor.element);
 		mainParent.addEventListener('mouseup',that.checkCondition);
 		textEditor.appendTo(document.body);
+	}
+	this.makeTextBold = function(ev){
+		if(!that.selectionIsBold()){
+			document.execCommand('bold', false, null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('bold', false, null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.makeTextItalic = function(ev){
+		if(!that.selectionIsItalic()){
+			document.execCommand('italic', '', null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('italic', '', null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.makeTextStrikethrough = function(ev){
+		if(!that.selectionIsStrike()){
+			document.execCommand('strikethrough', false, null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('strikethrough', false, null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.makeTextUnderline = function(ev){
+		if(!that.selectionIsUnderLine()){
+			document.execCommand('underline', false, null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('underline', false, null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.makeUnorderedList = function(ev){
+		document.execCommand('insertunorderedlist', false, null);
+	}
+	this.makeOrderedList = function(ev){
+		document.execCommand('insertorderedlist', false, null);
+	}
+	this.makeIndent = function(ev){
+		document.execCommand('indent', false, null);	
+	}
+	this.makeOutdent = function(ev){
+		document.execCommand('outdent', false, null);
+	}
+	this.justifyLeft = function(ev){
+		if(!that.selectionIsJLeft()){
+			document.execCommand('justifyleft', false, null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('justifyleft', false, null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.justifyCenter = function(ev){
+		if(!that.selectionIsJCenter()){
+			document.execCommand('justifycenter', false, null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('justifycenter', false, null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.justifyRight = function(ev){
+		if(!that.selectionIsJRight()){
+			document.execCommand('justifyright', false, null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('justifyright', false, null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.justifyFull = function(ev){
+		if(!that.selectionIsJFull()){
+			document.execCommand('justifyfull', false, null);
+			textEditor.addElementClass(ev.target,'crnt');
+		}else{
+			document.execCommand('justifyfull', false, null);
+			textEditor.removeElementClass(ev.target,'crnt');
+		}
+	}
+	this.selectionIsBold = function() {
+    	var isBold = false;
+    	if (document.queryCommandState) {
+        	isBold = document.queryCommandState('bold');
+    	}
+    	return isBold;
+	}
+	this.selectionIsItalic = function() {
+    	var isItalic = false;
+    	if (document.queryCommandState) {
+        	isItalic = document.queryCommandState('italic');
+    	}
+    	return isItalic;
+	}
+	this.selectionIsStrike = function() {
+    	var isStrike = false;
+    	if (document.queryCommandState) {
+        	isStrike = document.queryCommandState('strikethrough');
+    	}
+    	return isStrike;
+	}
+	this.selectionIsUnderLine = function() {
+    	var isUnderline = false;
+    	if (document.queryCommandState) {
+        	isUnderline = document.queryCommandState('underline');
+    	}
+    	return isUnderline;
+	}
+	this.selectionIsJLeft = function() {
+    	var isJLeft = false;
+    	if (document.queryCommandState) {
+        	isJLeft = document.queryCommandState('justifyleft');
+    	}
+    	return isJLeft;
+	}
+	this.selectionIsJRight = function() {
+    	var isJRight = false;
+    	if (document.queryCommandState) {
+        	isJRight = document.queryCommandState('justifyright');
+    	}
+    	return isJRight;
+	}
+	this.selectionIsJCenter = function() {
+    	var isJCenter = false;
+    	if (document.queryCommandState) {
+        	isJCenter = document.queryCommandState('justifycenter');
+    	}
+    	return isJCenter;
+	}
+	this.selectionIsJFull = function() {
+    	var isJFull = false;
+    	if (document.queryCommandState) {
+        	isJFull = document.queryCommandState('justifyfull');
+    	}
+    	return isJFull;
+	}
+	this.textFontDecrease = function(){
+		var fontSize = 3;
+		if(fontSize >= 1)
+			fontSize--;
+		document.execCommand('fontSize',false,fontSize);
+	}
+	this.textFontIncrease = function(){
+		var fontSize = 3;
+		if(fontSize <= 7)
+			fontSize++;
+		document.execCommand('fontSize',false,fontSize);
+	}
+	this.getSelectedText = function(){
+		var selection = window.getSelection();
+		if(selection.getRangeAt){
+			range = selection.getRangeAt(0);
+			var selectedText = String(range);
+			return selectedText;
+		}
+	}
+	this.checkCondition = function(ev){
+		if(textEditor.getEleByClassName('textEditorBar')!=undefined){
+			var isBold,isItalic,isStrike,isUnderline,isJFull,isJCenter,isJLeft,isJRight = false;
+	    	if (document.queryCommandState) {
+	        	isBold = document.queryCommandState('bold');
+	        	isStrike = document.queryCommandState('strikethrough');
+	        	isItalic = document.queryCommandState('italic');
+	        	isUnderline = document.queryCommandState('underline');
+	        	isJCenter = document.queryCommandState('justifycenter');
+	        	isJRight = document.queryCommandState('justifyright');
+	        	isJLeft = document.queryCommandState('justifyleft');
+	        	isJFull = document.queryCommandState('justifyfull');
+	    	}
+	    	if(isBold){
+	    		var boldButton = textEditor.getEleById('boldBtn');
+	    		textEditor.addElementClass(boldButton,'crnt');
+	    	}
+	    	if(!isBold){
+	    		var boldButton = textEditor.getEleById('boldBtn');
+	    		textEditor.removeElementClass(boldButton,'crnt');
+	    	}
+	    	if(isItalic){
+	    		var italicButton = textEditor.getEleById('italicBtn');
+	    		textEditor.addElementClass(italicButton,'crnt');
+	    	}
+	    	if(!isItalic){
+	    		var italicButton = textEditor.getEleById('italicBtn');
+	    		textEditor.removeElementClass(italicButton,'crnt');
+	    	}
+	    	if(isStrike){
+	    		var strikethroughButton = textEditor.getEleById('strikethroughBtn');
+	    		textEditor.addElementClass(strikethroughButton,'crnt');
+	    	}
+	    	if(!isStrike){
+	    		var strikethroughButton = textEditor.getEleById('strikethroughBtn');
+	    		textEditor.removeElementClass(strikethroughButton,'crnt');
+	    	}
+	    	if(isUnderline){
+	    		var underlineButton = textEditor.getEleById('underLineBtn');
+	    		textEditor.addElementClass(underlineButton,'crnt');
+	    	}
+	    	if(!isUnderline){
+	    		var underlineButton = textEditor.getEleById('underLineBtn');
+	    		textEditor.removeElementClass(underlineButton,'crnt');
+	    	}
+	    	if(isJLeft){
+	    		var jLeftBtn = textEditor.getEleById('jLeftBtn');
+	    		textEditor.addElementClass(jLeftBtn,'crnt');
+	    	}
+	    	if(!isJLeft){
+	    		var jLeftBtn = textEditor.getEleById('jLeftBtn');
+	    		textEditor.removeElementClass(jLeftBtn,'crnt');
+	    	}
+	    	if(isJFull){
+	    		var jFullBtn = textEditor.getEleById('jFullBtn');
+	    		textEditor.addElementClass(jFullBtn,'crnt');
+	    	}
+	    	if(!isJFull){
+	    		var jFullBtn = textEditor.getEleById('jFullBtn');
+	    		textEditor.removeElementClass(jFullBtn,'crnt');
+	    	}
+	    	if(isJCenter){
+	    		var jCenterBtn = textEditor.getEleById('jCenterBtn');
+	    		textEditor.addElementClass(jCenterBtn,'crnt');
+	    	}
+	    	if(!isJCenter){
+	    		var jCenterBtn = textEditor.getEleById('jCenterBtn');
+	    		textEditor.removeElementClass(jCenterBtn,'crnt');
+	    	}
+	    	if(isJRight){
+	    		var jRightBtn = textEditor.getEleById('jRightBtn');
+	    		textEditor.addElementClass(jRightBtn,'crnt');
+	    	}
+	    	if(!isJRight){
+	    		var jRightBtn = textEditor.getEleById('jRightBtn');
+	    		textEditor.removeElementClass(jRightBtn,'crnt');
+	    	}
+    	}	
+	}
+	this.changeTextLineHeight = function(ev){
+		var selectedElement = window.getSelection().focusNode.parentNode;
+		if(selectedElement == textEditor.getEleById(textEditor.getElementAttribute(ev.target,'data-for')))
+			textEditor.setElementStyle(selectedElement,'lineHeight',ev.target.value+'px'); 
 	}
 	this.closeTextEditor = function(ev){
 		var parentId = textEditor.getElementAttribute(ev.target,'data-for');
