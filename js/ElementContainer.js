@@ -15,29 +15,31 @@ function ElementContainer(){
 		that.elementContainer.addClass('elementContainer');
 		that.downloadWebsite();
 		that.titleDiv();
-		// that.toggleHeadingWrapper('HTML Components');
-		// that.createComponentsContainer();
-		// that.makeDivisionButton();
-		// that.makeSpanButton();
-		// that.makeUnorderedListButton();
-		// that.makeListButton();
-		// that.makeParagraphButton();
-		// that.makeAnchorButton();
-		// that.makeImageButton();
-		// that.makeFormButton();
-		// that.makeTextAreaButton();
-		// that.makeLabelButton();
-		// that.makeSelectButton();
-		// that.makeBtnButton();
-		// that.makeInputButton();
+		
 		that.toggleHeadingWrapper('BootStrap Components');
 		that.createComponentsContainer();
-		that.makeBootButton();
 		that.makeBootNavBar();
-		that.makeBootBrandImage();
-		//that.makeBootNavForm();
 		that.makeBootAboutSection();
 		that.makeBootContact();
+		that.makeBootBrandImage();
+		that.makeBootNavForm();
+		that.makeBootButton();
+
+		that.toggleHeadingWrapper('HTML Components');
+		that.createComponentsContainer();
+		that.makeDivisionButton();
+		that.makeSpanButton();
+		that.makeUnorderedListButton();
+		that.makeListButton();
+		that.makeParagraphButton();
+		that.makeAnchorButton();
+		that.makeImageButton();
+		that.makeFormButton();
+		that.makeTextAreaButton();
+		that.makeLabelButton();
+		that.makeSelectButton();
+		that.makeBtnButton();
+		that.makeInputButton();
 	}
 	this.downloadWebsite = function(){
 		var downloadButton = new ElementSection();
@@ -347,13 +349,12 @@ function ElementContainer(){
 			that.divisionElement.createElementType('div');
 			that.divisionElement.addClass('divisionContainer'+count);
 			that.divisionElement.addAttribute('id','box'+count);
-			that.divisionElement.addStyle('background-color:#222222;width:20%;height:100px;float:left;cursor:se-resize;margin:1px;');
+			that.divisionElement.addStyle('background-color:#dddddd;width:20%;height:100px;float:left;cursor:se-resize;margin:1px;');
 			that.divisionElement.createEvent('mouseenter','mouseEnter');
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
 			that.divisionElement.element.addEventListener('dblclick',that.resizeElement);
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'bootNavBar'){
@@ -589,7 +590,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'ul'){
@@ -602,7 +602,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'li'){
@@ -615,7 +614,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'p'){
@@ -624,13 +622,12 @@ function ElementContainer(){
 			that.divisionElement.addClass('pClass');
 			that.divisionElement.writeHtml('This is a paragraph');
 			that.divisionElement.addAttribute('contentEditable','true');
-			that.divisionElement.addStyle('color:#ffffff;');
+			that.divisionElement.addStyle('color:#000000;');
 			that.divisionElement.addAttribute('id','boxp'+count);
 			that.divisionElement.createEvent('mouseenter','mouseEnter');
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'a'){
@@ -646,7 +643,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'img'){
@@ -660,7 +656,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'form'){
@@ -674,7 +669,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'textarea'){
@@ -689,7 +683,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('divisionContainer'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'label'){
@@ -703,7 +696,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('labelClass'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'select'){
@@ -716,7 +708,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('selectClass'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType == 'txtinput'){
@@ -730,7 +721,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('inputClass'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 		else if(elementType = 'button'){
@@ -745,7 +735,6 @@ function ElementContainer(){
 			that.divisionElement.createEvent('mouseleave','mouseLeave');
 			that.divisionElement.createEvent('mouseout','mouseOut');
 			that.divisionElement.createEvent('click','changeFormFields');
-			that.divisionElement.addSelectClassComponents('buttonClass'+count);
 			that.divisionElement.appendTo(elementDestination);
 		}
 	}

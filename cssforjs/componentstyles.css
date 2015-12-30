@@ -310,3 +310,16 @@ position: relative;
 form .row:first-child .floating-label-form-group {
     border-top: 1px solid #eee;
 }
+.buttonEditorLabel{
+	float:left;
+	margin-right:10px;
+}
+.buttonEditorLabelInner{
+	float:left;
+	margin-right:10px;
+	clear:both;
+	margin-top:10px;
+}
+.control-group{
+	min-height: 250px;
+}

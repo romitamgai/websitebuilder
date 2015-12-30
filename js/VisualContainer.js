@@ -106,7 +106,7 @@ function VisualContainer(){
 	this.dragDrop = function(ev) {
  		var data = ev.dataTransfer.getData('Text');
  		var mainElement = that.visualContainer.getEleById(data);
- 		if(mainElement != null && ev.target.className=='visualContainer'){
+ 		if(mainElement != null){
  			var elementValue = mainElement.getAttribute('value');
  			that.visualContainer.setElementStyle(ev.target,'background','none');
  			mainLayoutInstance.elementContainer.createStaticComponents(elementValue,ev.target);
