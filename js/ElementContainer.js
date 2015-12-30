@@ -361,54 +361,26 @@ function ElementContainer(){
 			that.initiateBootSrapComponents();
 			that.initiateNormalComponents();
 
-			that.btStrpElementDivNavHeader = new ElementSection();
-			that.btStrpElementBtnNavTogCol = new ElementSection();
-			that.btStrpElementSpanSr = new ElementSection();
-			that.btStrpElementSpanIco = new ElementSection();
-			that.btStrpElementANav = new ElementSection();
-			that.btStrpElementDivColNavCol = new ElementSection();
-			that.btStrpElementUlNavNavbarNav = new ElementSection();
-			that.btStrpElementLiActive = new ElementSection();
-			that.normalElementA = new ElementSection();
-			that.normalElementLi = new ElementSection();
-			that.btStrpElementLiDrop = new ElementSection();
-			that.btStrpElementADropTogg = new ElementSection();
-			that.btStrpElementSpanCaret = new ElementSection();
-			that.btStrpElementUlDropMenu = new ElementSection();
-
 			that.btStrpElementDivContFluid.appendTo(that.btStrpElementNav.element);
-
-			that.btStrpElementDivNavHeader.createCompoundElements('div','nav-header');
+			
 			that.btStrpElementDivNavHeader.appendTo(that.btStrpElementDivContFluid.element);
-
-			that.btStrpElementBtnNavTogCol.createCompoundElements('button','navbar-toggle Collapsed');
+			
 			that.btStrpElementBtnNavTogCol.appendTo(that.btStrpElementDivNavHeader.element);
-
-			that.btStrpElementSpanSr.createCompoundElements('span','sr-only');
+			
 			that.btStrpElementSpanSr.writeHtml('Toggle navigation')
 			that.btStrpElementSpanSr.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-			that.btStrpElementSpanIco.createCompoundElements('span','icon-bar');
+			
 			that.btStrpElementSpanIco.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-			that.btStrpElementSpanIco.createCompoundElements('span','icon-bar');
 			that.btStrpElementSpanIco.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-			that.btStrpElementSpanIco.createCompoundElements('span','icon-bar');
 			that.btStrpElementSpanIco.appendTo(that.btStrpElementBtnNavTogCol.element);
-
-			that.btStrpElementANav.createCompoundElements('a','navbar-brand');
+			
 			that.btStrpElementANav.writeHtml('Brand');
 			that.btStrpElementANav.addAttribute('href','#');
 			that.btStrpElementANav.appendTo(that.btStrpElementDivNavHeader.element);
-
-			that.btStrpElementDivColNavCol.createCompoundElements('div','collapse navbar-collapse');
+			
 			that.btStrpElementDivColNavCol.appendTo(that.btStrpElementDivContFluid.element);
-
-			that.btStrpElementUlNavNavbarNav.createCompoundElements('ul','nav navbar-nav');
 			that.btStrpElementUlNavNavbarNav.appendTo(that.btStrpElementDivColNavCol.element);
-
-			that.btStrpElementLiActive.createCompoundElements('li','');
+			
 			that.btStrpElementLiActive.appendTo(that.btStrpElementUlNavNavbarNav.element);
 
 			that.normalElementA.createCompoundElements('a','');
@@ -428,19 +400,15 @@ function ElementContainer(){
 			that.normalElementA.writeHtml('Link');
 			that.normalElementA.appendTo(that.normalElementLi.element);	
 
-			that.btStrpElementLiDrop.createCompoundElements('li','dropdown');
 			that.btStrpElementLiDrop.appendTo(that.btStrpElementUlNavNavbarNav.element);
-
-			that.btStrpElementADropTogg.createCompoundElements('a','dropdown-toggle');
+			
 			that.btStrpElementADropTogg.addAttribute('href','#');
 			that.btStrpElementADropTogg.addAttribute('data-toggle','dropdown');
 			that.btStrpElementADropTogg.writeHtml('DropDown');
 			that.btStrpElementADropTogg.appendTo(that.btStrpElementLiDrop.element);	
 
-			that.btStrpElementSpanCaret.createCompoundElements('span','caret');
 			that.btStrpElementSpanCaret.appendTo(that.btStrpElementADropTogg.element);
 
-			that.btStrpElementUlDropMenu.createCompoundElements('ul','dropdown-menu');
 			that.btStrpElementUlDropMenu.appendTo(that.btStrpElementLiDrop.element);
 
 			that.normalElementLi.createCompoundElements('li','');
@@ -820,6 +788,42 @@ function ElementContainer(){
 		//div element with class form-group col-xs-12 floating-label-group
 		that.btStrpElementFrmGrpColXs12Floating3 = new ElementSection();
 		that.btStrpElementFrmGrpColXs12Floating3.createCompoundElements('div','form-group col-xs-12 floating-label-form-group');
+		//div element with class nav-headbar
+		that.btStrpElementDivNavHeader = new ElementSection();
+		that.btStrpElementDivNavHeader.createCompoundElements('div','nav-header');
+
+		that.btStrpElementBtnNavTogCol = new ElementSection();
+		that.btStrpElementBtnNavTogCol.createCompoundElements('button','navbar-toggle Collapsed');
+
+		that.btStrpElementSpanSr = new ElementSection();
+		that.btStrpElementSpanSr.createCompoundElements('span','sr-only');
+
+		that.btStrpElementSpanIco = new ElementSection();
+		that.btStrpElementSpanIco.createCompoundElements('span','icon-bar');
+
+		that.btStrpElementANav = new ElementSection();
+		that.btStrpElementANav.createCompoundElements('a','navbar-brand');
+
+		that.btStrpElementDivColNavCol = new ElementSection();
+		that.btStrpElementDivColNavCol.createCompoundElements('div','collapse navbar-collapse');
+
+		that.btStrpElementUlNavNavbarNav = new ElementSection();
+		that.btStrpElementUlNavNavbarNav.createCompoundElements('ul','nav navbar-nav');
+
+		that.btStrpElementLiActive = new ElementSection();
+		that.btStrpElementLiActive.createCompoundElements('li','');
+
+		that.btStrpElementLiDrop = new ElementSection();
+		that.btStrpElementLiDrop.createCompoundElements('li','dropdown');
+
+		that.btStrpElementADropTogg = new ElementSection();
+		that.btStrpElementADropTogg.createCompoundElements('a','dropdown-toggle');
+
+		that.btStrpElementSpanCaret = new ElementSection();
+		that.btStrpElementSpanCaret.createCompoundElements('span','caret');
+
+		that.btStrpElementUlDropMenu = new ElementSection();
+		that.btStrpElementUlDropMenu.createCompoundElements('ul','dropdown-menu');
 
 	}
 	that.initiateNormalComponents = function(){
@@ -830,6 +834,9 @@ function ElementContainer(){
 
 		that.normalElementH2 = new ElementSection();
 		that.normalElementH2.createCompoundElements('h2','');
+
+		that.normalElementLi = new ElementSection();
+		that.normalElementLi.createCompoundElements('li','')
 
 		that.normalElementHr = new ElementSection();
 		that.normalElementHr.createCompoundElements('hr','');
@@ -887,8 +894,8 @@ function ElementContainer(){
   		 document.documentElement.addEventListener('mouseup', that.stopDrag, false);
 	}
 	this.doDrag = function(e) {
-   			//e.target.style.width = (startWidth + e.clientX - startX) + 'px';
-   			e.target.style.height = (startHeight + e.clientY - startY) + 'px';
+		//e.target.style.width = (startWidth + e.clientX - startX) + 'px';
+		e.target.style.height = (startHeight + e.clientY - startY) + 'px';
 	}
  	this.stopDrag = function(e) {
     	document.documentElement.removeEventListener('mousemove', that.doDrag, false);   

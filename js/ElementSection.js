@@ -86,9 +86,6 @@ function ElementSection(){
 		if(eventFunction =='mouseEnter'){
 			that.element.addEventListener(eventName,that.mouseEnter);
 		}
-		if(eventFunction =='downloadWebpage'){
-			that.element.addEventListener(eventName,that.downloadWebpage);
-		}
 		if(eventFunction == 'mouseLeave'){
 			that.element.addEventListener(eventName,that.mouseLeave);
 		}

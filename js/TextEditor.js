@@ -252,44 +252,36 @@ function TextEditor(){
 	this.justifyLeft = function(ev){
 		if(!that.selectionIsJLeft()){
 			textEditor.setElementStyle(parentEle,'textAlign','left');
-			//document.execCommand('justifyleft', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
 			textEditor.setElementStyle(parentEle,'textAlign','left');
-			//document.execCommand('justifyleft', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
 	this.justifyCenter = function(ev){
 		if(!that.selectionIsJCenter()){
 			textEditor.setElementStyle(parentEle,'textAlign','center');
-			//document.execCommand('justifycenter', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
 			textEditor.setElementStyle(parentEle,'textAlign','center');
-			//document.execCommand('justifycenter', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
 	this.justifyRight = function(ev){
 		if(!that.selectionIsJRight()){
 			textEditor.setElementStyle(parentEle,'textAlign','right');
-			//document.execCommand('justifyright', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
 			textEditor.setElementStyle(parentEle,'textAlign','right');
-			//document.execCommand('justifyright', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
 	this.justifyFull = function(ev){
 		if(!that.selectionIsJFull()){
 			textEditor.setElementStyle(parentEle,'textAlign','justify');
-			//document.execCommand('justifyfull', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
 			textEditor.setElementStyle(parentEle,'textAlign','justify');
-			//document.execCommand('justifyfull', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
@@ -372,14 +364,14 @@ function TextEditor(){
 	this.checkCondition = function(ev){
 		if(textEditor.getEleByClassName('textEditorBar')!=undefined){
 			var isBold,isItalic,isStrike,isUnderline,isJFull,isJCenter,isJLeft,isJRight = false;
-	        	isBold = document.queryCommandState('bold');
-	        	isStrike = document.queryCommandState('strikethrough');
-	        	isItalic = document.queryCommandState('italic');
-	        	isUnderline = document.queryCommandState('underline');
-	        	isJCenter = that.selectionIsJCenter();
-	        	isJRight = that.selectionIsJRight();
-	        	isJLeft = that.selectionIsJLeft();
-	        	isJFull = that.selectionIsJFull();
+        	isBold = document.queryCommandState('bold');
+        	isStrike = document.queryCommandState('strikethrough');
+        	isItalic = document.queryCommandState('italic');
+        	isUnderline = document.queryCommandState('underline');
+        	isJCenter = that.selectionIsJCenter();
+        	isJRight = that.selectionIsJRight();
+        	isJLeft = that.selectionIsJLeft();
+        	isJFull = that.selectionIsJFull();
 	    	if(isBold){
 	    		var boldButton = textEditor.getEleById('boldBtn');
 	    		textEditor.addElementClass(boldButton,'crnt');
@@ -447,7 +439,7 @@ function TextEditor(){
     	}	
 	}
 	this.changeTextLineHeight = function(ev){
-			textEditor.setElementStyle(parentEle,'lineHeight',ev.target.value+'px'); 
+		textEditor.setElementStyle(parentEle,'lineHeight',ev.target.value+'px'); 
 	}
 	this.closeTextEditor = function(ev){
 		textEditor.setElementAttribute(parentEle,'contentEditable','false');
