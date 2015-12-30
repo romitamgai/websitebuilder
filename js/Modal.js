@@ -142,6 +142,19 @@ function Modal(){
 		divBgControl.appendTo(modal.element);
 		applyButton.appendTo(modal.element);	
 	}
+	this.selectButtonProperties = function(ev){
+		var pElement = new ElementSection();
+		pElement.createElementType('p');
+		pElement.writeHtml('Button');
+		pElement.appendTo(modal.element);
+
+		var divBgControl = new ElementSection();
+		divBgControl.createElementType('div');
+		divBgControl.addClass('control-group');
+		divBgControl.addStyle('margin-top:6px');
+
+		divBgControl.appendTo(modal.element);
+	}
 	this.displayBgColorSelect = function(ev){
 		var colorContainer = modal.getEleByClassName('controls colorControl');
 		var imageButton;

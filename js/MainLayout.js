@@ -1,10 +1,10 @@
 var MainLayout = (function(){
 	function MainLayout() {
 		this.mainContainer;
-		this.visualPane;
 		this.panelPane;
 		this.attributeContainer;
 		this.elementContainer;
+		this.visualContainerElement;
 		this.count=0;
 		var that = this;
 
@@ -12,10 +12,6 @@ var MainLayout = (function(){
 		  	that.mainContainer = new ElementSection();
 		    that.mainContainer.createElementType('div');
 		    that.mainContainer.addClass('mainContainer');
-
-		    that.visualContainer = new VisualContainer();
-		    that.visualContainer.init();
-		    var visualContainerElement = that.visualContainer.getElement();
 
 		    that.panelPane = new ElementSection();
 		    that.panelPane.createElementType('div');
@@ -33,8 +29,12 @@ var MainLayout = (function(){
 		    var attributeContainerPortion = that.attributeContainer.getAttributePortion();
 		    that.panelPane.appendChildren(attributeContainerPortion);
 
+		    that.visualContainer = new VisualContainer();
+		    that.visualContainer.init();
+		    that.visualContainerElement = that.visualContainer.getElement();
+
 		    that.mainContainer.appendChildren(that.panelPane.element);
-		  	that.mainContainer.appendChildren(visualContainerElement);
+		  	that.mainContainer.appendChildren(that.visualContainerElement);
 		    that.mainContainer.appendTo(document.body);
 	    } 
 	}

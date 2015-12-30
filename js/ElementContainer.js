@@ -13,6 +13,7 @@ function ElementContainer(){
 		that.elementContainer = new ElementSection();
 		that.elementContainer.createElementType('div');
 		that.elementContainer.addClass('elementContainer');
+		that.downloadWebsite();
 		that.titleDiv();
 		// that.toggleHeadingWrapper('HTML Components');
 		// that.createComponentsContainer();
@@ -34,9 +35,16 @@ function ElementContainer(){
 		that.makeBootButton();
 		that.makeBootNavBar();
 		that.makeBootBrandImage();
-		that.makeBootNavForm();
+		//that.makeBootNavForm();
 		that.makeBootAboutSection();
 		that.makeBootContact();
+	}
+	this.downloadWebsite = function(){
+		var downloadButton = new ElementSection();
+	    downloadButton.createElementType('button');
+	    downloadButton.writeHtml('Download Website');
+	    downloadButton.element.addEventListener('click',that.downloadWebpage);
+	    downloadButton.appendTo(that.elementContainer.element);
 	}
 	this.titleDiv = function(){
 		var titleDivision = new ElementSection();
@@ -280,7 +288,7 @@ function ElementContainer(){
 		var bootStrapComponent = new ElementSection();
 		bootStrapComponent.createElementType('button');
 		bootStrapComponent.addAttribute('value','bootBrandImg');
-		bootStrapComponent.writeHtml('Bootstrap Header Icon');
+		bootStrapComponent.writeHtml('Bootstrap Header');
 		bootStrapComponent.addAttribute('id','boxBrand');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
@@ -308,7 +316,7 @@ function ElementContainer(){
 		var bootStrapComponent = new ElementSection();
 		bootStrapComponent.createElementType('button');
 		bootStrapComponent.addAttribute('value','bootAbout');
-		bootStrapComponent.writeHtml('About Content');
+		bootStrapComponent.writeHtml('BootStrap Content');
 		bootStrapComponent.addAttribute('id','boxContentAbout');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
@@ -322,7 +330,7 @@ function ElementContainer(){
 		var bootStrapComponent = new ElementSection();
 		bootStrapComponent.createElementType('button');
 		bootStrapComponent.addAttribute('value','bootContact');
-		bootStrapComponent.writeHtml('Contact');
+		bootStrapComponent.writeHtml('BootStrap Form');
 		bootStrapComponent.addAttribute('id','boxContentContact');
 		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
 		bootStrapComponent.addAttribute('draggable','true');
@@ -399,7 +407,7 @@ function ElementContainer(){
 			that.btStrpElementUlNavNavbarNav.createCompoundElements('ul','nav navbar-nav');
 			that.btStrpElementUlNavNavbarNav.appendTo(that.btStrpElementDivColNavCol.element);
 
-			that.btStrpElementLiActive.createCompoundElements('li','active');
+			that.btStrpElementLiActive.createCompoundElements('li','');
 			that.btStrpElementLiActive.appendTo(that.btStrpElementUlNavNavbarNav.element);
 
 			that.normalElementA.createCompoundElements('a','');
@@ -903,6 +911,15 @@ function ElementContainer(){
   		ev.dataTransfer.setData('Text', ev.target.getAttribute('id'));
    		ev.dataTransfer.setDragImage(ev.target,0,0);
    		return true;
+	}
+	this.downloadWebpage = function(){
+		var htmlContent = "<html><head><title>WYSIWYG</title><link rel='stylesheet' type='text/css' href='css/reset.css'><link rel='stylesheet' type='text/css' href='css/bootstrap.min.css'><link rel='stylesheet' type='text/css' href='css/style.css'></head><body><div class='visualContainer' style='background:none;float:none;width:100%;padding-bottom:0px'>"+mainLayoutInstance.visualContainerElement.innerHTML+"</div></body></html>";
+     	var anchorTag = new ElementSection();
+     	anchorTag.createElementType('a');
+     	anchorTag.addAttribute('href','data:text/plain;charset=utf-8,'+ encodeURIComponent(htmlContent));
+      	anchorTag.addAttribute('download','index.html');
+      	anchorTag.appendTo(document.body);
+      	anchorTag.element.click();
 	}
 	this.getElementContainerPortion = function(){
 		return that.elementContainer.element;

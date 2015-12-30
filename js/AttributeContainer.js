@@ -60,7 +60,7 @@ function AttributeContainer() {
 		that.titleDivision.createElementType('div');
 		that.titleDivision.addClass('attributeTitle');
 		that.titleDivision.addStyle('background:black;width:100%;height:30px;color:white;line-height:30px;font-size:16px;');
-		that.titleDivision.element.innerHTML = 'Element Attribute';
+		that.titleDivision.writeHtml('Element Attribute');
 		that.titleDivision.appendTo(that.attributeContainer.element);
 	}
 	this.formDiv = function(){
@@ -134,7 +134,7 @@ function AttributeContainer() {
 		that.classInput.addClass('classInput');
 		that.classInput.addStyle('width:75%;')
 		that.classInput.name = 'classInput';
-		that.classInput.createEvent('input','changeClassName');
+		that.classInput.element.addEventListener('input',that.changeClassName);
 		that.classInput.appendTo(that.formContainer.element);
 
 		// that.selectClassLabel = new ElementSection();
@@ -148,7 +148,7 @@ function AttributeContainer() {
 		// that.allClassesSelect.createElementType('select');
 		// that.allClassesSelect.addClass('floatSelect');
 		// that.allClassesSelect.addStyle('width:75%;');
-		// that.allClassesSelect.createEvent('change','changeAllClassSelect');
+		// that.allClassesSelect.element.addEventListener('change','changeAllClassSelect');
 		// for(var i = 0; i< that.classList.length;i++){
 		// 	var option = new ElementSection();
 		// 	option.createElementType('option');
@@ -169,7 +169,7 @@ function AttributeContainer() {
 		that.idInput.addClass('idInput');
 		that.idInput.addStyle('width:75%;')
 		that.idInput.name = 'idInput';
-		that.idInput.createEvent('input','changeId');
+		that.idInput.element.addEventListener('input',that.changeId);
 		that.idInput.appendTo(that.formContainer.element);
 
 		that.heightLabel = new ElementSection();
@@ -183,7 +183,7 @@ function AttributeContainer() {
 		that.heightInput.addClass('heightInput');
 		that.heightInput.addStyle('width:75%;');
 		that.heightInput.name = 'heightInput';
-		that.heightInput.createEvent('input','changeHeight');
+		that.heightInput.element.addEventListener('input',that.changeHeight);
 		that.heightInput.appendTo(that.formContainer.element);
 
 		that.widthLabel = new ElementSection();
@@ -197,7 +197,7 @@ function AttributeContainer() {
 		that.widthInput.addClass('widthInput');
 		that.widthInput.addStyle('width:75%;');
 		that.widthInput.name = 'widthInput';
-		that.widthInput.createEvent('input','changeWidth');
+		that.widthInput.element.addEventListener('input',that.changeWidth);
 		that.widthInput.appendTo(that.formContainer.element);
 
 		that.marginLabel = new ElementSection();
@@ -211,7 +211,7 @@ function AttributeContainer() {
 		that.marginInput.addClass('marginInput');
 		that.marginInput.addStyle('width:75%;');
 		that.marginInput.name = 'marginInput';
-		that.marginInput.createEvent('input','changeMargin');
+		that.marginInput.element.addEventListener('input',that.changeMargin);
 		that.marginInput.appendTo(that.formContainer.element);
 
 		that.paddingLabel = new ElementSection();
@@ -225,7 +225,7 @@ function AttributeContainer() {
 		that.paddingInput.addClass('paddingInput');
 		that.paddingInput.addStyle('width:75%;');
 		that.paddingInput.name = 'paddingInput';
-		that.paddingInput.createEvent('input','changePadding');
+		that.paddingInput.element.addEventListener('input',that.changePadding);
 		that.paddingInput.appendTo(that.formContainer.element);
 
 		that.borderLabel = new ElementSection();
@@ -239,7 +239,7 @@ function AttributeContainer() {
 		that.borderInput.addClass('borderInput');
 		that.borderInput.addStyle('width:75%;');
 		that.borderInput.name = 'borderInput';
-		that.borderInput.createEvent('input','changeBorder');
+		that.borderInput.element.addEventListener('input',that.changeBorder);
 		that.borderInput.appendTo(that.formContainer.element);
 
 		that.floatLabel = new ElementSection();
@@ -253,7 +253,7 @@ function AttributeContainer() {
 		that.floatSelect.createElementType('select');
 		that.floatSelect.addClass('floatSelect');
 		that.floatSelect.addStyle('width:75%;');
-		that.floatSelect.createEvent('change','changeFloatType');
+		that.floatSelect.element.addEventListener('change',that.changeFloatType);
 		for(var i = 0; i< floatArray.length;i++){
 			var floatOption = new ElementSection();
 			floatOption.createElementType('option');
@@ -274,7 +274,7 @@ function AttributeContainer() {
 		that.clearSelect.createElementType('select');
 		that.clearSelect.addClass('clearSelect');
 		that.clearSelect.addStyle('width:55%;');
-		that.clearSelect.createEvent('change','changeClearType');
+		that.clearSelect.element.addEventListener('change',that.changeClearType);
 		for(var i = 0; i< clearArray.length;i++){
 			var clearOption = new ElementSection();
 			clearOption.createElementType('option');
@@ -288,7 +288,7 @@ function AttributeContainer() {
 		that.removeDivisionButton.createElementType('button');
 		that.removeDivisionButton.addClass('removeDivisionButton');
 		that.removeDivisionButton.writeHtml('Remove Element');
-		that.removeDivisionButton.createEvent('click','removeElement');
+		that.removeDivisionButton.element.addEventListener('click',that.removeElement);
 		that.removeDivisionButton.appendTo(that.formContainer.element);
 	}
 	this.backgroundFields = function(){
@@ -303,7 +303,7 @@ function AttributeContainer() {
 		that.backgrColorInput.addClass('backgrColorInput');
 		that.backgrColorInput.addStyle('width:50%;');
 		that.backgrColorInput.name = 'backgrColorInput';
-		that.backgrColorInput.createEvent('input','changeBackgroundColor');
+		that.backgrColorInput.element.addEventListener('input',that.changeBackgroundColor);
 		that.backgrColorInput.appendTo(that.formContainer.element);
 
 		that.backgrColorPallet = new ElementSection(this);
@@ -311,7 +311,7 @@ function AttributeContainer() {
 		that.backgrColorPallet.addClass('backgrColorPallet');
 		that.backgrColorPallet.addAttribute('type','color');
 		that.backgrColorPallet.addStyle('width:10%;');
-		that.backgrColorPallet.createEvent('input','changeBackgroundColor');
+		that.backgrColorPallet.element.addEventListener('input',that.changeBackgroundColor);
 		that.backgrColorPallet.appendTo(that.formContainer.element);
 
 		that.backgrAttachLabel = new ElementSection();
@@ -325,7 +325,7 @@ function AttributeContainer() {
 		that.backgrAttachSelect.createElementType('select');
 		that.backgrAttachSelect.addClass('backgrAttachSelect');
 		that.backgrAttachSelect.addStyle('width:55%;');
-		that.backgrAttachSelect.createEvent('change','changeBgAttachSelect');
+		that.backgrAttachSelect.element.addEventListener('change',that.changeBgAttachSelect);
 		for(var i = 0; i< containArray.length;i++){
 			var option = new ElementSection();
 			option.createElementType('option');
@@ -346,14 +346,14 @@ function AttributeContainer() {
 		that.backgrImageInput.addStyle('width:48%;');
 		that.backgrImageInput.addClass('backgrImageInput');
 		that.backgrImageInput.name ='backgrImageInput';
-		that.backgrImageInput.createEvent('input','changeBackgroundImage');
+		that.backgrImageInput.element.addEventListener('input',that.changeBackgroundImage);
 		that.backgrImageInput.appendTo(that.formContainer.element);
 
 		that.backgrImageFile = new ElementSection(this);
 		that.backgrImageFile.createElementType('input');
 		that.backgrImageFile.addAttribute('type','file');
 		that.backgrImageFile.addId('backgrImageFile');
-		that.backgrImageFile.createEvent('click','changeBackgroundImage');
+		that.backgrImageFile.element.addEventListener('click',that.changeBackgroundImage);
 		that.backgrImageFile.appendTo(that.formContainer.element);
 
 		that.backgrPositionLabel = new ElementSection();
@@ -367,7 +367,7 @@ function AttributeContainer() {
 		that.backgrPositionInput.addStyle('width:30%;');
 		that.backgrPositionInput.addClass('backgrPositionInput');
 		that.backgrPositionInput.name ='backgrPositionInput';
-		that.backgrPositionInput.createEvent('input','changeBackgroundPosition');
+		that.backgrPositionInput.element.addEventListener('input',that.changeBackgroundPosition);
 		that.backgrPositionInput.appendTo(that.formContainer.element);
 
 		var backgrPosition = ['top left','top center','top right','center left','center center','center right','bottom left','bottom center', 'bottom right','initial','inherit'];
@@ -375,7 +375,7 @@ function AttributeContainer() {
 		that.backgrPositionSelect.createElementType('select');
 		that.backgrPositionSelect.addClass('backgrPositionSelect');
 		that.backgrPositionSelect.addStyle('width:25%;');
-		that.backgrPositionSelect.createEvent('change','changeBackgrPositionSelect');
+		that.backgrPositionSelect.element.addEventListener('change',that.changeBackgrPositionSelect);
 		for(var i = 0; i< backgrPosition.length;i++){
 			var posOption = new ElementSection();
 			posOption.createElementType('option');
@@ -396,7 +396,7 @@ function AttributeContainer() {
 		that.backgrRepeatSelect.createElementType('select');
 		that.backgrRepeatSelect.addClass('backgrRepeatSelect');
 		that.backgrRepeatSelect.addStyle('width:62%;');
-		that.backgrRepeatSelect.createEvent('change','changeBackgrRepeatSelect');
+		that.backgrRepeatSelect.element.addEventListener('change',that.changeBackgrRepeatSelect);
 		for(var i = 0; i< backgrRepeat.length;i++){
 			var repeatOption = new ElementSection();
 			repeatOption.createElementType('option');
@@ -417,7 +417,7 @@ function AttributeContainer() {
 		that.colorInput.addStyle('width:50%;');
 		that.colorInput.addClass('colorInput');
 		that.colorInput.name ='colorInput';
-		that.colorInput.createEvent('input','changeColor');
+		that.colorInput.element.addEventListener('input',that.changeColor);
 		that.colorInput.appendTo(that.formContainer.element);
 	}
 	that.classificationFields = function(){
@@ -432,7 +432,7 @@ function AttributeContainer() {
 		that.displayTypeSelect.createElementType('select');
 		that.displayTypeSelect.addClass('displayTypeSelect');
 		that.displayTypeSelect.addStyle('width:82%;');
-		that.displayTypeSelect.createEvent('change','changeDisplayType');
+		that.displayTypeSelect.element.addEventListener('change',that.changeDisplayType);
 		for(var i = 0; i< displayType.length;i++){
 			var displayOption = new ElementSection();
 			displayOption.createElementType('option');
@@ -453,7 +453,7 @@ function AttributeContainer() {
 		that.listStyleImageInput.addStyle('width:61%;');
 		that.listStyleImageInput.addClass('listStyleImageInput');
 		that.listStyleImageInput.name ='listStyleImageInput';
-		that.listStyleImageInput.createEvent('input','changeListStyleImage');
+		that.listStyleImageInput.element.addEventListener('input',that.changeListStyleImage);
 		that.listStyleImageInput.appendTo(that.formContainer.element);
 
 		that.listStyleImageButton = new ElementSection(this);
@@ -461,8 +461,8 @@ function AttributeContainer() {
 		that.listStyleImageButton.addAttribute('type','button');
 		that.listStyleImageButton.addClass('listStyleImageButton');
 		that.listStyleImageButton.addAttribute('value','Upload');
-		//that.listStyleImageButton.addAttribute('onclick','document.getElementById('backgrImageFile').click()');
-		//that.listStyleImageButton.createEvent('click','changeListStyleImage');
+		//that.listStyleImageButton.addAttribute('onclick','that.attributeContainer.getEleById('backgrImageFile').click()');
+		//that.listStyleImageButton.element.addEventListener('click','changeListStyleImage');
 		that.listStyleImageButton.appendTo(that.formContainer.element);
 
 		that.listStyleTypeLabel = new ElementSection();
@@ -476,7 +476,7 @@ function AttributeContainer() {
 		that.listStyleTypeSelect.createElementType('select');
 		that.listStyleTypeSelect.addClass('listStyleTypeSelect');
 		that.listStyleTypeSelect.addStyle('width:72%;');
-		that.listStyleTypeSelect.createEvent('change','changeListStyleType');
+		that.listStyleTypeSelect.element.addEventListener('change',that.changeListStyleType);
 		for(var i = 0; i< listType.length;i++){
 			var listTypeOption = new ElementSection();
 			listTypeOption.createElementType('option');
@@ -497,7 +497,7 @@ function AttributeContainer() {
 		that.listStylePositionSelect.createElementType('select');
 		that.listStylePositionSelect.addClass('listStylePositionSelect');
 		that.listStylePositionSelect.addStyle('width:72%;');
-		that.listStylePositionSelect.createEvent('change','changeListStylePosition');
+		that.listStylePositionSelect.element.addEventListener('change',that.changeListStylePosition);
 		for(var i = 0; i< listPosition.length;i++){
 			var listPositionOption = new ElementSection();
 			listPositionOption.createElementType('option');
@@ -519,7 +519,7 @@ function AttributeContainer() {
 		that.fontFamilyInput.addStyle('width:75%;');
 		that.fontFamilyInput.addClass('fontFamilyInput');
 		that.fontFamilyInput.name ='fontFamilyInput';
-		that.fontFamilyInput.createEvent('input','changeFontFamily');
+		that.fontFamilyInput.element.addEventListener('input',that.changeFontFamily);
 		that.fontFamilyInput.appendTo(that.formContainer.element);
 
 		that.fontSizeLabel = new ElementSection();
@@ -533,7 +533,7 @@ function AttributeContainer() {
 		that.fontSizeInput.addStyle('width:40%;');
 		that.fontSizeInput.addClass('fontSizeInput');
 		that.fontSizeInput.name ='fontSizeInput';
-		that.fontSizeInput.createEvent('input','changeFontSize');
+		that.fontSizeInput.element.addEventListener('input',that.changeFontSize);
 		that.fontSizeInput.appendTo(that.formContainer.element);
 
 		var fontSizes = ['xx-small','x-small','small','medium','large','x-large','xx-large','larger', 'smaller'];
@@ -541,7 +541,7 @@ function AttributeContainer() {
 		that.fontSizeSelect.createElementType('select');
 		that.fontSizeSelect.addClass('fontSizeSelect');
 		that.fontSizeSelect.addStyle('width:40%;');
-		that.fontSizeSelect.createEvent('change','changeFontSize');
+		that.fontSizeSelect.element.addEventListener('change',that.changeFontSize);
 		for(var i = 0; i< fontSizes.length;i++){
 			var fontSizeOption = new ElementSection();
 			fontSizeOption.createElementType('option');
@@ -562,7 +562,7 @@ function AttributeContainer() {
 		that.fontStyleSelect.createElementType('select');
 		that.fontStyleSelect.addClass('fontStyleSelect');
 		that.fontStyleSelect.addStyle('width:78%;');
-		that.fontStyleSelect.createEvent('change','changeFontStyle');
+		that.fontStyleSelect.element.addEventListener('change',that.changeFontStyle);
 		for(var i = 0; i< fontStyles.length;i++){
 			var fontStyleOption = new ElementSection();
 			fontStyleOption.createElementType('option');
@@ -583,7 +583,7 @@ function AttributeContainer() {
 		that.fontVariantSelect.createElementType('select');
 		that.fontVariantSelect.addClass('fontVariantSelect');
 		that.fontVariantSelect.addStyle('width:75%;');
-		that.fontVariantSelect.createEvent('change','changeFontVariant');
+		that.fontVariantSelect.element.addEventListener('change',that.changeFontVariant);
 		for(var i = 0; i< fontVariants.length;i++){
 			var fontVariantOption = new ElementSection();
 			fontVariantOption.createElementType('option');
@@ -604,7 +604,7 @@ function AttributeContainer() {
 		that.fontWeightSelect.createElementType('select');
 		that.fontWeightSelect.addClass('fontWeightSelect');
 		that.fontWeightSelect.addStyle('width:75%;');
-		that.fontWeightSelect.createEvent('change','changeFontWeight');
+		that.fontWeightSelect.element.addEventListener('change',that.changeFontWeight);
 		for(var i = 0; i< fontWeights.length;i++){
 			var fontWeightOption = new ElementSection();
 			fontWeightOption.createElementType('option');
@@ -626,7 +626,7 @@ function AttributeContainer() {
 		that.lineSpacingInput.addClass('lineSpacingInput');
 		that.lineSpacingInput.addStyle('width:75%;');
 		that.lineSpacingInput.name = 'lineSpacingInput';
-		that.lineSpacingInput.createEvent('input','changeLineSpacing');
+		that.lineSpacingInput.element.addEventListener('input',that.changeLineSpacing);
 		that.lineSpacingInput.appendTo(that.formContainer.element);
 
 		that.lineHeightLabel = new ElementSection();
@@ -640,7 +640,7 @@ function AttributeContainer() {
 		that.lineHeightInput.addClass('lineHeightInput');
 		that.lineHeightInput.addStyle('width:77%;');
 		that.lineHeightInput.name = 'lineHeightInput';
-		that.lineHeightInput.createEvent('input','changeLineHeight');
+		that.lineHeightInput.element.addEventListener('input',that.changeLineHeight);
 		that.lineHeightInput.appendTo(that.formContainer.element);
 
 		that.textAlignLabel = new ElementSection();
@@ -654,7 +654,7 @@ function AttributeContainer() {
 		that.textAlignSelect.createElementType('select');
 		that.textAlignSelect.addClass('textAlignSelect');
 		that.textAlignSelect.addStyle('width:78%;');
-		that.textAlignSelect.createEvent('change','changeTextAlign');
+		that.textAlignSelect.element.addEventListener('change',that.changeTextAlign);
 		for(var i = 0; i< textAlignment.length;i++){
 			var textAlignmentOption = new ElementSection();
 			textAlignmentOption.createElementType('option');
@@ -675,7 +675,7 @@ function AttributeContainer() {
 		that.textDecorationSelect.createElementType('select');
 		that.textDecorationSelect.addClass('textAlignSelect');
 		that.textDecorationSelect.addStyle('width:72%;');
-		that.textDecorationSelect.createEvent('change','changeTextDecoration');
+		that.textDecorationSelect.element.addEventListener('change',that.changeTextDecoration);
 		for(var i = 0; i< textDecors.length;i++){
 			var textDecorOption = new ElementSection();
 			textDecorOption.createElementType('option');
@@ -696,7 +696,7 @@ function AttributeContainer() {
 		that.textIndentInput.addClass('textIndentInput');
 		that.textIndentInput.addStyle('width:77%;');
 		that.textIndentInput.name = 'textIndentInput';
-		that.textIndentInput.createEvent('input','changeTextIndent');
+		that.textIndentInput.element.addEventListener('input',that.changeTextIndent);
 		that.textIndentInput.appendTo(that.formContainer.element);
 
 		that.textTransformLabel = new ElementSection();
@@ -710,7 +710,7 @@ function AttributeContainer() {
 		that.textTransformSelect.createElementType('select');
 		that.textTransformSelect.addClass('textTransformSelect');
 		that.textTransformSelect.addStyle('width:72%;');
-		that.textTransformSelect.createEvent('change','changeTextTransform');
+		that.textTransformSelect.element.addEventListener('change',that.changeTextTransform);
 		for(var i = 0; i< textTransforms.length;i++){
 			var textTransformsOption = new ElementSection();
 			textTransformsOption.createElementType('option');
@@ -731,7 +731,7 @@ function AttributeContainer() {
 		that.verticalAlignInput.addStyle('width:35%;');
 		that.verticalAlignInput.addClass('verticalAlignInput');
 		that.verticalAlignInput.name ='verticalAlignInput';
-		that.verticalAlignInput.createEvent('input','changeVerticalAlign');
+		that.verticalAlignInput.element.addEventListener('input',that.changeVerticalAlign);
 		that.verticalAlignInput.appendTo(that.formContainer.element);
 
 		var verticalAligns = ['baseline','sub','super','top','middle','bottom','text-top','text-bottom']; 
@@ -739,7 +739,7 @@ function AttributeContainer() {
 		that.verticalAlignSelect.createElementType('select');
 		that.verticalAlignSelect.addClass('verticalAlignSelect');
 		that.verticalAlignSelect.addStyle('width:38%;');
-		that.verticalAlignSelect.createEvent('change','changeVerticalAlign');
+		that.verticalAlignSelect.element.addEventListener('change',that.changeVerticalAlign);
 		for(var i = 0; i< verticalAligns.length;i++){
 			var verticalAlignOption = new ElementSection();
 			verticalAlignOption.createElementType('option');
@@ -760,7 +760,7 @@ function AttributeContainer() {
 		that.wordSpacingInput.addClass('wordSpacingInput');
 		that.wordSpacingInput.addStyle('width:72%;');
 		that.wordSpacingInput.name = 'wordSpacingInput';
-		that.wordSpacingInput.createEvent('input','changeWordSpacing');
+		that.wordSpacingInput.element.addEventListener('input',that.changeWordSpacing);
 		that.wordSpacingInput.appendTo(that.formContainer.element);
 
 		that.innerHtmlLabel = new ElementSection();
@@ -774,7 +774,7 @@ function AttributeContainer() {
 		that.innerHtmlInput.addClass('innerHtmlInput');
 		that.innerHtmlInput.addStyle('width:72%;');
 		that.innerHtmlInput.name = 'innerHtmlInput';
-		that.innerHtmlInput.createEvent('input','changeInnerHtmlInput');
+		that.innerHtmlInput.element.addEventListener('input',that.changeInnerHtmlInput);
 		that.innerHtmlInput.appendTo(that.formContainer.element);
 	}
 	this.imageFields = function(){
@@ -789,7 +789,7 @@ function AttributeContainer() {
 		that.imageAlignSelect.createElementType('select');
 		that.imageAlignSelect.addClass('imageAlignSelect');
 		that.imageAlignSelect.addStyle('width:87%;');
-		that.imageAlignSelect.createEvent('change','changeImageAlign');
+		that.imageAlignSelect.element.addEventListener('change',that.changeImageAlign);
 		for(var i = 0; i< imageAligns.length;i++){
 			var imageAlignOption = new ElementSection();
 			imageAlignOption.createElementType('option');
@@ -810,7 +810,7 @@ function AttributeContainer() {
 		that.imageAltInput.addClass('imageAltInput');
 		that.imageAltInput.addStyle('width:88%;');
 		that.imageAltInput.name = 'imageAltInput';
-		that.imageAltInput.createEvent('input','changeImageAltText');
+		that.imageAltInput.element.addEventListener('input',that.changeImageAltText);
 		that.imageAltInput.appendTo(that.formContainer.element);
 
 		that.imageSrcLabel = new ElementSection();
@@ -824,7 +824,7 @@ function AttributeContainer() {
 		that.imageSrcInput.addClass('imageSrcInput');
 		that.imageSrcInput.addStyle('width:82%;');
 		that.imageSrcInput.name = 'imageSrcInput';
-		that.imageSrcInput.createEvent('input','changeImageSrc');
+		that.imageSrcInput.element.addEventListener('input',that.changeImageSrc);
 		that.imageSrcInput.appendTo(that.formContainer.element);
 
 		that.imageHeightLabel = new ElementSection();
@@ -838,7 +838,7 @@ function AttributeContainer() {
 		that.imageHeightInput.addClass('imageHeightInput');
 		that.imageHeightInput.addStyle('width:75%;');
 		that.imageHeightInput.name = 'imageHeightInput';
-		that.imageHeightInput.createEvent('input','changeImageHeight');
+		that.imageHeightInput.element.addEventListener('input',that.changeImageHeight);
 		that.imageHeightInput.appendTo(that.formContainer.element);
 
 		that.imageWidthLabel = new ElementSection();
@@ -852,7 +852,7 @@ function AttributeContainer() {
 		that.imageWidthInput.addClass('imageWidthInput');
 		that.imageWidthInput.addStyle('width:75%;');
 		that.imageWidthInput.name = 'imageWidthInput';
-		that.imageWidthInput.createEvent('input','changeImageWidth');
+		that.imageWidthInput.element.addEventListener('input',that.changeImageWidth);
 		that.imageWidthInput.appendTo(that.formContainer.element);
 	}
 	this.formAttributeFields = function(){
@@ -867,7 +867,7 @@ function AttributeContainer() {
 		that.formActionInput.addClass('formActionInput');
 		that.formActionInput.addStyle('width:88%;');
 		that.formActionInput.name = 'formActionInput';
-		that.formActionInput.createEvent('input','changeFormAction');
+		that.formActionInput.element.addEventListener('input',that.changeFormAction);
 		that.formActionInput.appendTo(that.formContainer.element);
 
 		that.encTypeLabel = new ElementSection();
@@ -881,7 +881,7 @@ function AttributeContainer() {
 		that.encTypeSelect.createElementType('select');
 		that.encTypeSelect.addClass('encTypeSelect');
 		that.encTypeSelect.addStyle('width:87%;');
-		that.encTypeSelect.createEvent('change','changeEncType');
+		that.encTypeSelect.element.addEventListener('change',that.changeEncType);
 		for(var i = 0; i< encTypes.length;i++){
 			var encTypeOption = new ElementSection();
 			encTypeOption.createElementType('option');
@@ -902,7 +902,7 @@ function AttributeContainer() {
 		that.formMethodSelect.createElementType('select');
 		that.formMethodSelect.addClass('formMethodSelect');
 		that.formMethodSelect.addStyle('width:87%;');
-		that.formMethodSelect.createEvent('change','changeFormMethod');
+		that.formMethodSelect.element.addEventListener('change',that.changeFormMethod);
 		for(var i = 0; i< methods.length;i++){
 			var methodOption = new ElementSection();
 			methodOption.createElementType('option');
@@ -914,6 +914,668 @@ function AttributeContainer() {
 			methodOption.appendTo(that.formMethodSelect.element);
 		}
 		that.formMethodSelect.appendTo(that.formContainer.element);
+	}
+	//Event Listeners
+	this.changeClassName = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			selectedElementById.className = inputValue;
+		}
+		else if (selectedElementByClassName != null){
+			selectedElementByClassName.className = inputValue;
+		}
+	}
+	this.changeId = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			selectedElementById.id = inputValue;
+		}
+		else if (selectedElementByClassName != null){
+			selectedElementByClassName.id = inputValue;
+		}
+	}
+	this.changeAllClassSelect = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'outline','1px solid red');
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'outline','1px solid red');
+		}
+	}
+	this.changeHeight = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'height',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'height',inputValue);
+		}
+	}
+	this.changeWidth = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'width',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'width',inputValue);
+		}
+	}
+	this.changeMargin = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'margin',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'margin',inputValue);
+		}
+	}
+	this.changePadding = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'padding',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'padding',inputValue);
+		}
+	}
+	this.changeBorder = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'border',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'border',inputValue);
+		}
+	}
+	this.changeFloatType = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'float',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'float',inputValue);
+		}
+	}
+	this.changeClearType = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'clear',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'clear',inputValue);
+		}
+	}
+	this.removeElement = function(ev){
+		ev.preventDefault();
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			var parent = selectedElementById.parentElement;
+			that.attributeContainer.removeElementChild(selectedElementById,parent);
+		}
+		else if(selectedElementByClassName != null && selectedElementByClassName.className!='visualContainer'){
+			console.log(selectedElementByClassName);
+			var parent = selectedElementByClassName.parentElement;
+			that.attributeContainer.removeElementChild(selectedElementByClassName,parent);
+		}
+	}
+	this.changeBgAttachSelect = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'backgroundAttachment',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'backgroundAttachment',inputValue);
+		}
+	}
+	this.changeBackgroundImage = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'backgroundImage','url('+inputValue+')');
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,backgroundImage,'url('+inputValue+')');
+		}
+		//document.getElementById('backgrImageFile').click();
+	}
+	this.changeBackgroundPosition = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'backgroundPosition',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'backgroundPosition',inputValue);
+		}
+		//document.getElementById('backgrImageFile').click();
+	}
+	this.changeBackgroundColor = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'backgroundColor',inputValue);
+			that.backgrColorInput.element.value = inputValue;
+			if(inputValue.length == 7)
+				that.backgrColorPallet.element.value = inputValue;
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'backgroundColor',inputValue);
+			that.backgrColorInput.element.value = inputValue;
+			that.backgrColorPallet.element.value = inputValue;
+		}
+	}
+	this.changeBackgrPositionSelect = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'backgroundPosition',inputValue);
+			that.backgrPositionInput.element.value = inputValue;
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'backgroundPosition',inputValue);
+			that.backgrPositionInput.element.value = inputValue;
+		}
+	}
+	this.changeBackgrRepeatSelect = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'backgroundRepeat',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'backgroundRepeat',inputValue);
+		}
+	}
+	this.changeColor = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'color',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'color',inputValue);
+		}
+	}
+	this.changeDisplayType = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'display',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'display',inputValue);
+		}
+	}
+	this.changeListStyleImage = function(){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'listStyleImage','url('+inputValue+')');
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'listStyleImage','url('+inputValue+')');
+		}
+	}
+	this.changeListStyleType = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'listStyleType',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'listStyleType',inputValue);
+		}
+	}
+	this.changeListStylePosition = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'listStylePosition',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'listStylePosition',inputValue);
+		}
+	}
+	this.changeFontWeight = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'fontWeight',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'fontWeight',inputValue);
+		}
+	}
+	this.changeFontVariant = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'fontVariant',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'fontVariant',inputValue);
+		}
+	}
+	this.changeFontStyle = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'fontStyle',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'fontStyle',inputValue);
+		}
+	}
+	this.changeFontSize = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'fontSize',inputValue);
+			that.fontSizeSelect.element.value = inputValue;
+			that.fontSizeInput.element.value = inputValue;
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'fontSize',inputValue);
+			that.fontSizeSelect.element.value = inputValue;
+			that.fontSizeInput.element.value = inputValue;
+		}
+	}
+	this.changeFontFamily = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'fontFamily',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'fontFamily',inputValue);
+		}
+	}
+	this.changeWordSpacing = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'wordSpacing',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'wordSpacing',inputValue);
+		}
+	}
+	this.changeVerticalAlign = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'verticalAlign',inputValue);
+			that.verticalAlignSelect.element.value = inputValue;
+			that.verticalAlignInput.element.value = inputValue;
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'verticalAlign',inputValue);
+			that.verticalAlignSelect.element.value = inputValue;
+			that.verticalAlignInput.element.value = inputValue;
+		}
+	}
+	this.changeTextTransform = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'textTransform',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'textTransform',inputValue);
+		}
+	}
+	this.changeTextIndent = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'textIndent',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'textIndent',inputValue);
+		}
+	}
+	this.changeTextDecoration = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'textDecoration',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'textDecoration',inputValue);
+		}
+	}
+	this.changeTextAlign = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'textAlign',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'textAlign',inputValue);
+		}
+	}
+	this.changeLineHeight = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'lineHeight',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'lineHeight',inputValue);
+		}
+	}
+	this.changeLineSpacing = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementStyle(selectedElementById,'letterSpacing',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementStyle(selectedElementByClassName,'letterSpacing',inputValue);
+		}
+	}
+	this.changeInnerHtmlInput = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributContainer.setElementInnerHtml(selectedElementById,inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributContainer.setElementInnerHtml(selectedElementByClassName,inputValue);
+		}
+	}
+	this.changeImageAlign = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementAttribute(selectedElementById,'align',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementAttribute(selectedElementByClassName,'align',inputValue);
+		}
+	}
+	this.changeImageAltText = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementAttribute(selectedElementById,'alt',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementAttribute(selectedElementByClassName,'alt',inputValue);
+		}
+	}
+	this.changeImageSrc = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementAttribute(selectedElementById,'src',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementAttribute(selectedElementByClassName,'src',inputValue);
+		}
+	}
+	this.changeImageHeight = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementAttribute(selectedElementById,'height',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementAttribute(selectedElementByClassName,'height',inputValue);
+		}
+	}
+	this.changeImageWidth = function(ev){
+		var inputValue = ev.target.value;
+		var className = that.classInput.element.value;
+		var idName = that.idInput.element.value;
+		var selectedElementById = that.attributeContainer.getEleById(idName);
+		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
+		if(selectedElementById != null){
+			that.attributeContainer.setElementAttribute(selectedElementById,'width',inputValue);
+		}
+		else if (selectedElementByClassName != null){
+			that.attributeContainer.setElementAttribute(selectedElementByClassName,'width',inputValue);
+		}
+	}
+	this.changeFormFields = function(ev){
+		var eventElement = ev.target;
+	    var elementClassName  = that.attributeContainer.getClassName(eventElement);
+	    var elementIdName = that.attributeContainer.getIdName(eventElement);
+	    var elementHeight = that.attributeContainer.getStyle('height',eventElement);
+	    var elementWidth = that.attributeContainer.getStyle('width',eventElement);
+	    var elementFloatType = that.attributeContainer.getStyle('float',eventElement);
+	    var elementClearType = that.attributeContainer.getStyle('clear',eventElement);
+	    var elementBackgroundColor = that.attributeContainer.getStyle('background-color',eventElement);
+	    var elementBackgroundAttachment = that.attributeContainer.getStyle('background-attachment',eventElement);
+	    var elementBackgroundImage = that.attributeContainer.getStyle('background-image',eventElement);
+	    var elementBackgroundPosition = that.attributeContainer.getStyle('background-position',eventElement);
+	    var elementBackgroundRepeat = that.attributeContainer.getStyle('background-repeat',eventElement);
+	    var elementColor = that.attributeContainer.getStyle('color',eventElement);
+	    var elementDisplayType = that.attributeContainer.getStyle('display',eventElement);
+	    var elementListStyleImage = that.attributeContainer.getStyle('list-style-image',eventElement);
+	    var elementListStyleType = that.attributeContainer.getStyle('list-style-type',eventElement);
+	    var elementListStylePosition = that.attributeContainer.getStyle('list-style-position',eventElement);
+	    var elementFontFamily = that.attributeContainer.getStyle('font-family',eventElement);
+	    var elementFontSize = that.attributeContainer.getStyle('font-size',eventElement);
+	    var elementFontStyle = that.attributeContainer.getStyle('font-style',eventElement);
+	    var elementFontVariant = that.attributeContainer.getStyle('font-variant',eventElement);
+	    var elementFontWeight = that.attributeContainer.getStyle('font-weight',eventElement);
+	    var elementLetterSpace = that.attributeContainer.getStyle('letter-spacing',eventElement);
+	    var elementLineHeight = that.attributeContainer.getStyle('line-height',eventElement);
+	    var elementTextAlign = that.attributeContainer.getStyle('text-align',eventElement);
+	    var elementTextDecoration = that.attributeContainer.getStyle('text-decoration',eventElement);
+	    var elementTextIndent = that.attributeContainer.getStyle('text-indent',eventElement);
+	    var elementTextTransform = that.attributeContainer.getStyle('text-transform',eventElement);
+	    var elementVerticalAlign = that.attributeContainer.getStyle('vertical-align',eventElement);
+	    var elementWordSpacing = that.attributeContainer.getStyle('word-spacing',eventElement);
+	    var elementImageAlign = that.attributeContainer.getElementAttribute(eventElement,'align');
+	    var elementImageAlt = that.attributeContainer.getElementAttribute(eventElement,'alt');
+	    var elementImageSrc = that.attributeContainer.getElementAttribute(eventElement,'src');
+	    var elementImageHeight = that.attributeContainer.getElementAttribute(eventElement,'height');
+	    var elementImageWidth = that.attributeContainer.getElementAttribute(eventElement,'width');
+	   	var elementinnerHtml = that.attributeContainer.getInnerHtml(eventElement);
+	   	var elementMargin = that.attributeContainer.getStyle('margin',eventElement);
+	   	var elementPadding = that.attributeContainer.getStyle('padding',eventElement);
+	   	var elementBorder = that.attributeContainer.getStyle('border',eventElement);
+
+	    elementBackgroundColor = that.convertRgbToHex(elementBackgroundColor);
+	    elementColor = that.convertRgbToHex(elementColor);
+	    elementBackgroundImage = that.filterText(elementBackgroundImage);
+	    elementListStyleImage = that.filterText(elementListStyleImage);
+
+	    that.classInput.element.value = elementClassName;
+	    that.idInput.element.value = elementIdName;
+	    that.widthInput.element.value = elementWidth;
+	    that.heightInput.element.value = elementHeight;
+	    that.marginInput.element.value = elementMargin;
+	    that.paddingInput.element.value = elementPadding;
+	    that.borderInput.element.value = elementBorder;
+	    that.floatSelect.element.value = elementFloatType;
+	    that.clearSelect.element.value = elementClearType;
+	    //that.backgrColorPallet.element.value = elementBackgroundColor;
+	    that.backgrColorInput.element.value = elementBackgroundColor;
+	    that.backgrAttachSelect.element.value = elementBackgroundAttachment;
+	    that.backgrImageInput.element.value = elementBackgroundImage;
+	    that.backgrPositionInput.element.value = elementBackgroundPosition;
+	    that.backgrRepeatSelect.element.value = elementBackgroundRepeat;
+	    that.colorInput.element.value = elementColor;
+	    that.displayTypeSelect.element.value = elementDisplayType;
+	    that.listStyleImageInput.element.value = elementListStyleImage;
+	    that.listStyleTypeSelect.element.value = elementListStyleType;
+	    that.listStylePositionSelect.element.value = elementListStylePosition;
+	    that.fontFamilyInput.element.value = elementFontFamily;
+	    that.fontSizeInput.element.value = elementFontSize;
+	    that.fontSizeSelect.element.value = elementFontSize;
+	    that.fontStyleSelect.element.value = elementFontStyle;
+	    that.fontVariantSelect.element.value = elementFontVariant;
+	    that.fontWeightSelect.element.value = elementFontWeight;
+	    that.lineSpacingInput.element.value = elementLetterSpace;
+	    that.lineHeightInput.element.value = elementLineHeight;
+	    that.textAlignSelect.element.value = elementTextAlign;
+	    that.textDecorationSelect.element.value = elementTextDecoration;
+	    that.textIndentInput.element.value = elementTextIndent;
+	    that.textTransformSelect.element.value = elementTextTransform;
+	    that.verticalAlignInput.element.value = elementVerticalAlign;
+	    that.verticalAlignSelect.element.value = elementVerticalAlign;
+	    that.wordSpacingInput.element.value = elementWordSpacing;
+		that.innerHtmlInput.element.value = elementinnerHtml;
+		if(eventElement.className != 'imgClass'){
+			that.toggleableDiv.element.style.display = 'none';
+			that.formContainer.element.style.display = 'none';
+		}else{
+			that.toggleableDiv.element.style.display = 'block';
+			that.formContainer.element.style.display = 'block';
+			
+			that.imageAlignSelect.element.value = elementImageAlign;
+			that.imageAltInput.element.value = elementImageAlt;
+			that.imageSrcInput.element.value = elementImageSrc;
+			that.imageHeightInput.element.value = elementImageHeight;
+			that.imageWidthInput.element.value = elementImageWidth;
+		}
+	}
+	this.filterText =function(text){
+		text = text.substring(5,text.length-2);
+		return text;
+	}
+	this.convertRgbToHex = function(rgb){
+		rgb = rgb.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+		return (rgb) ? '#' +
+		  ('0' + parseInt(rgb[1],10).toString(16)).slice(-2) +
+		  ('0' + parseInt(rgb[2],10).toString(16)).slice(-2) +
+		  ('0' + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
 	}
 	this.getAttributePortion = function(){
 		return this.attributeContainer.element;

@@ -2,14 +2,6 @@
 	width:99%;
 	margin:5px;
 }
-.visualContainer{
-	float:left;
-	width:70%;
-	min-height: 1000px;
-	padding-bottom: 50px;
-	background: #ffffff;
-	background: url('../images/drophere.png')center no-repeat;
-}
 .toggleHeadingWrapper{
 	height:30px;
 	width:100%;
@@ -49,7 +41,7 @@
 }
 .settingOption{
 	padding-left: 45px;
-	background: url('../images/settings.png')no-repeat;
+	background: url('../imageforjs/settings.png')no-repeat;
 	position: absolute;
 	border-radius: 21px;
 	height: 38px;
@@ -59,12 +51,12 @@
 	font-size: 14px;
 }
 .settingOption:hover{
-	background: url('../images/settings-active.png')no-repeat;
+	background: url('../imageforjs/settings-active.png')no-repeat;
 	color:#fbb05a;
 }
 .deleteOption{
 	padding-left: 45px;
-	background: url('../images/delete.png')no-repeat;
+	background: url('../imageforjs/delete.png')no-repeat;
 	position: absolute;
 	border-radius: 21px;
 	height: 38px;
@@ -74,7 +66,7 @@
 	font-size: 14px;
 }
 .deleteOption:hover{
-	background: url('../images/delete-active.png')no-repeat;
+	background: url('../imageforjs/delete-active.png')no-repeat;
 	color:#111111;
 }
 .is-hidden { display: none; }
@@ -87,7 +79,7 @@
   top: 10px;
   right: 10px;
   cursor: pointer;
-  background-image: url('../images/close.png');
+  background-image: url('../imageforjs/close.png');
 }
 
 .overlay {
@@ -98,6 +90,7 @@
   height: 100%;
   background: rgba(0,0,0,0.6);
   overflow-y:scroll; 
+  z-index: 50;
 }
 
 .modal-content {
@@ -191,40 +184,40 @@ position: relative;
 	font-family: sans-serif;
 }
 .textEditorBar [data-original-title = 'Bold']{
-	background-image: url('../images/bold.png');
+	background-image: url('../imageforjs/bold.png');
 }
 .textEditorBar [data-original-title = 'Italic']{
-	background-image: url('../images/italic.png');
+	background-image: url('../imageforjs/italic.png');
 }
 .textEditorBar [data-original-title = 'Strikethrough']{
-	background-image: url('../images/strike.png');
+	background-image: url('../imageforjs/strike.png');
 }
 .textEditorBar [data-original-title = 'Underline']{
-	background-image: url('../images/underline.png');
+	background-image: url('../imageforjs/underline.png');
 }
 .textEditorBar [data-original-title = 'Bullet list']{
-	background-image: url('../images/list.png');
+	background-image: url('../imageforjs/list.png');
 }
 .textEditorBar [data-original-title = 'Number list']{
-	background-image: url('../images/numlist.png');
+	background-image: url('../imageforjs/numlist.png');
 }
 .textEditorBar [data-original-title = 'Indent']{
-	background-image: url('../images/indent2.png');
+	background-image: url('../imageforjs/indent2.png');
 }
 .textEditorBar [data-original-title = 'Reduce indent']{
-	background-image: url('../images/outdent.png');
+	background-image: url('../imageforjs/outdent.png');
 }
 .textEditorBar [data-original-title = 'Align Left']{
-	background-image: url('../images/left.png');
+	background-image: url('../imageforjs/left.png');
 }
 .textEditorBar [data-original-title = 'Align Center']{
-	background-image: url('../images/center.png');
+	background-image: url('../imageforjs/center.png');
 }
 .textEditorBar [data-original-title = 'Align Right']{
-	background-image: url('../images/right.png');
+	background-image: url('../imageforjs/right.png');
 }
 .textEditorBar [data-original-title = 'Justify']{
-	background-image: url('../images/block.png');
+	background-image: url('../imageforjs/block.png');
 }
 .crnt{
 	background-position-y :-47px !important;
@@ -241,14 +234,14 @@ position: relative;
     float: left;
 }
 .fontUp{
-	background: url('../images/iconup.png')center center no-repeat;
+	background: url('../imageforjs/iconup.png')center center no-repeat;
 	width: 32px;
 	height: 32px;
 	border: none;
 	float: right;
 }
 .fontDown{
-	background: url('../images/icondown.png')center center no-repeat;
+	background: url('../imageforjs/icondown.png')center center no-repeat;
 	width: 32px;
 	height: 32px;
 	border: none;

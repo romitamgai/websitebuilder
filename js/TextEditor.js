@@ -1,15 +1,14 @@
 function TextEditor(){
 	var textEditor;
+	var parentEle;
 	var that = this;
 	this.openTextEditor = function(targetElement){
-		var parent = targetElement.parentElement.id;
+		parentEle = targetElement.parentElement;
+		parent = parentEle.id;
 		textEditor = new ElementSection();
 		textEditor.createElementType('div');
 		textEditor.addClass('textEditorBar');
-
-		var mainParent = textEditor.getEleById(parent);
-		textEditor.setElementAttribute(mainParent,'contentEditable','true');
-
+		textEditor.setElementAttribute(parentEle,'contentEditable','true');
 		var initialHeight = textEditor.getStyle('height',targetElement.parentElement);
 		textEditor.setStyle('top',initialHeight);
 		textEditor.setStyle('left','40%');
@@ -199,7 +198,7 @@ function TextEditor(){
 		closeSpan.appendTo(elementsHolder.element);
 
 		elementsHolder.appendTo(textEditor.element);
-		mainParent.addEventListener('mouseup',that.checkCondition);
+		parentEle.addEventListener('mouseup',that.checkCondition);
 		textEditor.appendTo(document.body);
 	}
 	this.makeTextBold = function(ev){
@@ -252,37 +251,45 @@ function TextEditor(){
 	}
 	this.justifyLeft = function(ev){
 		if(!that.selectionIsJLeft()){
-			document.execCommand('justifyleft', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','left');
+			//document.execCommand('justifyleft', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
-			document.execCommand('justifyleft', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','left');
+			//document.execCommand('justifyleft', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
 	this.justifyCenter = function(ev){
 		if(!that.selectionIsJCenter()){
-			document.execCommand('justifycenter', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','center');
+			//document.execCommand('justifycenter', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
-			document.execCommand('justifycenter', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','center');
+			//document.execCommand('justifycenter', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
 	this.justifyRight = function(ev){
 		if(!that.selectionIsJRight()){
-			document.execCommand('justifyright', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','right');
+			//document.execCommand('justifyright', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
-			document.execCommand('justifyright', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','right');
+			//document.execCommand('justifyright', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
 	this.justifyFull = function(ev){
 		if(!that.selectionIsJFull()){
-			document.execCommand('justifyfull', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','justify');
+			//document.execCommand('justifyfull', false, null);
 			textEditor.addElementClass(ev.target,'crnt');
 		}else{
-			document.execCommand('justifyfull', false, null);
+			textEditor.setElementStyle(parentEle,'textAlign','justify');
+			//document.execCommand('justifyfull', false, null);
 			textEditor.removeElementClass(ev.target,'crnt');
 		}
 	}
@@ -316,30 +323,30 @@ function TextEditor(){
 	}
 	this.selectionIsJLeft = function() {
     	var isJLeft = false;
-    	if (document.queryCommandState) {
-        	isJLeft = document.queryCommandState('justifyleft');
-    	}
+    	text= textEditor.getStyle('text-align',parentEle);
+    	if (text == 'left')
+        	isJLeft = true;
     	return isJLeft;
 	}
 	this.selectionIsJRight = function() {
     	var isJRight = false;
-    	if (document.queryCommandState) {
-        	isJRight = document.queryCommandState('justifyright');
-    	}
+    	text= textEditor.getStyle('text-align',parentEle);
+    	if (text == 'right')
+        	isJRight = true;
     	return isJRight;
 	}
 	this.selectionIsJCenter = function() {
     	var isJCenter = false;
-    	if (document.queryCommandState) {
-        	isJCenter = document.queryCommandState('justifycenter');
-    	}
+    	text= textEditor.getStyle('text-align',parentEle);
+    	if (text == 'center')
+        	isJCenter = true;
     	return isJCenter;
 	}
 	this.selectionIsJFull = function() {
     	var isJFull = false;
-    	if (document.queryCommandState) {
-        	isJFull = document.queryCommandState('justifyfull');
-    	}
+    	text= textEditor.getStyle('text-align',parentEle);
+    	if (text == 'justify')
+        	isJFull = true;
     	return isJFull;
 	}
 	this.textFontDecrease = function(){
@@ -365,16 +372,14 @@ function TextEditor(){
 	this.checkCondition = function(ev){
 		if(textEditor.getEleByClassName('textEditorBar')!=undefined){
 			var isBold,isItalic,isStrike,isUnderline,isJFull,isJCenter,isJLeft,isJRight = false;
-	    	if (document.queryCommandState) {
 	        	isBold = document.queryCommandState('bold');
 	        	isStrike = document.queryCommandState('strikethrough');
 	        	isItalic = document.queryCommandState('italic');
 	        	isUnderline = document.queryCommandState('underline');
-	        	isJCenter = document.queryCommandState('justifycenter');
-	        	isJRight = document.queryCommandState('justifyright');
-	        	isJLeft = document.queryCommandState('justifyleft');
-	        	isJFull = document.queryCommandState('justifyfull');
-	    	}
+	        	isJCenter = that.selectionIsJCenter();
+	        	isJRight = that.selectionIsJRight();
+	        	isJLeft = that.selectionIsJLeft();
+	        	isJFull = that.selectionIsJFull();
 	    	if(isBold){
 	    		var boldButton = textEditor.getEleById('boldBtn');
 	    		textEditor.addElementClass(boldButton,'crnt');
@@ -442,13 +447,9 @@ function TextEditor(){
     	}	
 	}
 	this.changeTextLineHeight = function(ev){
-		var selectedElement = window.getSelection().focusNode.parentNode;
-		if(selectedElement == textEditor.getEleById(textEditor.getElementAttribute(ev.target,'data-for')))
-			textEditor.setElementStyle(selectedElement,'lineHeight',ev.target.value+'px'); 
+			textEditor.setElementStyle(parentEle,'lineHeight',ev.target.value+'px'); 
 	}
 	this.closeTextEditor = function(ev){
-		var parentId = textEditor.getElementAttribute(ev.target,'data-for');
-		var parentEle = textEditor.getEleById(parentId);
 		textEditor.setElementAttribute(parentEle,'contentEditable','false');
 		var parentDiv = ev.target.parentElement;
 		var parentTextEditor = parentDiv.parentElement;

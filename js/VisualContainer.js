@@ -1,5 +1,6 @@
 function VisualContainer(){
 	this.visualContainer;
+	var mainLayoutInstance = MainLayout.getInstance();
 	var that = this;
 
 	this.init = function  () {
@@ -13,13 +14,14 @@ function VisualContainer(){
 		that.visualContainer.createEvent('mouseenter','mouseEnter');
 		that.visualContainer.createEvent('mouseleave','mouseLeave');
 		that.visualContainer.createEvent('mouseout','mouseOut');
-		that.visualContainer.element.addEventListener('click',that.addOptionButtons);
-		that.visualContainer.createEvent('click','changeFormFields');
+		that.visualContainer.element.addEventListener('click',that.addOptionButtons,false);
+		that.visualContainer.element.addEventListener('click',mainLayoutInstance.attributeContainer.changeFormFields);
 	}
 	this.getElement = function(){
 		return that.visualContainer.element;
 	}
 	this.addOptionButtons = function(ev){
+		ev.preventDefault();
 		if((that.visualContainer.getEleByClassName('settingOption')!=undefined) || (that.visualContainer.getEleByClassName('delete')!=undefined) ){
 			if((that.visualContainer.getEleByClassName('settingOption')!=undefined)){
 				var parent = that.visualContainer.getEleByClassName('settingOption').parentElement;
@@ -38,7 +40,7 @@ function VisualContainer(){
 			var initialHeight = parseInt(settingOption.getStyle('height',ev.target));
 			var initialWidth = parseInt(settingOption.getStyle('width',ev.target));
 			settingOption.setStyle('top',initialHeight + 'px');
-			settingOption.setStyle('left',initialWidth/2 + 'px');
+			settingOption.setStyle('left',initialWidth/2 + 100 + 'px');
 			settingOption.element.addEventListener('click',that.settingsOption);
 			settingOption.appendTo(ev.target);
 		
@@ -47,7 +49,7 @@ function VisualContainer(){
 			deleteOption.addClass('deleteOption');
 			deleteOption.writeHtml('Delete'); 
 			deleteOption.setStyle('top',initialHeight + 'px');
-			deleteOption.setStyle('left',initialWidth/2 + 100 + 'px');
+			deleteOption.setStyle('left',initialWidth/2 + 200 + 'px');
 			deleteOption.element.addEventListener('click',that.deleteOption);
 			deleteOption.appendTo(ev.target);
 		}
@@ -58,10 +60,15 @@ function VisualContainer(){
 			var textEditor = new TextEditor();
 			textEditor.openTextEditor(ev.target);
 		}
-		if(ev.target.parentElement.nodeName == 'DIV' ||ev.target.parentElement.nodeName == 'NAV' || ev.target.parentElement.nodeName == 'section'){
+		else if(ev.target.parentElement.nodeName == 'DIV' ||ev.target.parentElement.nodeName == 'NAV' || ev.target.parentElement.nodeName == 'se' ||ev.target.parentElement.nodeName == 'INPUT'){
 			var modal = new Modal();
 			modal.openModal(ev.target);
 			modal.selectBackgroundProperties();
+		}
+		else if(ev.target.parentElement.nodeName == 'BUTTON'){
+			var modal = new Modal();
+			modal.openModal(ev.target);
+			modal.selectButtonProperties();
 		}
 	}
 	this.deleteOption = function(ev){
@@ -102,7 +109,6 @@ function VisualContainer(){
  		if(mainElement != null && ev.target.className=='visualContainer'){
  			var elementValue = mainElement.getAttribute('value');
  			that.visualContainer.setElementStyle(ev.target,'background','none');
- 			var mainLayoutInstance = MainLayout.getInstance();
  			mainLayoutInstance.elementContainer.createStaticComponents(elementValue,ev.target);
 	 		ev.stopPropagation();
 		}
