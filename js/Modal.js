@@ -263,7 +263,7 @@ function Modal(){
 
 		var buttonTxtColorLabel = new ElementSection();
 		buttonTxtColorLabel.createElementType('label');
-		buttonTxtColorLabel.writeHtml('Button Color');
+		buttonTxtColorLabel.writeHtml('Button Text Color');
 		buttonTxtColorLabel.addClass('buttonEditorLabelInner');
 		buttonTxtColorLabel.appendTo(divBgControl.element);
 

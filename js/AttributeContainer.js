@@ -48,19 +48,17 @@ function AttributeContainer() {
 
 		that.attributeContainer.createElementType('div');
 		that.attributeContainer.addClass('attributeContainer');
-		that.attributeContainer.addStyle('background:#c8c3c3;width:100%;height:60%;overflow-y:scroll;');
 		that.titleDiv();
 		that.formDiv();
 		boxModel.createBox();
-		that.box = boxModel.getBox();
-		that.attributeContainer.appendChildren(that.box);
+		//that.box = boxModel.getBox();
+		//that.attributeContainer.appendChildren(that.box);
 	}
 	this.titleDiv = function(){
 		that.titleDivision = new ElementSection();
 		that.titleDivision.createElementType('div');
 		that.titleDivision.addClass('attributeTitle');
-		that.titleDivision.addStyle('background:black;width:100%;height:30px;color:white;line-height:30px;font-size:16px;');
-		that.titleDivision.writeHtml('Element Attribute');
+		that.titleDivision.writeHtml('Element Attributes');
 		that.titleDivision.appendTo(that.attributeContainer.element);
 	}
 	this.formDiv = function(){
@@ -102,7 +100,6 @@ function AttributeContainer() {
 		that.toggleableDiv = new ElementSection();
 		that.toggleableDiv.createElementType('div');
 		that.toggleableDiv.addClass('toggleableDiv');
-		that.toggleableDiv.addStyle('height:30px;width:100%;background-color:#b7b5b5;margin-bottom:2px;');
 		that.toggleableDiv.createEvent('click','toggleDisplayContainer');
 		that.clickableHeadingTag(headerName);
 		that.toggleableDiv.appendTo(that.formDivision.element);
@@ -111,7 +108,6 @@ function AttributeContainer() {
 		var headingClickable = new ElementSection();
 		headingClickable.createElementType('h2');
 		headingClickable.addClass('clickableHeading');
-		headingClickable.addStyle('font-size:24px;font-weight:bold;color:black;cursor:pointer;line-height:30px;');
 		headingClickable.writeHtml(headerName);
 		headingClickable.appendTo(that.toggleableDiv.element);
 	}

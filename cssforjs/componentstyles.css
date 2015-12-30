@@ -15,23 +15,58 @@
 	line-height:30px;
 }
 .componentContainer{
-	display:block;
+	display:none;
 	background-color:white;
 	padding-top:5px;
 }
 .elementContainer{
-	background:#c8c3c3;
+	background:#27616F;
 	width:100%;
 	height:30%;
 	overflow-y:scroll;
-	padding:5px;
+}
+.elementContainer button{
+	background-color: #4EB1BA;
+	border: none;
+	color:#ffffff;
+	height:30px;
+	margin: 2px;
 }
 .panelContainer{
 	width:30%;
 	position:fixed;
 	left:70%;
 	height:100%;
-	border:1px solid #000000;
+	border:1px solid #E9E9E9;
+}
+.attributeContainer{
+	background:#27616F;
+	width:100%;
+	height:60%;
+	overflow-y:scroll;
+}
+.attributeTitle{
+	background:#391E40;
+	width:100%;
+	height:50px;
+	color:#E9E9E9;
+	line-height:50px;
+	font-size:20px;
+}
+.toggleableDiv{
+	height:30px;
+	width:100%;
+	clear: both;
+	background-color:#217DBB;
+	margin-bottom:2px;
+}
+.clickableHeading{
+	font-size:16px;
+	color:#E9E9E9;
+	font-weight:bold;
+	cursor:pointer;
+	line-height:30px;
+	margin: 0px;
 }
 .bootButton{
 	

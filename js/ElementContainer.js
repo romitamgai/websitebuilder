@@ -13,8 +13,9 @@ function ElementContainer(){
 		that.elementContainer = new ElementSection();
 		that.elementContainer.createElementType('div');
 		that.elementContainer.addClass('elementContainer');
-		that.downloadWebsite();
+		
 		that.titleDiv();
+		that.downloadWebsite();
 		
 		that.toggleHeadingWrapper('BootStrap Components');
 		that.createComponentsContainer();
@@ -41,9 +42,11 @@ function ElementContainer(){
 		that.makeBtnButton();
 		that.makeInputButton();
 	}
+	//index.html will be downloaded and must be kept inside the websitebuilder directory (css and images folder is not downloaded)
 	this.downloadWebsite = function(){
 		var downloadButton = new ElementSection();
 	    downloadButton.createElementType('button');
+	    downloadButton.addStyle('float:right;');
 	    downloadButton.writeHtml('Download Website');
 	    downloadButton.element.addEventListener('click',that.downloadWebpage);
 	    downloadButton.appendTo(that.elementContainer.element);
@@ -51,14 +54,14 @@ function ElementContainer(){
 	this.titleDiv = function(){
 		var titleDivision = new ElementSection();
 		titleDivision.createElementType('div');
-		titleDivision.addStyle('background:black;width:100%;height:30px;color:white;line-height:30px;font-size:16px;');
+		titleDivision.addClass('attributeTitle');
 		titleDivision.writeHtml('Drag Components From Here');
 		titleDivision.appendTo(that.elementContainer.element);
 	}
 	this.toggleHeadingWrapper = function(headerName){
 		that.clickWrapper = new ElementSection();
 		that.clickWrapper.createElementType('div');
-		that.clickWrapper.addClass('toggleHeadingWrapper');
+		that.clickWrapper.addClass('toggleableDiv');
 		that.clickWrapper.createEvent('click','toggleDisplayContainer');
 		that.clickableHeading(headerName);
 		that.clickWrapper.appendTo(that.elementContainer.element);
