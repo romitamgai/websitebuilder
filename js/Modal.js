@@ -550,11 +550,11 @@ function Modal(){
 		var imageContainer = modal.getEleByClassName('controls imageControl');
 		modal.removeElementClass(imageButton,'active');
 		modal.setElementStyle(imageContainer,'display','none');
-
-		var menuContainer = modal.getEleByClassName('controls menuControl');
-		modal.removeElementClass(menuButton,'active');
-		modal.setElementStyle(menuContainer,'display','none');
-
+		if(modal.getEleByClassName('controls menuControl')!=undefined){
+			var menuContainer = modal.getEleByClassName('controls menuControl');
+			modal.removeElementClass(menuButton,'active');
+			modal.setElementStyle(menuContainer,'display','none');
+		}
 		modal.setElementStyle(colorContainer,'display','block');
 		modal.addElementClass(ev.target,'active');
 	}
@@ -572,11 +572,11 @@ function Modal(){
 		else{
 			menuButton = modal.getEleByClassName('btn btnMenuProp');
 		}
-
-		var menuContainer = modal.getEleByClassName('controls menuControl');
-		modal.removeElementClass(menuButton,'active');
-		modal.setElementStyle(menuContainer,'display','none');
-
+		if(modal.getEleByClassName('controls menuControl')!=undefined){
+			var menuContainer = modal.getEleByClassName('controls menuControl');
+			modal.removeElementClass(menuButton,'active');
+			modal.setElementStyle(menuContainer,'display','none');
+		}
 		var imageContainer = modal.getEleByClassName('controls imageControl');
 		modal.removeElementClass(bgColorButton,'active');
 		modal.setElementStyle(imageContainer,'display','block');
