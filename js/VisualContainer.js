@@ -32,17 +32,22 @@ function VisualContainer(){
 				parent.removeChild(that.visualContainer.getEleByClassName('deleteOption'));
 			}
 		}
+		var targetElement = ev.target;
 		if(ev.target.nodeName != 'B' && ev.target.nodeName != 'FONT' && ev.target.nodeName != 'STYLE' && ev.target.nodeName != 'U' && ev.target.nodeName != 'I' && ev.target.nodeName != 'STRIKE' && that.visualContainer.getEleByClassName('textEditorBar')==undefined){
+			if(ev.target.nodeName == 'INPUT'){
+				targetElement = ev.target.parentElement;
+			}
+			console.log(targetElement);
 			var settingOption = new ElementSection();
 			settingOption.createElementType('div');
 			settingOption.addClass('settingOption');
 			settingOption.writeHtml('Settings');
-			var initialHeight = parseInt(settingOption.getStyle('height',ev.target));
-			var initialWidth = parseInt(settingOption.getStyle('width',ev.target));
+			var initialHeight = parseInt(settingOption.getStyle('height',targetElement));
+			var initialWidth = parseInt(settingOption.getStyle('width',targetElement));
 			settingOption.setStyle('top',initialHeight + 'px');
 			settingOption.setStyle('left',initialWidth/2 + 100 + 'px');
 			settingOption.element.addEventListener('click',that.settingsOption);
-			settingOption.appendTo(ev.target);
+			settingOption.appendTo(targetElement);
 		
 			var deleteOption = new ElementSection();
 			deleteOption.createElementType('div');
@@ -51,7 +56,7 @@ function VisualContainer(){
 			deleteOption.setStyle('top',initialHeight + 'px');
 			deleteOption.setStyle('left',initialWidth/2 + 200 + 'px');
 			deleteOption.element.addEventListener('click',that.deleteOption);
-			deleteOption.appendTo(ev.target);
+			deleteOption.appendTo(targetElement);
 		}
 	}
 	this.settingsOption = function(ev){
@@ -64,6 +69,9 @@ function VisualContainer(){
 			var modal = new Modal();
 			modal.openModal(ev.target);
 			modal.selectBackgroundProperties();
+			if(that.visualContainer.checkElementClassExists(ev.target.parentElement,'menuList')){
+				modal.selectMenuProperties();
+			}
 		}
 		else if(ev.target.parentElement.nodeName == 'BUTTON'){
 			var modal = new Modal();

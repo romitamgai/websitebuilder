@@ -353,8 +353,19 @@ form .row:first-child .floating-label-form-group {
 	float:left;
 	margin-right:10px;
 	clear:both;
-	margin-top:10px;
+	margin-top:20px;
 }
 .control-group{
 	min-height: 250px;
+}
+.menuPositonLabel{
+	float:left;
+	margin-right:10px;
+	margin-top:25px;
+}
+.menuItemLabel{
+	clear: both;
+	float: left;
+	margin-right: 10px;
+	margin-top: 10px; 
 }

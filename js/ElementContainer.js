@@ -381,6 +381,7 @@ function ElementContainer(){
 			that.btStrpElementANav.addAttribute('href','#');
 			that.btStrpElementANav.appendTo(that.btStrpElementDivNavHeader.element);
 			
+			that.btStrpElementDivColNavCol.addClass('menuList');
 			that.btStrpElementDivColNavCol.appendTo(that.btStrpElementDivContFluid.element);
 			that.btStrpElementUlNavNavbarNav.appendTo(that.btStrpElementDivColNavCol.element);
 			

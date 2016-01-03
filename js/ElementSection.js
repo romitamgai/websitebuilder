@@ -58,11 +58,23 @@ function ElementSection(){
 		var value = elementName.getPropertyValue(style);
 		return value;
 	}
+	this.getElementClassIndex = function(element,index){
+		return element.classList.item(index);
+	}
+	this.checkElementClassExists = function(element,name){
+		return element.classList.contains(name);
+	}
 	this.setElementInnerHtml = function(element,text){
 		element.innerHTML = text;
 	}
+	this.getElementInnerHtml = function(element,text){
+		return element.innerHTML;
+	}
 	this.setElementAttribute = function(element,attributeName,value){
 		element.setAttribute(attributeName,value);
+	}
+	this.getElementChildNodes = function(element){
+		return element.childNodes;
 	}
 	this.getElementAttribute = function(element,attributeName){
 		return element.getAttribute(attributeName);

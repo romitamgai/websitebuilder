@@ -1395,10 +1395,10 @@ function AttributeContainer() {
 		var selectedElementById = that.attributeContainer.getEleById(idName);
 		var selectedElementByClassName = that.attributeContainer.getEleByClassName(className);
 		if(selectedElementById != null){
-			that.attributContainer.setElementInnerHtml(selectedElementById,inputValue);
+			that.attributeContainer.setElementInnerHtml(selectedElementById,inputValue);
 		}
 		else if (selectedElementByClassName != null){
-			that.attributContainer.setElementInnerHtml(selectedElementByClassName,inputValue);
+			that.attributeContainer.setElementInnerHtml(selectedElementByClassName,inputValue);
 		}
 	}
 	this.changeImageAlign = function(ev){
