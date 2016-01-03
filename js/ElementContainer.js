@@ -621,7 +621,7 @@ function ElementContainer(){
 			that.divisionElement = new ElementSection();
 			that.divisionElement.createElementType('img');
 			that.divisionElement.addClass('imgClass');
-			that.divisionElement.addStyle('color:#000080;');
+			that.divisionElement.addStyle('');
 			that.divisionElement.addAttribute('src','images/brush.png');
 			that.divisionElement.addAttribute('id','boximg'+count);
 			that.divisionElement.createEvent('mouseenter','mouseEnter');

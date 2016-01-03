@@ -1,6 +1,8 @@
 function Modal(){
 	var modal;
 	var parentEle;
+	var imageElement;
+	var inputElement;
 	var that= this;
 	this.openModal = function(targetElement){
 		parentEle = targetElement.parentElement;
@@ -425,6 +427,163 @@ function Modal(){
 
 		divMenuControl.appendTo(that.divBgControl.element);
 	}
+	this.selectImageProperties = function(styleElement){
+		imageElement = styleElement;
+		var altName = modal.getElementAttribute(imageElement,'alt');
+		var imageHeight = modal.getElementAttribute(imageElement,'height');
+		var imageWidth = modal.getElementAttribute(imageElement,'width');
+
+		var pElement = new ElementSection();
+		pElement.createElementType('p');
+		pElement.addStyle('font-size:20px;font-weight:bold;')
+		pElement.writeHtml('Image');
+		pElement.appendTo(modal.element);
+
+		var divBgControl = new ElementSection();
+		divBgControl.createElementType('div');
+		divBgControl.addClass('control-group');
+		divBgControl.addStyle('margin-top:6px;font-size:20px;');
+
+		var applyButton = new ElementSection();
+		applyButton.createElementType('button');
+		applyButton.addClass('btn-md btn-success')
+		applyButton.addId('btnApply');
+		applyButton.writeHtml('Apply');
+		applyButton.element.addEventListener('click',that.applyChanges);
+
+		var imageLocationLabel = new ElementSection();
+		imageLocationLabel.createElementType('label');
+		imageLocationLabel.addClass('buttonEditorLabel');
+		imageLocationLabel.writeHtml('Image File');
+		imageLocationLabel.appendTo(divBgControl.element);
+
+		var mainImageFile = new ElementSection();
+		mainImageFile.createElementType('input');
+		mainImageFile.addClass('mainImageUpload');
+		mainImageFile.addAttribute('type','file');
+		mainImageFile.addId('mainImageFile');
+		mainImageFile.appendTo(divBgControl.element);
+
+		var imageAltLabel = new ElementSection();
+		imageAltLabel.createElementType('label');
+		imageAltLabel.addClass('buttonEditorLabelInner');
+		imageAltLabel.writeHtml('Image Name');
+		imageAltLabel.appendTo(divBgControl.element);
+
+		var imageAltInput = new ElementSection();
+		imageAltInput.createElementType('input');
+		imageAltInput.addClass('form-control');
+		imageAltInput.addAttribute('type','text');
+		imageAltInput.element.value = altName;
+		imageAltInput.addStyle('width:40%;height:30px;margin-top:20px;');
+		imageAltInput.element.addEventListener('input',that.changeImageAltText);
+		imageAltInput.appendTo(divBgControl.element);
+
+		var imageHeightLabel = new ElementSection();
+		imageHeightLabel.createElementType('label');
+		imageHeightLabel.addClass('buttonEditorLabelInner');
+		imageHeightLabel.writeHtml('Image Height');
+		imageHeightLabel.appendTo(divBgControl.element);
+
+		var imageHeightInput = new ElementSection();
+		imageHeightInput.createElementType('input');
+		imageHeightInput.addClass('form-control');
+		imageHeightInput.addAttribute('type','text');
+		imageHeightInput.element.value = imageHeight;
+		imageHeightInput.addStyle('width:40%;height:30px;margin-top:20px;');
+		imageHeightInput.element.addEventListener('input',that.changeImageHeight);
+		imageHeightInput.appendTo(divBgControl.element);
+
+		var imageWidthLabel = new ElementSection();
+		imageWidthLabel.createElementType('label');
+		imageWidthLabel.addClass('buttonEditorLabelInner');
+		imageWidthLabel.writeHtml('Image Width');
+		imageWidthLabel.appendTo(divBgControl.element);
+
+		var imageWidthInput = new ElementSection();
+		imageWidthInput.createElementType('input');
+		imageWidthInput.addClass('form-control');
+		imageWidthInput.addAttribute('type','text');
+		imageWidthInput.element.value = imageWidth;
+		imageWidthInput.addStyle('width:40%;height:30px;margin-top:20px;');
+		imageWidthInput.element.addEventListener('input',that.changeImageWidth);
+		imageWidthInput.appendTo(divBgControl.element);
+		
+		divBgControl.appendTo(modal.element);
+		applyButton.appendTo(modal.element);
+	}
+	this.selectInputProperties = function(styleElement){
+		inputElement = styleElement;
+		var pElement = new ElementSection();
+		pElement.createElementType('p');
+		pElement.addStyle('font-size:20px;font-weight:bold;')
+		pElement.writeHtml('Input');
+		pElement.appendTo(modal.element);
+
+		var divBgControl = new ElementSection();
+		divBgControl.createElementType('div');
+		divBgControl.addClass('control-group');
+		divBgControl.addStyle('margin-top:6px;font-size:20px;');
+
+		var applyButton = new ElementSection();
+		applyButton.createElementType('button');
+		applyButton.addClass('btn-md btn-success')
+		applyButton.addId('btnApply');
+		applyButton.writeHtml('Apply');
+		applyButton.element.addEventListener('click',that.applyChanges);
+
+		var inputNameLabel = new ElementSection();
+		inputNameLabel.createElementType('label');
+		inputNameLabel.addClass('buttonEditorLabel');
+		inputNameLabel.writeHtml('Name');
+		inputNameLabel.appendTo(divBgControl.element);
+
+		var inputNameInput = new ElementSection();
+		inputNameInput.createElementType('input');
+		inputNameInput.addClass('form-control');
+		inputNameInput.addAttribute('type','text');
+		inputNameInput.addStyle('width:40%;height:30px;margin-top:20px;');
+		inputNameInput.element.addEventListener('input',that.changeInputName);
+		inputNameInput.appendTo(divBgControl.element);
+
+		var inputTypeLabel = new ElementSection();
+		inputTypeLabel.createElementType('label');
+		inputTypeLabel.addClass('buttonEditorLabelInner');
+		inputTypeLabel.writeHtml('Input Type');
+		inputTypeLabel.appendTo(divBgControl.element);
+
+		var  inputTypes = ['text','password','email','phone','number','date'];
+		var inputTypeSelect = new ElementSection(this);
+		inputTypeSelect.createElementType('select');
+		inputTypeSelect.addClass('form-control');
+		inputTypeSelect.addStyle('margin-top:10px;width:40%');
+		inputTypeSelect.element.addEventListener('change',that.changeInputType);
+		for(var i = 0; i< inputTypes.length;i++){
+			var inputType = new ElementSection();
+			inputType.createElementType('option');
+			inputType.addAttribute('value',inputTypes[i]);
+			inputType.writeHtml(inputTypes[i]);
+			inputType.appendTo(inputTypeSelect.element);
+		}
+		inputTypeSelect.appendTo(divBgControl.element);
+
+		var inputPlaceholderLabel = new ElementSection();
+		inputPlaceholderLabel.createElementType('label');
+		inputPlaceholderLabel.addClass('buttonEditorLabelInner');
+		inputPlaceholderLabel.writeHtml('PlaceHolder');
+		inputPlaceholderLabel.appendTo(divBgControl.element);
+
+		var inputPlaceHolderInput = new ElementSection();
+		inputPlaceHolderInput.createElementType('input');
+		inputPlaceHolderInput.addClass('form-control');
+		inputPlaceHolderInput.addAttribute('type','text');
+		inputPlaceHolderInput.addStyle('width:40%;height:30px;margin-top:20px;');
+		inputPlaceHolderInput.element.addEventListener('input',that.changeInputPlaceHolder);
+		inputPlaceHolderInput.appendTo(divBgControl.element);
+
+		divBgControl.appendTo(modal.element);
+		applyButton.appendTo(modal.element);
+	}
 	this.addButtonName = function(ev){
 		that.buttonName = ev.target.value;
 	}
@@ -454,83 +613,6 @@ function Modal(){
 	}
 	this.changeMenuItemColor = function(ev){
 		that.menuItemColor = ev.target.value;
-	}
-	this.applyChanges = function(ev){
-		if(that.buttonName!=null){
-			modal.setElementInnerHtml(parentEle,that.buttonName);
-		}
-		if(that.buttonSize!=null){
-			modal.addElementClass(parentEle,that.buttonSize);
-		}
-		if(that.buttonColor!=null){
-			modal.setElementStyle(parentEle,'backgroundColor',that.buttonColor);
-		}
-		if(that.txtButtonColor!=null){
-			modal.setElementStyle(parentEle,'color',that.txtButtonColor);
-		}
-		if(that.menuPosition!=null){
-			modal.setElementStyle(parentEle,'float',that.menuPosition);
-		}
-		if(that.menuItem!=null){
-			var childNodes = modal.getElementChildNodes(parentEle);
-			for (var i = 0; i < childNodes.length; i++) {
-				if(childNodes[i].nodeName == 'UL'){
-				var normalElementLi = new ElementSection();
-				normalElementLi.createCompoundElements('li','');
-				
-				var normalElementA = new ElementSection();
-				normalElementA.createCompoundElements('a','');
-				normalElementA.addAttribute('href','#');
-				normalElementA.writeHtml(that.menuItem);
-
-				normalElementA.appendTo(normalElementLi.element);
-				normalElementLi.appendTo(childNodes[i]);
-				}
-			}
-		}
-		if(that.removeItem!=null){
-			var childNodes = modal.getElementChildNodes(parentEle);
-			for (var i = 0; i < childNodes.length; i++){
-				if(childNodes[i].nodeName == 'UL'){
-					var innerChildLi = modal.getElementChildNodes(childNodes[i]);
-					for(var j = 0;j<innerChildLi.length;j++){
-						var innerChildA = modal.getElementChildNodes(innerChildLi[j]);
-						for(var k=0;k<innerChildA.length;k++){
-							if(modal.getElementInnerHtml(innerChildA[k])==that.removeItem){
-								modal.removeElementChild(innerChildLi[j],childNodes[i]);
-							}
-						}
-					}
-				}
-			}	
-		}
-		if(that.menuItemColor!=null){
-			var childNodes = modal.getElementChildNodes(parentEle);
-			for (var i = 0; i < childNodes.length; i++){
-				if(childNodes[i].nodeName == 'UL'){
-					var innerChildLi = modal.getElementChildNodes(childNodes[i]);
-					for(var j = 0;j<innerChildLi.length;j++){
-						var innerChildA = modal.getElementChildNodes(innerChildLi[j]);
-						for(var k=0;k<innerChildA.length;k++){
-							modal.setElementStyle(innerChildA[i],'color',that.menuItemColor);
-						}
-					}
-				}
-			}	
-		}
-		if(modal.getEleByClassName('imageUpload')!=undefined){
-			var imageFile = modal.getEleByClassName('imageUpload');
-			var cleanFileName = imageFile.value.substring(12,imageFile.length);
-			var imageName = 'images/' + cleanFileName;
-			modal.setElementStyle(parentEle,'backgroundImage','url('+imageName+')');
-		}
-		if(that.backgrColor!=null){
-			modal.setElementStyle(parentEle,'background',that.backgrColor);
-		}
-		if(that.bgRepeat!=null){
-			modal.setElementStyle(parentEle,'backgroundRepeat',that.bgRepeat);
-		}
-		that.closeModal(ev);
 	}
 	this.displayBgColorSelect = function(ev){
 		var colorContainer = modal.getEleByClassName('controls colorControl');
@@ -655,6 +737,127 @@ function Modal(){
 		}else{
 			that.bgRepeat = null;
 		}
+	}
+	this.changeImageAltText = function(ev){
+		that.imageAltText = ev.target.value;
+	}
+	this.changeImageHeight = function(ev){
+		that.imageHeight = ev.target.value;
+	}
+	this.changeImageWidth = function(ev){
+		that.imageWidth = ev.target.value;
+	}
+	this.changeInputName = function(ev){
+		that.inputName = ev.target.value;
+	}
+	this.changeInputType = function(ev){
+		that.inputType = ev.target.value;
+	}
+	this.changeInputPlaceHolder = function(ev){
+		that.inputPlaceHolder = ev.target.value;
+	}
+	this.applyChanges = function(ev){
+		if(that.buttonName!=null){
+			modal.setElementInnerHtml(parentEle,that.buttonName);
+		}
+		if(that.buttonSize!=null){
+			modal.addElementClass(parentEle,that.buttonSize);
+		}
+		if(that.buttonColor!=null){
+			modal.setElementStyle(parentEle,'backgroundColor',that.buttonColor);
+		}
+		if(that.txtButtonColor!=null){
+			modal.setElementStyle(parentEle,'color',that.txtButtonColor);
+		}
+		if(that.menuPosition!=null){
+			modal.setElementStyle(parentEle,'float',that.menuPosition);
+		}
+		if(that.menuItem!=null){
+			var childNodes = modal.getElementChildNodes(parentEle);
+			for (var i = 0; i < childNodes.length; i++) {
+				if(childNodes[i].nodeName == 'UL'){
+				var normalElementLi = new ElementSection();
+				normalElementLi.createCompoundElements('li','');
+				
+				var normalElementA = new ElementSection();
+				normalElementA.createCompoundElements('a','');
+				normalElementA.addAttribute('href','#');
+				normalElementA.writeHtml(that.menuItem);
+
+				normalElementA.appendTo(normalElementLi.element);
+				normalElementLi.appendTo(childNodes[i]);
+				}
+			}
+		}
+		if(that.removeItem!=null){
+			var childNodes = modal.getElementChildNodes(parentEle);
+			for (var i = 0; i < childNodes.length; i++){
+				if(childNodes[i].nodeName == 'UL'){
+					var innerChildLi = modal.getElementChildNodes(childNodes[i]);
+					for(var j = 0;j<innerChildLi.length;j++){
+						var innerChildA = modal.getElementChildNodes(innerChildLi[j]);
+						for(var k=0;k<innerChildA.length;k++){
+							if(modal.getElementInnerHtml(innerChildA[k])==that.removeItem){
+								modal.removeElementChild(innerChildLi[j],childNodes[i]);
+							}
+						}
+					}
+				}
+			}	
+		}
+		if(that.menuItemColor!=null){
+			var childNodes = modal.getElementChildNodes(parentEle);
+			for (var i = 0; i < childNodes.length; i++){
+				if(childNodes[i].nodeName == 'UL'){
+					var innerChildLi = modal.getElementChildNodes(childNodes[i]);
+					for(var j = 0;j<innerChildLi.length;j++){
+						var innerChildA = modal.getElementChildNodes(innerChildLi[j]);
+						for(var k=0;k<innerChildA.length;k++){
+							modal.setElementStyle(innerChildA[i],'color',that.menuItemColor);
+						}
+					}
+				}
+			}	
+		}
+		if(modal.getEleByClassName('imageUpload')!=undefined){
+			var imageFile = modal.getEleByClassName('imageUpload');
+			var cleanFileName = imageFile.value.substring(12,imageFile.length);
+			var imageName = 'images/' + cleanFileName;
+			if(cleanFileName!='')
+				modal.setElementStyle(parentEle,'backgroundImage','url('+imageName+')');
+		}
+		if(that.backgrColor!=null){
+			modal.setElementStyle(parentEle,'background',that.backgrColor);
+		}
+		if(that.bgRepeat!=null){
+			modal.setElementStyle(parentEle,'backgroundRepeat',that.bgRepeat);
+		}
+		if(modal.getEleByClassName('mainImageUpload')!= undefined){
+			var imageFile = modal.getEleByClassName('mainImageUpload');
+			var cleanFileName = imageFile.value.substring(12,imageFile.length);
+			var imageName = 'images/' + cleanFileName;
+			if(cleanFileName!='')
+				modal.setElementAttribute(imageElement,'src',imageName);
+		}
+		if(that.imageAltText!= null){
+			modal.setElementAttribute(imageElement,'alt',that.imageAltText);
+		}
+		if(that.imageHeight!= null){
+			modal.setElementAttribute(imageElement,'height',that.imageHeight);
+		}
+		if(that.imageWidth!= null){
+			modal.setElementAttribute(imageElement,'width',that.imageWidth);
+		}
+		if(that.inputName!=null){
+			inputElement.name = that.inputName;
+		}
+		if(that.inputType!=null){
+			modal.setElementAttribute(inputElement,'type',that.inputType);
+		}
+		if(that.inputPlaceHolder!=null){
+			modal.setElementAttribute(inputElement,'placeholder',that.inputPlaceHolder);
+		}
+		that.closeModal(ev);
 	}
 	this.closeModal = function(ev){
 		var parentModal = ev.target.parentElement;

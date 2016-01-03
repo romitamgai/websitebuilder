@@ -1,6 +1,8 @@
 function VisualContainer(){
 	this.visualContainer;
 	var mainLayoutInstance = MainLayout.getInstance();
+	var targetInput;
+	var targetImg;
 	var that = this;
 
 	this.init = function  () {
@@ -33,11 +35,8 @@ function VisualContainer(){
 			}
 		}
 		var targetElement = ev.target;
-		if(ev.target.nodeName != 'B' && ev.target.nodeName != 'FONT' && ev.target.nodeName != 'STYLE' && ev.target.nodeName != 'U' && ev.target.nodeName != 'I' && ev.target.nodeName != 'STRIKE' && that.visualContainer.getEleByClassName('textEditorBar')==undefined){
-			if(ev.target.nodeName == 'INPUT'){
-				targetElement = ev.target.parentElement;
-			}
-			console.log(targetElement);
+		if(ev.target.nodeName != 'B' && ev.target.nodeName != 'FONT' && ev.target.nodeName != 'STYLE' && ev.target.nodeName != 'U' && ev.target.nodeName != 'I' && ev.target.nodeName != 'STRIKE' && that.visualContainer.getEleByClassName('textEditorBar')==undefined && !that.visualContainer.checkElementClassExists(targetElement,'visualContainer')){
+			
 			var settingOption = new ElementSection();
 			settingOption.createElementType('div');
 			settingOption.addClass('settingOption');
@@ -47,8 +46,7 @@ function VisualContainer(){
 			settingOption.setStyle('top',initialHeight + 'px');
 			settingOption.setStyle('left',initialWidth/2 + 100 + 'px');
 			settingOption.element.addEventListener('click',that.settingsOption);
-			settingOption.appendTo(targetElement);
-		
+			
 			var deleteOption = new ElementSection();
 			deleteOption.createElementType('div');
 			deleteOption.addClass('deleteOption');
@@ -56,16 +54,27 @@ function VisualContainer(){
 			deleteOption.setStyle('top',initialHeight + 'px');
 			deleteOption.setStyle('left',initialWidth/2 + 200 + 'px');
 			deleteOption.element.addEventListener('click',that.deleteOption);
-			deleteOption.appendTo(targetElement);
+			settingOption.addAttribute('data-for',ev.target.id);
+			deleteOption.addAttribute('data-for',ev.target.id);
+			if(targetElement.nodeName == 'INPUT' || targetElement.nodeName == 'IMG' || targetElement.nodeName == 'TEXTAREA'){
+				settingOption.appendTo(targetElement.parentElement);
+				deleteOption.appendTo(targetElement.parentElement);
+			}
+			else{
+				settingOption.appendTo(targetElement);
+				deleteOption.appendTo(targetElement);
+			}
 		}
 	}
 	this.settingsOption = function(ev){
-		var parent = ev.target.parentElement.id;
-		if(ev.target.parentElement.nodeName == 'P' || ev.target.parentElement.nodeName == 'A' || ev.target.parentElement.nodeName == 'H1' || ev.target.parentElement.nodeName == 'H2'){
+		var styleElementId = that.visualContainer.getElementAttribute(ev.target,'data-for');
+		var styleElement = that.visualContainer.getEleById(styleElementId);
+		var nodeName = styleElement.nodeName;
+		if(nodeName == 'P' || nodeName == 'A' || nodeName== 'H1' || nodeName == 'H2'){
 			var textEditor = new TextEditor();
 			textEditor.openTextEditor(ev.target);
 		}
-		else if(ev.target.parentElement.nodeName == 'DIV' ||ev.target.parentElement.nodeName == 'NAV' || ev.target.parentElement.nodeName == 'se' ||ev.target.parentElement.nodeName == 'INPUT'){
+		else if(nodeName == 'DIV' || nodeName == 'NAV' || nodeName == 'SECTION'){
 			var modal = new Modal();
 			modal.openModal(ev.target);
 			modal.selectBackgroundProperties();
@@ -73,16 +82,28 @@ function VisualContainer(){
 				modal.selectMenuProperties();
 			}
 		}
-		else if(ev.target.parentElement.nodeName == 'BUTTON'){
+		else if(nodeName == 'BUTTON'){
 			var modal = new Modal();
 			modal.openModal(ev.target);
 			modal.selectButtonProperties();
 		}
+		else if(nodeName == 'IMG'){
+			var modal = new Modal();
+			modal.openModal(ev.target);
+			modal.selectImageProperties(styleElement);
+		}
+		else if(nodeName == 'INPUT' || nodeName =='TEXTAREA'){
+			var modal = new Modal();
+			modal.openModal(ev.target);
+			modal.selectInputProperties(styleElement);
+		}
 	}
 	this.deleteOption = function(ev){
-		var idName = ev.target.parentElement.id;
+		var styleElementId = that.visualContainer.getElementAttribute(ev.target,'data-for');
+		var styleElement = that.visualContainer.getEleById(styleElementId);
+		var idName = styleElement.id;
 		if(idName == ''){
-			idName = ev.target.parentElement.parentElement.id;
+			idName = styleElement.parentElement.id;
 		}
 		var selectedElementById = that.visualContainer.getEleById(idName);
 		if(selectedElementById != null && (that.visualContainer.getEleByClassName('textEditorBar')==undefined)){
