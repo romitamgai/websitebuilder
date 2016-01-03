@@ -115,6 +115,10 @@ function VisualContainer(){
 				that.visualContainer.removeElementChild(selectedElementById,parent);
 			}
 		}
+		if(that.visualContainer.getElementInnerHtml(that.visualContainer.element)==''){
+			console.log('here');
+			that.visualContainer.setStyle('background','url(\'images/drophere.png\')center no-repeat');
+		}
 	}
   	this.dragEnter = function(ev){
 		event.preventDefault();
