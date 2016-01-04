@@ -73,8 +73,9 @@ function VisualContainer(){
 		if(nodeName == 'P' || nodeName == 'A' || nodeName== 'H1' || nodeName == 'H2'){
 			var textEditor = new TextEditor();
 			textEditor.openTextEditor(ev.target);
+			console.log('here');
 		}
-		else if(nodeName == 'DIV' || nodeName == 'NAV' || nodeName == 'SECTION'){
+		else if(nodeName == 'DIV' || nodeName == 'NAV' || nodeName == 'SECTION' || nodeName == 'HEADER'){
 			var modal = new Modal();
 			modal.openModal(ev.target);
 			modal.selectBackgroundProperties();

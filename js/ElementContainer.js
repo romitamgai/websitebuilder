@@ -20,6 +20,8 @@ function ElementContainer(){
 		that.toggleHeadingWrapper('BootStrap Components');
 		that.createComponentsContainer();
 		that.makeBootNavBar();
+		that.makeBootHeading();
+		that.makeBootHeadingSecond();
 		that.makeBootAboutSection();
 		that.makeBootContact();
 		that.makeBootBrandImage();
@@ -289,6 +291,34 @@ function ElementContainer(){
 		bootStrapComponentNav.createEvent('mouseout','mouseOut');
 		bootStrapComponentNav.appendTo(that.componentsContainer.element);
 	}
+	this.makeBootHeading = function(){
+		var bootStrapComponent = new ElementSection();
+		bootStrapComponent.createElementType('button');
+		bootStrapComponent.addAttribute('value','bootHeader');
+		bootStrapComponent.writeHtml('Bootstrap Header');
+		bootStrapComponent.addAttribute('id','boxHeader');
+		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
+		bootStrapComponent.addAttribute('draggable','true');
+		bootStrapComponent.element.addEventListener('dragstart',that.dragStart);
+		bootStrapComponent.createEvent('mouseenter','mouseEnter');
+		bootStrapComponent.createEvent('mouseleave','mouseLeave');
+		bootStrapComponent.createEvent('mouseout','mouseOut');
+		bootStrapComponent.appendTo(that.componentsContainer.element);
+	}
+	this.makeBootHeadingSecond = function(){
+		var bootStrapComponent = new ElementSection();
+		bootStrapComponent.createElementType('button');
+		bootStrapComponent.addAttribute('value','bootHeaderSecond');
+		bootStrapComponent.writeHtml('Bootstrap Header');
+		bootStrapComponent.addAttribute('id','boxHeaderSecond');
+		//component.addStyle('background-color:#000000;width:20%;height:100px;float:left;cursor:pointer;margin:1px');
+		bootStrapComponent.addAttribute('draggable','true');
+		bootStrapComponent.element.addEventListener('dragstart',that.dragStart);
+		bootStrapComponent.createEvent('mouseenter','mouseEnter');
+		bootStrapComponent.createEvent('mouseleave','mouseLeave');
+		bootStrapComponent.createEvent('mouseout','mouseOut');
+		bootStrapComponent.appendTo(that.componentsContainer.element);
+	}
 	this.makeBootBrandImage = function(){
 		var bootStrapComponent = new ElementSection();
 		bootStrapComponent.createElementType('button');
@@ -439,6 +469,125 @@ function ElementContainer(){
 
 			that.btStrpElementNav.appendTo(elementDestination);
 		}
+		else if(elementType == 'bootHeader'){
+			that.initiateBootSrapComponents();
+			that.initiateNormalComponents();
+
+			that.btStrpElementH1PageHdr.writeHtml('Page Heading');
+			that.btStrpElementH1PageHdr.appendTo(that.btStrpElementCollg12TxtCntr.element);
+			that.btStrpElementCollg12TxtCntr.removeClass('text-center');
+			that.btStrpElementCollg12TxtCntr.appendTo(that.btStrpElementRow.element);
+			that.btStrpElementRow.appendTo(that.btStrpElementDivCont.element);
+
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow1.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow1.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow1.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow1.element);
+			that.btStrpElementRow1.appendTo(that.btStrpElementDivCont.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow2.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow2.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow2.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow2.element);
+			that.btStrpElementRow2.appendTo(that.btStrpElementDivCont.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow3.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow3.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow3.element);
+
+			that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+			that.btStrpElementImageResponsive.addAttribute('src','images/750X480.png');
+			that.normalElementA.createCompoundElements('a','');
+			that.normalElementA.addAttribute('href','#');
+			that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+			that.btStrpElementImageResponsive.appendTo(that.normalElementA.element);
+			that.normalElementA.appendTo(that.btStrpElementColMd3PortItem.element);
+			that.btStrpElementColMd3PortItem.appendTo(that.btStrpElementRow3.element);
+			that.btStrpElementRow3.appendTo(that.btStrpElementDivCont.element);
+			
+			that.btStrpElementDivCont.appendTo(elementDestination);
+		}
 		else if(elementType == 'bootAbout'){
 			that.initiateBootSrapComponents();
 			that.initiateNormalComponents();
@@ -528,6 +677,21 @@ function ElementContainer(){
 			that.btStrpElementCollg8CollgOff2TxtCntr.appendTo(that.btStrpElementRow1.element);
 			that.btStrpElementRow1.appendTo(that.btStrpElementDivCont.element);
 			that.btStrpElementDivCont.appendTo(elementDestination);
+		}
+		else if(elementType == 'bootHeaderSecond'){
+			that.initiateBootSrapComponents();
+			that.initiateNormalComponents();
+
+			that.normalElementH1.writeHtml('Start Building Website');
+			that.normalElementH1.appendTo(that.normalElementDiv.element);
+			that.normalElementH3.writeHtml('Edit the Webpage');
+			that.normalElementH3.appendTo(that.normalElementDiv.element);
+			that.normalElementBr.appendTo(that.normalElementDiv.element);
+			that.btStrpElementBtnBtnSucBtnLg.writeHtml('Find out more');
+			that.btStrpElementBtnBtnSucBtnLg.appendTo(that.normalElementDiv.element);
+			that.normalElementDiv.addClass('text-vertical-center');
+			that.normalElementDiv.appendTo(that.btStrpElementHeader.element);
+			that.btStrpElementHeader.appendTo(elementDestination);
 		}
 		else if(elementType == 'bootForm'){
 			that.initiateBootSrapComponents();
@@ -829,6 +993,17 @@ function ElementContainer(){
 		that.btStrpElementUlDropMenu = new ElementSection();
 		that.btStrpElementUlDropMenu.createCompoundElements('ul','dropdown-menu');
 
+		that.btStrpElementH1PageHdr = new ElementSection();
+		that.btStrpElementH1PageHdr.createCompoundElements('h1','page-header');
+		//div element with class col-md-3 portfolio-item
+		that.btStrpElementColMd3PortItem = new ElementSection();
+		that.btStrpElementColMd3PortItem.createCompoundElements('div','col-md-3 portfolio-item');
+		//img element with class img-responsive
+		that.btStrpElementImageResponsive = new ElementSection();
+		that.btStrpElementImageResponsive.createCompoundElements('img','img-responsive');
+		//header element with class header
+		that.btStrpElementHeader = new ElementSection();
+		that.btStrpElementHeader.createCompoundElements('header','header');
 	}
 	that.initiateNormalComponents = function(){
 		//img element
@@ -884,6 +1059,17 @@ function ElementContainer(){
 
 		that.normalElementBr = new ElementSection();
 		that.normalElementBr.createCompoundElements('br','');
+
+		that.normalElementDiv = new ElementSection();
+		that.normalElementDiv.createCompoundElements('div','');
+
+		that.normalElementH1 = new ElementSection();
+		that.normalElementH1.createCompoundElements('h1','');
+
+		that.normalElementH3 = new ElementSection();
+		that.normalElementH3.createCompoundElements('h3','');
+
+
 
 	}//Events to resize div
 	this.resizeElement = function(ev){
