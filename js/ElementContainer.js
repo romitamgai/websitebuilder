@@ -800,7 +800,6 @@ function ElementContainer(){
 			that.btStrpElementDivFtrAbv = new ElementSection();
 			that.btStrpElementDivFtrAbv.createCompoundElements('div', 'footer-below');
 			that.btStrpElementCollg12TxtCntr.removeClass('text-center');
-			that.normalElementP.addClass('pcolorfoot');
 			that.normalElementP.writeHtml('Copyright &copy; Your Website 2016');
 			that.normalElementP.appendTo(that.btStrpElementCollg12TxtCntr.element);
 			that.btStrpElementCollg12TxtCntr.appendTo(that.btStrpElementRow.element);
