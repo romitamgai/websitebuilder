@@ -27,11 +27,11 @@ function VisualContainer(){
 		if((that.visualContainer.getEleByClassName('settingOption')!=undefined) || (that.visualContainer.getEleByClassName('delete')!=undefined) ){
 			if((that.visualContainer.getEleByClassName('settingOption')!=undefined)){
 				var parent = that.visualContainer.getEleByClassName('settingOption').parentElement;
-				parent.removeChild(that.visualContainer.getEleByClassName('settingOption'));
+				that.visualContainer.removeElementChild(parent,that.visualContainer.getEleByClassName('settingOption'));
 			}
 			if((that.visualContainer.getEleByClassName('deleteOption')!=undefined)){
 				var parent = that.visualContainer.getEleByClassName('deleteOption').parentElement;
-				parent.removeChild(that.visualContainer.getEleByClassName('deleteOption'));
+				that.visualContainer.removeElementChild(parent,that.visualContainer.getEleByClassName('deleteOption'));
 			}
 		}
 		var targetElement = ev.target;
@@ -75,7 +75,7 @@ function VisualContainer(){
 			textEditor.openTextEditor(ev.target);
 			console.log('here');
 		}
-		else if(nodeName == 'DIV' || nodeName == 'NAV' || nodeName == 'SECTION' || nodeName == 'HEADER'){
+		else if(nodeName == 'DIV' || nodeName == 'NAV' || nodeName == 'SECTION' || nodeName == 'HEADER' || nodeName == 'FOOTER'){
 			var modal = new Modal();
 			modal.openModal(ev.target);
 			modal.selectBackgroundProperties();

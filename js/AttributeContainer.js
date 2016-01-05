@@ -44,15 +44,11 @@ function AttributeContainer() {
 
 	this.init = function  () {
 		that.attributeContainer = new ElementSection();
-		var boxModel = new BoxModel();
 
 		that.attributeContainer.createElementType('div');
 		that.attributeContainer.addClass('attributeContainer');
 		that.titleDiv();
 		that.formDiv();
-		boxModel.createBox();
-		//that.box = boxModel.getBox();
-		//that.attributeContainer.appendChildren(that.box);
 	}
 	this.titleDiv = function(){
 		that.titleDivision = new ElementSection();
