@@ -27,11 +27,11 @@ function VisualContainer(){
 		if((that.visualContainer.getEleByClassName('settingOption')!=undefined) || (that.visualContainer.getEleByClassName('delete')!=undefined) ){
 			if((that.visualContainer.getEleByClassName('settingOption')!=undefined)){
 				var parent = that.visualContainer.getEleByClassName('settingOption').parentElement;
-				that.visualContainer.removeElementChild(parent,that.visualContainer.getEleByClassName('settingOption'));
+				parent.removeChild(that.visualContainer.getEleByClassName('settingOption'));
 			}
 			if((that.visualContainer.getEleByClassName('deleteOption')!=undefined)){
 				var parent = that.visualContainer.getEleByClassName('deleteOption').parentElement;
-				that.visualContainer.removeElementChild(parent,that.visualContainer.getEleByClassName('deleteOption'));
+				parent.removeChild(that.visualContainer.getEleByClassName('deleteOption'));
 			}
 		}
 		var targetElement = ev.target;
@@ -73,7 +73,6 @@ function VisualContainer(){
 		if(nodeName == 'P' || nodeName == 'A' || nodeName== 'H1' || nodeName == 'H2'){
 			var textEditor = new TextEditor();
 			textEditor.openTextEditor(ev.target);
-			console.log('here');
 		}
 		else if(nodeName == 'DIV' || nodeName == 'NAV' || nodeName == 'SECTION' || nodeName == 'HEADER' || nodeName == 'FOOTER'){
 			var modal = new Modal();
